@@ -2,19 +2,19 @@ package com.wordcount;
 
 import org.junit.jupiter.api.Test;
 
-import static com.wordcount.WordCounter.MESSAGE_ENTER_TEXT;
-import static com.wordcount.WordCounter.MESSAGE_NUMBER_OF_WORDS;
+import static com.wordcount.Application.MESSAGE_ENTER_TEXT;
+import static com.wordcount.Application.MESSAGE_NUMBER_OF_WORDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-class WordCounterTest {
+class ApplicationTest {
 
     @Test
     void callsAllNeededMethodsOfCollaboratorsWhenCorrectlySetup() {
         UIable mock = mock(UIable.class);
         when(mock.getInput()).thenReturn("Mary had a little lamb");
-        WordCounter sut = new WordCounter(mock);
+        Application sut = new Application(mock);
 
         sut.run();
 
@@ -26,13 +26,13 @@ class WordCounterTest {
 
     @Test
     void throwsNullpointerIfParameterIsNull() {
-        assertThrows(NullPointerException.class, () -> new WordCounter(null));
+        assertThrows(NullPointerException.class, () -> new Application(null));
     }
 
     @Test
     void countsPlainWordsCorrectly() {
         UIable mock = mock(UIable.class);
-        WordCounter sut = new WordCounter(mock);
+        Application sut = new Application(mock);
 
         final String input = "word word";
         int expected = 2;

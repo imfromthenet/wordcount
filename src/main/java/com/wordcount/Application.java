@@ -2,12 +2,12 @@ package com.wordcount;
 
 import java.util.Objects;
 
-public class WordCounter {
+public class Application {
     public static final String MESSAGE_ENTER_TEXT = "Enter text: ";
     public static final String MESSAGE_NUMBER_OF_WORDS = "Number of words: ";
     private final UIable ui;
 
-    public WordCounter(final UIable ui) {
+    public Application(final UIable ui) {
         Objects.requireNonNull(ui);
         this.ui = ui;
     }
