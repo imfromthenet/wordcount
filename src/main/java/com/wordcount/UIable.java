@@ -1,6 +1,6 @@
 package com.wordcount;
 
-public interface UserInteractable {
+public interface UIable {
 
     void displayMessage(final String message);
 
