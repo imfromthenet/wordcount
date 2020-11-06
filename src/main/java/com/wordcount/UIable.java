@@ -4,4 +4,5 @@ public interface UIable {
 
     void displayMessage(final String message);
 
+    String getInput();
 }

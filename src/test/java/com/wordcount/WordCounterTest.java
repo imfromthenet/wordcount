@@ -9,13 +9,14 @@ import static org.mockito.Mockito.*;
 class WordCounterTest {
 
     @Test
-    void displaysMessageWhenCorrectlySetUp() {
+    void callsAllNeededMethodsWhenCorrectlySetup() {
         UIable mock = mock(UIable.class);
         WordCounter sut = new WordCounter(mock);
 
         sut.run();
 
         verify(mock, times(1)).displayMessage(MESSAGE_ENTER_TEXT);
+        verify(mock, times(1)).getInput();
         verifyNoMoreInteractions(mock);
     }
 

@@ -1,6 +1,7 @@
 package com.wordcount;
 
 import java.util.Objects;
+import java.util.Scanner;
 
 public class ConsoleUI implements UIable {
 
@@ -9,5 +10,10 @@ public class ConsoleUI implements UIable {
         Objects.requireNonNull(message);
 
         System.out.print(message);
+    }
+
+    @Override
+    public String getInput() {
+        return new Scanner(System.in).nextLine();
     }
 }

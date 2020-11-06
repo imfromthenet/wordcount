@@ -4,7 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -38,4 +40,14 @@ class ConsoleUITest {
         assertThrows(NullPointerException.class, () -> sut.displayMessage(null));
     }
 
+    @Test
+    void getInput() {
+        String expected = "word w2rd";
+        InputStream in = new ByteArrayInputStream(expected.getBytes());
+        System.setIn(in);
+
+        final String actual = sut.getInput();
+
+        assertEquals(actual, expected);
+    }
 }
