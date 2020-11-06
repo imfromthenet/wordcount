@@ -14,30 +14,22 @@ class ApplicationTest {
     void callsAllNeededMethodsOfCollaboratorsWhenCorrectlySetup() {
         UIable mock = mock(UIable.class);
         when(mock.getInput()).thenReturn("Mary had a little lamb");
-        Application sut = new Application(mock);
+        Application sut = new Application(mock, new WordCounter());
 
         sut.run();
 
         verify(mock, times(1)).displayMessage(MESSAGE_ENTER_TEXT);
         verify(mock, times(1)).getInput();
         verify(mock, times(1)).displayMessage(MESSAGE_NUMBER_OF_WORDS + 5);
+
+//        TODO: replace wordCounter with mock and mock results
+
         verifyNoMoreInteractions(mock);
     }
 
     @Test
     void throwsNullpointerIfParameterIsNull() {
-        assertThrows(NullPointerException.class, () -> new Application(null));
+        assertThrows(NullPointerException.class, () -> new Application(null, new WordCounter()));
     }
 
-    @Test
-    void countsPlainWordsCorrectly() {
-        UIable mock = mock(UIable.class);
-        Application sut = new Application(mock);
-
-        final String input = "word word";
-        int expected = 2;
-        int actual = sut.calculate(input);
-
-        assertEquals(expected, actual);
-    }
 }
