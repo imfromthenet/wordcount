@@ -3,6 +3,7 @@ package com.wordcount;
 import org.junit.jupiter.api.Test;
 
 import static com.wordcount.WordCounter.MESSAGE_ENTER_TEXT;
+import static com.wordcount.WordCounter.MESSAGE_NUMBER_OF_WORDS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
@@ -19,6 +20,7 @@ class WordCounterTest {
 
         verify(mock, times(1)).displayMessage(MESSAGE_ENTER_TEXT);
         verify(mock, times(1)).getInput();
+        verify(mock, times(1)).displayMessage(MESSAGE_NUMBER_OF_WORDS + 5);
         verifyNoMoreInteractions(mock);
     }
 
