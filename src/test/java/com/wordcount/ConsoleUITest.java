@@ -12,14 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ConsoleUITest {
 
-    private UIable sut;
+    private final UIable sut = new ConsoleUI();
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream standardOut = System.out;
 
     @BeforeEach
     public void setUp() {
         System.setOut(new PrintStream(outputStreamCaptor));
-        sut = new ConsoleUI();
     }
 
     @AfterEach
