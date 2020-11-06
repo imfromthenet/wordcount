@@ -14,5 +14,10 @@ public class WordCounter {
     public void run() {
         ui.displayMessage(MESSAGE_ENTER_TEXT);
         String input = ui.getInput();
+//        calculate(input);
+    }
+
+    public int calculate(String input) {
+        return input.split(" ").length;
     }
 }
