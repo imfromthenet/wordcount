@@ -10,8 +10,9 @@ import static org.mockito.Mockito.*;
 class WordCounterTest {
 
     @Test
-    void callsAllNeededMethodsWhenCorrectlySetup() {
+    void callsAllNeededMethodsOfCollaboratorsWhenCorrectlySetup() {
         UIable mock = mock(UIable.class);
+        when(mock.getInput()).thenReturn("Mary had a little lamb");
         WordCounter sut = new WordCounter(mock);
 
         sut.run();
