@@ -12,19 +12,21 @@ class ApplicationTest {
 
     @Test
     void callsAllNeededMethodsOfCollaboratorsWhenCorrectlySetup() {
-        UIable mock = mock(UIable.class);
-        when(mock.getInput()).thenReturn("Mary had a little lamb");
-        Application sut = new Application(mock, new WordCounter());
+        UIable uiMock = mock(UIable.class);
+        final String input = "Mary had a little lamb";
+        when(uiMock.getInput()).thenReturn(input);
+        WordCounter counterMock = mock(WordCounter.class);
+        when(counterMock.count(input)).thenReturn(5);
+        Application sut = new Application(uiMock, counterMock);
 
         sut.run();
 
-        verify(mock, times(1)).displayMessage(MESSAGE_ENTER_TEXT);
-        verify(mock, times(1)).getInput();
-        verify(mock, times(1)).displayMessage(MESSAGE_NUMBER_OF_WORDS + 5);
+        verify(uiMock, times(1)).displayMessage(MESSAGE_ENTER_TEXT);
+        verify(uiMock, times(1)).getInput();
+        verify(counterMock, times(1)).count(input);
+        verify(uiMock, times(1)).displayMessage(MESSAGE_NUMBER_OF_WORDS + 5);
 
-//        TODO: replace wordCounter with mock and mock results
-
-        verifyNoMoreInteractions(mock);
+        verifyNoMoreInteractions(uiMock);
     }
 
     @Test
