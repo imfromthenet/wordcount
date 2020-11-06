@@ -29,7 +29,7 @@ class ConsoleUITest {
     }
 
     @Test
-    void displayMessageToConsole() {
+    void displaysMessageToConsole() {
         sut.displayMessage("message");
 
         assertEquals("message", outputStreamCaptor.toString());
@@ -41,7 +41,7 @@ class ConsoleUITest {
     }
 
     @Test
-    void getInput() {
+    void getsTypedUserInputFromConsole() {
         String expected = "word w2rd";
         InputStream in = new ByteArrayInputStream(expected.getBytes());
         System.setIn(in);
