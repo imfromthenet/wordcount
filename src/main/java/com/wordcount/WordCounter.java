@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class WordCounter {
 
-    private final Pattern pattern = Pattern.compile("(?<!\\S)[a-z]++(?=\\s|$|[^a-z\\d\\s]++(?!\\S))");
+    private final Pattern pattern = Pattern.compile("(?<!\\S)[a-zA-Z]++(?=\\s|$|[^a-z\\d\\s]++(?!\\S))");
 
     public int count(final String input) {
         Objects.requireNonNull(input);

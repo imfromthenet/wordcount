@@ -14,8 +14,28 @@ class WordCounterTest {
     private final WordCounter sut = new WordCounter();
 
     @Test
-    void countsSimpleWordsCorrectly() {
+    void countsMultipleWords() {
         final String input = "word word";
+        int expected = 2;
+
+        int actual = sut.count(input);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void countsWordsThatStartWithAnUppercase() {
+        final String input = "Word";
+        int expected = 2;
+
+        int actual = sut.count(input);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void countsUppercaseWords() {
+        final String input = "WORD";
         int expected = 2;
 
         int actual = sut.count(input);
@@ -72,7 +92,7 @@ class WordCounterTest {
     @ParameterizedTest
     @CsvSource({".", "!", "?", ":", ";"})
     void countsWordsEndingWithAPunctuationMark(final String punctuationMark) {
-        final String input = "word" + punctuationMark;
+        final String input = "word".concat(punctuationMark);
         int expected = 1;
 
         int actual = sut.count(input);
