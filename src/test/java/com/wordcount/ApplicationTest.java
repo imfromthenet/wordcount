@@ -1,13 +1,13 @@
 package com.wordcount;
 
+import com.wordcount.domain.StopWords;
+import com.wordcount.domain.WordCounter;
 import com.wordcount.io.ConsoleUI;
 import com.wordcount.io.UIable;
-import com.wordcount.domain.WordCounter;
 import org.junit.jupiter.api.Test;
 
 import static com.wordcount.Application.MESSAGE_ENTER_TEXT;
 import static com.wordcount.Application.MESSAGE_NUMBER_OF_WORDS;
-import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
@@ -35,7 +35,7 @@ class ApplicationTest {
 
     @Test
     void throwsNullpointerIfParameterIsNull() {
-        assertThrows(NullPointerException.class, () -> new Application(null, new WordCounter(emptyList())));
+        assertThrows(NullPointerException.class, () -> new Application(null, new WordCounter(mock(StopWords.class))));
         assertThrows(NullPointerException.class, () -> new Application(new ConsoleUI(), null));
     }
 

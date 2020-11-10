@@ -20,6 +20,7 @@ public class Application {
         ui.displayMessage(MESSAGE_ENTER_TEXT);
         String input = ui.getInput();
         int count = wordCounter.count(input);
+
         String response = String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, count);
         ui.displayMessage(response);
     }

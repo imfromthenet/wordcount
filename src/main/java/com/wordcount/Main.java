@@ -1,23 +1,24 @@
 package com.wordcount;
 
+import com.wordcount.domain.StopWords;
 import com.wordcount.io.ConsoleUI;
 import com.wordcount.io.FileReader;
 import com.wordcount.io.Readable;
 import com.wordcount.domain.WordCounter;
 
-import java.util.List;
-
 public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        List<String> stopWords = getStopwords();
+        StopWords stopWords = getStopWords();
         Application application = new Application(new ConsoleUI(), new WordCounter(stopWords));
         application.run();
     }
 
-    private static List<String> getStopwords() {
+    private static StopWords getStopWords() {
         Readable fileReader = new FileReader();
-        return fileReader.readAsLines(STOP_WORDS_FILE);
+        StopWords stopWords = new StopWords(fileReader);
+        stopWords.fillFrom(STOP_WORDS_FILE);
+        return stopWords;
     }
 }

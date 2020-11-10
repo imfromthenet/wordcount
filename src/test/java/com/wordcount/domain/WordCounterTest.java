@@ -6,13 +6,21 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
-import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.*;
 
 class WordCounterTest {
 
-    private final WordCounter sut = new WordCounter(singletonList("a"));
+    StopWords stopWords = initializeMockStopWordsWithOneWord();
+
+    private StopWords initializeMockStopWordsWithOneWord() {
+        final StopWords mock = mock(StopWords.class);
+        when(mock.contain("a")).thenReturn(true);
+        return mock;
+    }
+
+    private final WordCounter sut = new WordCounter(stopWords);
 
     @Test
     void countsMultipleWords() {
