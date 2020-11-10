@@ -1,4 +1,4 @@
-package com.wordcount;
+package com.wordcount.io;
 
 public interface UIable {
 
