@@ -6,12 +6,13 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 
+import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class WordCounterTest {
 
-    private final WordCounter sut = new WordCounter();
+    private final WordCounter sut = new WordCounter(singletonList("a"));
 
     @Test
     void countsMultipleWords() {
@@ -93,6 +94,16 @@ class WordCounterTest {
     @CsvSource({".", "!", "?", ":", ";"})
     void countsWordsEndingWithAPunctuationMark(final String punctuationMark) {
         final String input = "word".concat(punctuationMark);
+        int expected = 1;
+
+        int actual = sut.count(input);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void filtersOutStopWords() {
+        final String input = "word a";
         int expected = 1;
 
         int actual = sut.count(input);
