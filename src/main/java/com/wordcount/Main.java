@@ -3,6 +3,7 @@ package com.wordcount;
 import com.wordcount.io.ConsoleUI;
 import com.wordcount.io.FileReader;
 import com.wordcount.io.Readable;
+import com.wordcount.domain.WordCounter;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package com.wordcount;
 
 import com.wordcount.io.UIable;
+import com.wordcount.domain.WordCounter;
 
 import java.util.Objects;
 

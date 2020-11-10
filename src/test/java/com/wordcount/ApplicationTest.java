@@ -2,6 +2,7 @@ package com.wordcount;
 
 import com.wordcount.io.ConsoleUI;
 import com.wordcount.io.UIable;
+import com.wordcount.domain.WordCounter;
 import org.junit.jupiter.api.Test;
 
 import static com.wordcount.Application.MESSAGE_ENTER_TEXT;
