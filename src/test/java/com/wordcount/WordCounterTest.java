@@ -26,7 +26,7 @@ class WordCounterTest {
     @Test
     void countsWordsThatStartWithAnUppercase() {
         final String input = "Word";
-        int expected = 2;
+        int expected = 1;
 
         int actual = sut.count(input);
 
@@ -36,7 +36,7 @@ class WordCounterTest {
     @Test
     void countsUppercaseWords() {
         final String input = "WORD";
-        int expected = 2;
+        int expected = 1;
 
         int actual = sut.count(input);
 
