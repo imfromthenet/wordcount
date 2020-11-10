@@ -1,0 +1,41 @@
+package com.wordcount;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ApplicationIT {
+
+    private final PrintStream standardOut = System.out;
+    private final InputStream standardIn = System.in;
+
+    final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outputStreamCaptor));
+    }
+
+    @AfterEach
+    public void tearDown() {
+        System.setOut(standardOut);
+        System.setIn(standardIn);
+    }
+
+    @Test
+    public void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
+        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+
+        Main.main(new String[]{});
+
+        String actual = outputStreamCaptor.toString();
+        assertEquals("Enter text: Number of words: 4", actual);
+    }
+}
