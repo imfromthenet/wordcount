@@ -1,5 +1,7 @@
 package com.wordcount;
 
+import com.wordcount.io.UIable;
+
 import java.util.Objects;
 
 public class Application {
@@ -8,11 +10,9 @@ public class Application {
     private final UIable ui;
     private final WordCounter wordCounter;
 
-    public Application(final UIable ui, WordCounter wordCounter) {
-        Objects.requireNonNull(ui);
-        Objects.requireNonNull(wordCounter);
-        this.ui = ui;
-        this.wordCounter = wordCounter;
+    public Application(final UIable ui, final WordCounter wordCounter) {
+        this.ui = Objects.requireNonNull(ui);
+        this.wordCounter = Objects.requireNonNull(wordCounter);
     }
 
     public void run() {
