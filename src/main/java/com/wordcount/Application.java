@@ -18,10 +18,10 @@ public class Application {
 
     public void run() {
         ui.displayMessage(MESSAGE_ENTER_TEXT);
-        String input = ui.getInput();
+        final String input = ui.getInput();
         int count = wordCounter.count(input);
 
-        String response = String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, count);
+        final String response = String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, count);
         ui.displayMessage(response);
     }
 

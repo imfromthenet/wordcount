@@ -15,9 +15,9 @@ class FileReaderTest {
 
     @Test
     void readsAllTheStopWords() {
-        List<String> expected = Arrays.asList("the", "a", "on", "off");
+        final List<String> expected = Arrays.asList("the", "a", "on", "off");
 
-        List<String> actual = sut.readAsLines(STOP_WORDS_FILE);
+        final List<String> actual = sut.readAsLines(STOP_WORDS_FILE);
 
         assertEquals(expected, actual);
     }
