@@ -24,8 +24,6 @@ class FileReaderTest {
 
     @Test
     void throwsAnExceptionIfFileNotFound() {
-        FileReader sut = new FileReader();
-
-        assertThrows(Exception.class, () -> sut.readAsLines("nonExistingFile"));
+        assertThrows(RuntimeException.class, () -> sut.readAsLines("nonExistingFile"));
     }
 }

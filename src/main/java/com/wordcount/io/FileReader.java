@@ -6,7 +6,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,18 +17,16 @@ public class FileReader implements Readable {
             Path path = getPath(filePath);
             return Files.readAllLines(path);
         } catch (IOException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
+            throw new RuntimeException("error while reading the file", e);
         }
     }
 
     private Path getPath(String filePath){
-        URI uri = null;
         try {
-            uri = ClassLoader.getSystemResource(filePath).toURI();
+            URI uri = ClassLoader.getSystemResource(filePath).toURI();
+            return Paths.get(Objects.requireNonNull(uri));
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            throw new RuntimeException("error while getting the path to the file reading the file", e);
         }
-        return Paths.get(Objects.requireNonNull(uri));
     }
 }
