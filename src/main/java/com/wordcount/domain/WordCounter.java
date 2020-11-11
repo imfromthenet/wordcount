@@ -1,32 +1,32 @@
 package com.wordcount.domain;
 
-import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class WordCounter {
+    private int count = 0;
+    private Answer answer;
+    private static volatile WordCounter collector;
 
-    private final Pattern pattern = Pattern.compile("(?<!\\S)[a-zA-Z]++(?=\\s|$|[^a-z\\d\\s]++(?!\\S))");
-    private final StopWords stopWords;
-
-    public WordCounter(final StopWords stopWords) {
-        this.stopWords = Objects.requireNonNull(stopWords);
+    private WordCounter() {
+        if (collector != null) {
+            throw new RuntimeException("Use getInstance() method to get the single instance of this class.");
+        }
     }
 
-    public int count(final String input) {
-        Objects.requireNonNull(input);
-        if (input.equals("")) {
-            return 0;
+    public synchronized static WordCounter getInstance() {
+        if (collector == null) {
+            collector = new WordCounter();
         }
-        final Matcher matcher = pattern.matcher(input);
-
-        int counter = 0;
-        while (matcher.find()) {
-            if (!stopWords.contain(matcher.group())) {
-                counter++;
-            }
-        }
-        return counter;
+        return collector;
     }
 
+    public void collect(final String candidate) {
+        count++;
+    }
+
+    public Answer getAnswer() {
+        if (answer == null) {
+            answer = new Answer(count);
+            return answer;
+        }
+        return answer;
+    }
 }
