@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ApplicationIT {
 
@@ -37,5 +38,18 @@ public class ApplicationIT {
 
         String actual = outputStreamCaptor.toString();
         assertEquals("Enter text: Number of words: 4", actual);
+    }
+
+    @Test
+    public void canUseCommandLineArgumentsToGetTheInputData() {
+        Main.main(new String[]{"mytext.txt"});
+
+        String actual = outputStreamCaptor.toString();
+        assertEquals("Number of words: 4", actual);
+    }
+
+    @Test
+    public void throwsAnErrorIfNonexistingFilenameGiven() {
+        assertThrows(RuntimeException.class, () -> Main.main(new String[]{"nonexistentFile.txt"}));
     }
 }
