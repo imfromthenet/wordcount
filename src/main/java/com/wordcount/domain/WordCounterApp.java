@@ -1,28 +1,22 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.InputPreparer;
 import com.wordcount.io.console.Writer;
-
-import java.util.Objects;
 
 public class WordCounterApp {
 
-    private final InputPreparer inputPreparer;
+    private final String input;
     private final StopWords stopWords;
     private final WordCounter wordCounter;
-    private final String[] parameter;
     private final Writer writer;
 
-    public WordCounterApp(final InputPreparer inputPreparer, final String[] parameter, Writer writer, final StopWords stopWords) {
-        this.inputPreparer = Objects.requireNonNull(inputPreparer);
+    public WordCounterApp(final String input, final Writer writer, final StopWords stopWords) {
+        this.input = input;
         this.wordCounter =  WordCounter.getInstance();
-        this.parameter = parameter;
         this.writer = writer;
         this.stopWords = stopWords;
     }
 
     public void countWords() {
-        String input = inputPreparer.getInput(parameter);
         Processor processor = new Processor(stopWords, wordCounter);
         processor.process(input);
         final Answer answer = wordCounter.getAnswer();

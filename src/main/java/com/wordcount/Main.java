@@ -16,11 +16,13 @@ public class Main {
         FileReader fileReader = new FileReader();
         StopWords stopWords = getStopWords(fileReader);
         Writer consoleWriter = new ConsoleWriter();
+
+        InputPreparer inputPreparer = new InputPreparer(
+                new ConsoleUI(consoleWriter, new ConsoleReader()),
+                fileReader);
+        String input = inputPreparer.getInput(args);
         WordCounterApp wordCounterApp = new WordCounterApp(
-                new InputPreparer(
-                        new ConsoleUI(consoleWriter, new ConsoleReader()),
-                        fileReader),
-                args,
+                input,
                 consoleWriter,
                 stopWords);
         wordCounterApp.countWords();
