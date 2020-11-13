@@ -1,5 +1,6 @@
 package com.wordcount.domain;
 
+import com.wordcount.io.InputPreparer;
 import com.wordcount.io.console.Writer;
 
 import java.util.Objects;

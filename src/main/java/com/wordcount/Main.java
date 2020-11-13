@@ -1,6 +1,7 @@
 package com.wordcount;
 
 import com.wordcount.domain.*;
+import com.wordcount.io.InputPreparer;
 import com.wordcount.io.console.Writer;
 import com.wordcount.io.file.IFileReader;
 import com.wordcount.io.file.FileReader;

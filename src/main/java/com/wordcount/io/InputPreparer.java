@@ -1,4 +1,4 @@
-package com.wordcount.domain;
+package com.wordcount.io;
 
 import com.wordcount.io.file.IFileReader;
 import com.wordcount.io.console.ConsoleUI;
