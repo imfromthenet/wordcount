@@ -12,7 +12,7 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ApplicationIT {
+public class MainIT {
 
     private final PrintStream standardOut = System.out;
     private final InputStream standardIn = System.in;
