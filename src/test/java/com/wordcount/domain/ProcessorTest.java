@@ -14,13 +14,11 @@ class ProcessorTest {
 
     private WordCounter wordCounterMock;
 
-
     @BeforeEach
     void initialize() {
         final StopWords stopWordsMock = mock(StopWords.class);
         when(stopWordsMock.contain("a")).thenReturn(true);
         wordCounterMock = mock(WordCounter.class);
-        System.out.println("I am cleaning up!");
         sut = new Processor(stopWordsMock, wordCounterMock);
     }
 

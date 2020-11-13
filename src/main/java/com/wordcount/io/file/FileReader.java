@@ -1,4 +1,4 @@
-package com.wordcount.io;
+package com.wordcount.io.file;
 
 import java.io.IOException;
 import java.net.URI;
@@ -9,10 +9,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-public class FileReader implements Readable {
+public class FileReader implements IFileReader {
 
-    @Override
-    public List<String> readAsLines(final String filePath) {
+    public List<String> read(final String filePath) {
         try {
             Path path = getPath(filePath);
             return Files.readAllLines(path);

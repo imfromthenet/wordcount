@@ -1,4 +1,4 @@
-package com.wordcount.io;
+package com.wordcount.io.file;
 
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +9,7 @@ import static com.wordcount.Main.STOP_WORDS_FILE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class FileReaderTest {
+class FileNoIFileReaderTest {
 
     public final FileReader sut = new FileReader();
 
@@ -17,13 +17,13 @@ class FileReaderTest {
     void readsAllTheStopWords() {
         final List<String> expected = Arrays.asList("the", "a", "on", "off");
 
-        final List<String> actual = sut.readAsLines(STOP_WORDS_FILE);
+        final List<String> actual = sut.read(STOP_WORDS_FILE);
 
         assertEquals(expected, actual);
     }
 
     @Test
     void throwsAnExceptionIfFileNotFound() {
-        assertThrows(RuntimeException.class, () -> sut.readAsLines("nonExistingFile"));
+        assertThrows(RuntimeException.class, () -> sut.read("nonExistingFile"));
     }
 }
