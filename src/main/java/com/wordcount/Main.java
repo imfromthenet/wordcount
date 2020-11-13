@@ -1,7 +1,7 @@
 package com.wordcount;
 
-import com.wordcount.domain.Application;
 import com.wordcount.domain.StopWords;
+import com.wordcount.domain.WordCounterApp;
 import com.wordcount.io.InputPreparer;
 import com.wordcount.io.console.ConsoleReader;
 import com.wordcount.io.console.ConsoleUI;
@@ -16,14 +16,14 @@ public class Main {
         FileReader fileReader = new FileReader();
         StopWords stopWords = getStopWords(fileReader);
         Writer consoleWriter = new ConsoleWriter();
-        Application application = new Application(
+        WordCounterApp wordCounterApp = new WordCounterApp(
                 new InputPreparer(
                         new ConsoleUI(consoleWriter, new ConsoleReader()),
                         fileReader),
                 args,
                 consoleWriter,
                 stopWords);
-        application.run();
+        wordCounterApp.run();
     }
 
     private static StopWords getStopWords(final FileReader fileReader) {

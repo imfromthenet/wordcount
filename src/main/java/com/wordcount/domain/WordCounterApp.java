@@ -5,7 +5,7 @@ import com.wordcount.io.console.Writer;
 
 import java.util.Objects;
 
-public class Application {
+public class WordCounterApp {
 
     private final InputPreparer inputPreparer;
     private final StopWords stopWords;
@@ -13,7 +13,7 @@ public class Application {
     private final String[] parameter;
     private final Writer writer;
 
-    public Application(final InputPreparer inputPreparer, final String[] parameter, Writer writer, final StopWords stopWords) {
+    public WordCounterApp(final InputPreparer inputPreparer, final String[] parameter, Writer writer, final StopWords stopWords) {
         this.inputPreparer = Objects.requireNonNull(inputPreparer);
         this.wordCounter =  WordCounter.getInstance();
         this.parameter = parameter;

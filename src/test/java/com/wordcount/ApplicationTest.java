@@ -30,7 +30,7 @@
 //        String[] emptyArray = {};
 //        when(mockInputPreparer.getInput(emptyArray)).thenReturn(input);
 //        when(mockCounter.getAnswer()).thenReturn(new Answer(4));
-//        final Application sut = new Application(mockInputPreparer, mockProcessor, mockCounter, emptyArray, mockWriter);
+//        final WordCounterApp sut = new WordCounterApp(mockInputPreparer, mockProcessor, mockCounter, emptyArray, mockWriter);
 //
 //        sut.run();
 //
@@ -45,9 +45,9 @@
 //
 ////    @Test
 ////    void initializesOnlyWhenAllConstructorParametersArePresent() {
-////        assertThrows(NullPointerException.class, () -> new Application(null, mockCounter, mockCollector, args, ));
-////        assertThrows(NullPointerException.class, () -> new Application(mockUI, null, mockCollector, args));
-////        assertThrows(NullPointerException.class, () -> new Application(mockUI, mockCounter, null, args));
+////        assertThrows(NullPointerException.class, () -> new WordCounterApp(null, mockCounter, mockCollector, args, ));
+////        assertThrows(NullPointerException.class, () -> new WordCounterApp(mockUI, null, mockCollector, args));
+////        assertThrows(NullPointerException.class, () -> new WordCounterApp(mockUI, mockCounter, null, args));
 ////    }
 //
 //}
