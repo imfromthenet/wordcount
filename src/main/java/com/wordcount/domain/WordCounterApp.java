@@ -21,7 +21,7 @@ public class WordCounterApp {
         this.stopWords = stopWords;
     }
 
-    public void run() {
+    public void countWords() {
         String input = inputPreparer.getInput(parameter);
         Processor processor = new Processor(stopWords, wordCounter);
         processor.process(input);

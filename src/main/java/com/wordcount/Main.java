@@ -23,7 +23,7 @@ public class Main {
                 args,
                 consoleWriter,
                 stopWords);
-        wordCounterApp.run();
+        wordCounterApp.countWords();
     }
 
     private static StopWords getStopWords(final FileReader fileReader) {
