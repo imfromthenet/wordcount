@@ -1,6 +1,6 @@
 package com.wordcount.domain;
 
-public class WordCounter {
+class WordCounter {
     private int count = 0;
     private Answer answer;
     private static volatile WordCounter collector;
@@ -11,18 +11,18 @@ public class WordCounter {
         }
     }
 
-    public synchronized static WordCounter getInstance() {
+    synchronized static WordCounter getInstance() {
         if (collector == null) {
             collector = new WordCounter();
         }
         return collector;
     }
 
-    public void collect(final String candidate) {
+    void collect(final String candidate) {
         count++;
     }
 
-    public Answer getAnswer() {
+    Answer getAnswer() {
         if (answer == null) {
             answer = new Answer(count);
             return answer;

@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Processor {
+class Processor {
 
     private final Pattern pattern = Pattern.compile("(?<!\\S)[a-zA-Z]++(?=\\s|$|[^a-z\\d\\s]++(?!\\S))");
     private final StopWords stopWords;
@@ -15,7 +15,7 @@ public class Processor {
         this.wordCounter = Objects.requireNonNull(wordCounter);
     }
 
-    public void process(final String input) {
+    protected void process(final String input) {
         Objects.requireNonNull(input);
         final Matcher matcher = pattern.matcher(input);
 
