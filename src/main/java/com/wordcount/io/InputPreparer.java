@@ -1,15 +1,15 @@
 package com.wordcount.io;
 
-import com.wordcount.io.file.IFileReader;
 import com.wordcount.io.console.ConsoleUI;
+import com.wordcount.io.file.FileReader;
 
 import java.util.List;
 
 public class InputPreparer {
     private final ConsoleUI consoleUI;
-    private final IFileReader fileReader;
+    private final FileReader fileReader;
 
-    public InputPreparer(final ConsoleUI consoleUI, final IFileReader reader) {
+    public InputPreparer(final ConsoleUI consoleUI, final FileReader reader) {
         this.consoleUI = consoleUI;
         this.fileReader = reader;
     }

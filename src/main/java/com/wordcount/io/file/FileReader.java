@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-public class FileReader implements IFileReader {
+public class FileReader {
 
     public List<String> read(final String filePath) {
         try {
@@ -20,7 +20,7 @@ public class FileReader implements IFileReader {
         }
     }
 
-    private Path getPath(String filePath){
+    private Path getPath(String filePath) {
         try {
             URI uri = ClassLoader.getSystemResource(filePath).toURI();
             return Paths.get(Objects.requireNonNull(uri));
