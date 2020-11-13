@@ -1,9 +1,5 @@
-package com.wordcount;
+package com.wordcount.domain;
 
-import com.wordcount.domain.Answer;
-import com.wordcount.domain.InputPreparer;
-import com.wordcount.domain.Processor;
-import com.wordcount.domain.WordCounter;
 import com.wordcount.io.console.Writer;
 
 import java.util.Objects;

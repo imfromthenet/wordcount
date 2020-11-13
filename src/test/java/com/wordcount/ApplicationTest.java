@@ -1,9 +1,6 @@
 package com.wordcount;
 
-import com.wordcount.domain.Answer;
-import com.wordcount.domain.InputPreparer;
-import com.wordcount.domain.Processor;
-import com.wordcount.domain.WordCounter;
+import com.wordcount.domain.*;
 import com.wordcount.io.console.Writer;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
