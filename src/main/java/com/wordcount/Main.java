@@ -2,9 +2,8 @@ package com.wordcount;
 
 import com.wordcount.domain.StopWords;
 import com.wordcount.domain.WordCounterApp;
-import com.wordcount.io.InputPreparer;
-import com.wordcount.io.console.ConsoleReader;
-import com.wordcount.io.console.ConsoleUI;
+import com.wordcount.io.UIFactory;
+import com.wordcount.io.UIable;
 import com.wordcount.io.console.ConsoleWriter;
 import com.wordcount.io.console.Writer;
 import com.wordcount.io.file.FileReader;
@@ -13,15 +12,15 @@ public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        FileReader fileReader = new FileReader();
-        StopWords stopWords = getStopWords(fileReader);
-        Writer consoleWriter = new ConsoleWriter();
+        final FileReader fileReader = new FileReader();
+        final StopWords stopWords = getStopWords(fileReader);
+        final Writer consoleWriter = new ConsoleWriter();
 
-        InputPreparer inputPreparer = new InputPreparer(
-                new ConsoleUI(consoleWriter, new ConsoleReader()),
-                fileReader);
-        String input = inputPreparer.getInput(args);
-        WordCounterApp wordCounterApp = new WordCounterApp(
+        final UIFactory uiFactory = new UIFactory();
+        final UIable ui = uiFactory.getFactory(args);
+        final String input = ui.getInput();
+
+        final WordCounterApp wordCounterApp = new WordCounterApp(
                 input,
                 consoleWriter,
                 stopWords);

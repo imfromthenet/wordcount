@@ -1,6 +1,8 @@
 package com.wordcount.io.console;
 
-public class ConsoleUI {
+import com.wordcount.io.UIable;
+
+public class ConsoleUI implements UIable {
 
     public static final String MESSAGE_ENTER_TEXT = "Enter text: ";
     private final Writer writer;
