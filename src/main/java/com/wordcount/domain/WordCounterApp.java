@@ -13,7 +13,7 @@ public class WordCounterApp {
         this.input = input;
         this.writer = writer;
         this.stopWords = stopWords;
-        this.wordCounter =  WordCounter.getInstance();
+        this.wordCounter =  new WordCounter();
     }
 
     public void countWords() {
