@@ -19,8 +19,8 @@ public class WordCounterApp {
     public void countWords() {
         final Processor processor = new Processor(stopWords, statisticsProvider);
         processor.process(input);
-        final Answer answer = statisticsProvider.getAnswer();
-        writer.write(answer.toString());
+        final Statistics statistics = statisticsProvider.getStatistics();
+        writer.write(statistics.toString());
     }
 
 }

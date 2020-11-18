@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 class StatisticsProvider {
-    private Answer answer;
+    private Statistics statistics;
     private final List<String> words = new ArrayList<>();
 
     void collect(final String candidate) {
         words.add(candidate);
     }
 
-    Answer getAnswer() {
-        if (answer == null) {
-            answer = new Answer(
+    Statistics getStatistics() {
+        if (statistics == null) {
+            statistics = new Statistics(
                     words.size(),
                     getUniqueCount(),
                     getAverageLength());
-            return answer;
+            return statistics;
         }
-        return answer;
+        return statistics;
     }
 
     private long getUniqueCount() {
