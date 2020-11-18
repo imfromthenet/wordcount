@@ -9,7 +9,7 @@ import static com.wordcount.Main.STOP_WORDS_FILE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class FileNoIFileReaderTest {
+class FileReaderTest {
 
     public final FileReader sut = new FileReader();
 
