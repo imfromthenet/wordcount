@@ -81,15 +81,6 @@ class ProcessorTest {
     }
 
     @Test
-    void returnsZeroWhenInputStringDoesNotMeetDefinitionOfAWord() {
-        final String input = "w0rd";
-
-        sut.process(input);
-
-        verifyNoInteractions(wordCounterMock);
-    }
-
-    @Test
     void thowsNullpointerExceptionIfParameterIsNull() {
         assertThrows(NullPointerException.class, () -> sut.process(null));
     }
