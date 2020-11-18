@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 class Processor {
 
-    private final Pattern pattern = Pattern.compile("(?<!\\S)[a-zA-Z]++(?=\\s|$|[^a-z\\d\\s]++(?!\\S))");
+    private final Pattern pattern = Pattern.compile("[a-zA-Z]+?[a-zA-Z]*");
     private final StopWords stopWords;
     private final WordCounter wordCounter;
 

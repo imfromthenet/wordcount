@@ -9,7 +9,7 @@ public class WordCounterAppTest {
 
     @Test
     void delegatesWorkToCollaboratorsAndThoseWorkAsTheyShould() {
-        final String input = "test a t2st";
+        final String input = "test2test toast taste a";
         final Writer mockWriter = mock(Writer.class);
         final StopWords mockStopWords = mock(StopWords.class);
         when(mockStopWords.contain("a")).thenReturn(true);
@@ -17,6 +17,6 @@ public class WordCounterAppTest {
 
         sut.countWords();
 
-        verify(mockWriter, times(1)).write("Number of words: 1");
+        verify(mockWriter, times(1)).write("Number of words: 4, unique: 3");
     }
 }

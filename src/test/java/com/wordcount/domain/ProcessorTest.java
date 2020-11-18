@@ -34,6 +34,15 @@ class ProcessorTest {
     }
 
     @Test
+    void splitsStringsIntoWordsByNonLetter() {
+        final String input = "word2word-word_word";
+
+        sut.process(input);
+
+        verify(wordCounterMock, times(4)).collect("word");
+    }
+
+    @Test
     void countsWordsThatStartWithAnUppercase() {
         final String input = "Word";
 

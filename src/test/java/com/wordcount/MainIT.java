@@ -32,12 +32,12 @@ public class MainIT {
 
     @Test
     public void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
-        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+        System.setIn(new ByteArrayInputStream(("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.").getBytes()));
 
         Main.main(new String[]{});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals("Enter text: Number of words: 4", actual);
+        assertEquals("Enter text: Number of words: 9, unique: 7", actual);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class MainIT {
         Main.main(new String[]{"mytext.txt"});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals("Number of words: 4", actual);
+        assertEquals("Number of words: 4, unique: 4", actual);
     }
 
     @Test
