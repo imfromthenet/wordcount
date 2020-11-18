@@ -34,12 +34,21 @@ class ProcessorTest {
     }
 
     @Test
-    void splitsStringsIntoWordsByNonLetter() {
-        final String input = "word2word-word_word";
+    void splitsStringIntoWordsByNonLettersExceptAHyphen() {
+        final String input = "word2word_word";
 
         sut.process(input);
 
-        verify(wordCounterMock, times(4)).collect("word");
+        verify(wordCounterMock, times(3)).collect("word");
+    }
+
+    @Test
+    void countsHyphenSeparatedStringsAsOneWord() {
+        final String input = "word-word";
+
+        sut.process(input);
+
+        verify(wordCounterMock, times(1)).collect("word-word");
     }
 
     @Test

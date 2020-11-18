@@ -6,7 +6,8 @@ import java.util.regex.Pattern;
 
 class Processor {
 
-    private final Pattern pattern = Pattern.compile("[a-zA-Z]+?[a-zA-Z]*");
+    public static final String STANDALONE_HYPHEN = "-";
+    private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private final StopWords stopWords;
     private final WordCounter wordCounter;
 
@@ -21,7 +22,7 @@ class Processor {
 
         while (matcher.find()) {
             final String candidate = matcher.group();
-            if (!stopWords.contain(candidate)) {
+            if (!stopWords.contain(candidate) && !candidate.equals(STANDALONE_HYPHEN)) {
                 wordCounter.collect(candidate);
             }
         }

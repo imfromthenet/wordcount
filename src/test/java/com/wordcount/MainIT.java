@@ -37,7 +37,7 @@ public class MainIT {
         Main.main(new String[]{});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals("Enter text: Number of words: 9, unique: 7", actual);
+        assertEquals("Enter text: Number of words: 7, unique: 6", actual);
     }
 
     @Test
