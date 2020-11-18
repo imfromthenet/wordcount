@@ -22,10 +22,14 @@ class Processor {
 
         while (matcher.find()) {
             final String candidate = matcher.group();
-            if (!stopWords.contain(candidate) && !candidate.equals(STANDALONE_HYPHEN)) {
+            if (matchesOtherCriteria(candidate)) {
                 wordCounter.collect(candidate);
             }
         }
+    }
+
+    private boolean matchesOtherCriteria(final String candidate) {
+        return !stopWords.contain(candidate) && !candidate.equals(STANDALONE_HYPHEN);
     }
 
 }
