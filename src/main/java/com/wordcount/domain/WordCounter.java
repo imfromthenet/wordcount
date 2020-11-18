@@ -22,8 +22,8 @@ class WordCounter {
         return answer;
     }
 
-    private int getUniqueCount() {
-        return (int) words.stream().distinct().count();
+    private long getUniqueCount() {
+        return words.stream().distinct().count();
     }
 
     private double getAverageLength() {
