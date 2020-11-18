@@ -3,7 +3,7 @@ package com.wordcount.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-class WordCounter {
+class StatisticsProvider {
     private Answer answer;
     private final List<String> words = new ArrayList<>();
 

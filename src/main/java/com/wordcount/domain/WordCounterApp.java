@@ -6,20 +6,20 @@ public class WordCounterApp {
 
     private final String input;
     private final StopWords stopWords;
-    private final WordCounter wordCounter;
+    private final StatisticsProvider statisticsProvider;
     private final Writer writer;
 
     public WordCounterApp(final String input, final Writer writer, final StopWords stopWords) {
         this.input = input;
         this.writer = writer;
         this.stopWords = stopWords;
-        this.wordCounter =  new WordCounter();
+        this.statisticsProvider =  new StatisticsProvider();
     }
 
     public void countWords() {
-        final Processor processor = new Processor(stopWords, wordCounter);
+        final Processor processor = new Processor(stopWords, statisticsProvider);
         processor.process(input);
-        final Answer answer = wordCounter.getAnswer();
+        final Answer answer = statisticsProvider.getAnswer();
         writer.write(answer.toString());
     }
 
