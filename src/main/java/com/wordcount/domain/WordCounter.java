@@ -1,23 +1,35 @@
 package com.wordcount.domain;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 class WordCounter {
-    private int count = 0;
     private Answer answer;
-    private final Set<String> uniqueWords = new HashSet<>();
+    private final List<String> words = new ArrayList<>();
 
     void collect(final String candidate) {
-        uniqueWords.add(candidate);
-        count++;
+        words.add(candidate);
     }
 
     Answer getAnswer() {
         if (answer == null) {
-            answer = new Answer(count, uniqueWords.size());
+            answer = new Answer(
+                    words.size(),
+                    getUniqueCount(),
+                    getAverageLength());
             return answer;
         }
         return answer;
+    }
+
+    private int getUniqueCount() {
+        return (int) words.stream().distinct().count();
+    }
+
+    private double getAverageLength() {
+        return words.stream()
+                .mapToInt(String::length)
+                .average()
+                .orElse(0);
     }
 }

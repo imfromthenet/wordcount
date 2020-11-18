@@ -37,7 +37,7 @@ public class MainIT {
         Main.main(new String[]{});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals("Enter text: Number of words: 7, unique: 6", actual);
+        assertEquals("Enter text: Number of words: 7, unique: 6; average word length: 6.43 characters", actual);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class MainIT {
         Main.main(new String[]{"mytext.txt"});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals("Number of words: 4, unique: 4", actual);
+        assertEquals("Number of words: 4, unique: 4; average word length: 4.25 characters", actual);
     }
 
     @Test

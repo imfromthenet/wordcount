@@ -17,6 +17,6 @@ public class WordCounterAppTest {
 
         sut.countWords();
 
-        verify(mockWriter, times(1)).write("Number of words: 4, unique: 3");
+        verify(mockWriter, times(1)).write("Number of words: 4, unique: 3; average word length: 4.50 characters");
     }
 }
