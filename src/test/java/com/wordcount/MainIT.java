@@ -3,6 +3,8 @@ package com.wordcount;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -46,6 +48,43 @@ public class MainIT {
 
         String actual = outputStreamCaptor.toString();
         assertEquals("Number of words: 4, unique: 4; average word length: 4.25 characters", actual);
+    }
+
+    @Test
+    public void displaysIndexOfWordsAfterTheUsualStatisticsWhenTextIsGivenViaConsole() {
+        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+        Main.main(new String[]{"-index"});
+        String expected = "Enter text: " + getLongExpectedAnswer();
+
+        String actual = outputStreamCaptor.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({"-index, mytext.txt",
+                "mytext.txt, -index"})
+    public void displaysIndexOfWordsAfterTheUsualStatisticsWhenTextIsGivenViaFileNameInAnyOrder(final String arg1, final String arg2) {
+        Main.main(new String[]{arg1, arg2});
+        String expected = getLongExpectedAnswer();
+
+        String actual = outputStreamCaptor.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    private String getLongExpectedAnswer() {
+        return "Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                " \n" +
+                "Index:\n" +
+                " \n" +
+                "had\n" +
+                " \n" +
+                "lamb\n" +
+                " \n" +
+                "little\n" +
+                " \n" +
+                "Mary";
     }
 
     @Test

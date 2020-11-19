@@ -9,11 +9,11 @@ class Processor {
     public static final String STANDALONE_HYPHEN = "-";
     private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private final StopWords stopWords;
-    private final StatisticsProvider statisticsProvider;
+    private final WordCollector wordCollector;
 
-    public Processor(final StopWords stopWords, final StatisticsProvider statisticsProvider) {
+    public Processor(final StopWords stopWords, final WordCollector wordCollector) {
         this.stopWords = Objects.requireNonNull(stopWords);
-        this.statisticsProvider = Objects.requireNonNull(statisticsProvider);
+        this.wordCollector = Objects.requireNonNull(wordCollector);
     }
 
     protected void process(final String input) {
@@ -23,7 +23,7 @@ class Processor {
         while (matcher.find()) {
             final String candidate = matcher.group();
             if (matchesOtherCriteria(candidate)) {
-                statisticsProvider.collect(candidate);
+                wordCollector.collect(candidate);
             }
         }
     }

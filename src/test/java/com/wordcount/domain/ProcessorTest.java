@@ -12,14 +12,14 @@ import static org.mockito.Mockito.*;
 
 class ProcessorTest {
 
-    private StatisticsProvider statisticsProviderMock;
+    private WordCollector wordCollectorMock;
 
     @BeforeEach
     void initialize() {
         final StopWords stopWordsMock = mock(StopWords.class);
         when(stopWordsMock.contain("a")).thenReturn(true);
-        statisticsProviderMock = mock(StatisticsProvider.class);
-        sut = new Processor(stopWordsMock, statisticsProviderMock);
+        wordCollectorMock = mock(WordCollector.class);
+        sut = new Processor(stopWordsMock, wordCollectorMock);
     }
 
     private Processor sut;
@@ -30,7 +30,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(2)).collect("word");
+        verify(wordCollectorMock, times(2)).collect("word");
     }
 
     @Test
@@ -39,7 +39,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(3)).collect("word");
+        verify(wordCollectorMock, times(3)).collect("word");
     }
 
     @Test
@@ -48,7 +48,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(1)).collect("word-word");
+        verify(wordCollectorMock, times(1)).collect("word-word");
     }
 
     @Test
@@ -57,7 +57,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(1)).collect("Word");
+        verify(wordCollectorMock, times(1)).collect("Word");
     }
 
     @Test
@@ -66,7 +66,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(1)).collect("WORD");
+        verify(wordCollectorMock, times(1)).collect("WORD");
     }
 
     @Test
@@ -75,7 +75,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verifyNoInteractions(statisticsProviderMock);
+        verifyNoInteractions(wordCollectorMock);
     }
 
     @Test
@@ -84,7 +84,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verifyNoInteractions(statisticsProviderMock);
+        verifyNoInteractions(wordCollectorMock);
     }
 
     @Test
@@ -94,7 +94,7 @@ class ProcessorTest {
         Arrays.stream(input.split(""))
                 .forEach(symbol -> {
                     sut.process(input);
-                    verifyNoInteractions(statisticsProviderMock);
+                    verifyNoInteractions(wordCollectorMock);
                 });
     }
 
@@ -110,7 +110,7 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(1)).collect("word");
+        verify(wordCollectorMock, times(1)).collect("word");
     }
 
     @Test
@@ -119,6 +119,6 @@ class ProcessorTest {
 
         sut.process(input);
 
-        verify(statisticsProviderMock, times(1)).collect("word");
+        verify(wordCollectorMock, times(1)).collect("word");
     }
 }

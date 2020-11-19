@@ -24,7 +24,7 @@ public class Main {
                 input,
                 consoleWriter,
                 stopWords);
-        wordCounterApp.countWords();
+        wordCounterApp.countWords(args);
     }
 
     private static StopWords getStopWords(final FileReader fileReader) {
