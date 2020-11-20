@@ -1,8 +1,8 @@
-package com.wordcount.domain.workers;
+package com.wordcount.domain.processors;
 
 import java.util.List;
 
-public interface Worker {
+public interface Processor {
 
     String process(final List<String> words);
 }

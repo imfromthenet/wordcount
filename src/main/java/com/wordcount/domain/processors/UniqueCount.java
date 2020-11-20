@@ -1,8 +1,8 @@
-package com.wordcount.domain.workers;
+package com.wordcount.domain.processors;
 
 import java.util.List;
 
-public class UniqueCount implements Worker {
+public class UniqueCount implements Processor {
 
     public static final String UNIQUE_TEXT = ", unique: %d";
 

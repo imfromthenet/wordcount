@@ -1,8 +1,8 @@
-package com.wordcount.domain.workers;
+package com.wordcount.domain.processors;
 
 import java.util.List;
 
-public class Count implements Worker {
+public class Count implements Processor {
 
     public static final String NUMBER_OF_WORDS_TEXT = "Number of words: %d";
 

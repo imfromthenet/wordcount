@@ -1,11 +1,11 @@
-package com.wordcount.domain.workers;
+package com.wordcount.domain.processors;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.joining;
 
-public class Index implements Worker {
+public class Index implements Processor {
 
     public static final String INDEX_TEXT = "\n \nIndex:\n \n%s";
 

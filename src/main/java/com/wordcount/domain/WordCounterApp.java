@@ -1,7 +1,7 @@
 package com.wordcount.domain;
 
-import com.wordcount.domain.workers.Workers;
-import com.wordcount.domain.workers.WorkersFactory;
+import com.wordcount.domain.processors.Processors;
+import com.wordcount.domain.processors.ProcessorsFactory;
 import com.wordcount.io.console.Writer;
 
 public class WordCounterApp {
@@ -22,8 +22,8 @@ public class WordCounterApp {
     public void countWords(final String[] args) {
         final WordPreparer wordPreparer = new WordPreparer(stopWords, wordCollector);
         wordPreparer.prepare(input);
-        final Workers workers = new WorkersFactory().getWorkers(args);
-        final String answer = workers.work(wordCollector.getWords());
+        final Processors processors = new ProcessorsFactory().getProcessors(args);
+        final String answer = processors.process(wordCollector.getWords());
         writer.write(answer);
     }
 }

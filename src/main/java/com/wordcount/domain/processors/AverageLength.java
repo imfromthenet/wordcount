@@ -1,8 +1,8 @@
-package com.wordcount.domain.workers;
+package com.wordcount.domain.processors;
 
 import java.util.List;
 
-public class AverageLength implements Worker {
+public class AverageLength implements Processor {
 
     public static final String AVERAGE_LENGTH_TEXT = "; average word length: %.2f characters";
 
