@@ -2,3 +2,5 @@
 2. Iteration 5: words containing a hyphen are counted as one word e.g. Humpty-Dumpty
 3. Iteration 6: average word lengths are displayed with 2 decimal places. They will be rounded if there are more decimal digits.
 4. Iteration 7: -index flag can be combined with a filename. They can be entered in any order
+5. Iteration 8: all console parameters can come in any order.
+6. Iteration 8: since knownWordDictionary console parameter doesn't make sense without -index it will be ignored
