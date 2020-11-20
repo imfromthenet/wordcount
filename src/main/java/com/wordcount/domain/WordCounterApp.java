@@ -1,10 +1,8 @@
 package com.wordcount.domain;
 
-import com.wordcount.domain.workers.*;
+import com.wordcount.domain.workers.Workers;
+import com.wordcount.domain.workers.WorkersFactory;
 import com.wordcount.io.console.Writer;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class WordCounterApp {
 
@@ -24,21 +22,8 @@ public class WordCounterApp {
     public void countWords(final String[] args) {
         final Processor processor = new Processor(stopWords, wordCollector);
         processor.process(input);
-        List<Worker> workers = getWorkers(args);
-
-        AnswerProvider answerProvider = new AnswerProvider(wordCollector.getWords(), workers);
-        writer.write(answerProvider.getAnswer());
+        final Workers workers = new WorkersFactory().getWorkers(args);
+        final String answer = workers.work(wordCollector.getWords());
+        writer.write(answer);
     }
-
-    private List<Worker> getWorkers(final String[] args) {
-        final List<Worker> workers;
-        if (Arrays.asList(args).contains(INDEX_FLAG)) {
-            workers = Arrays.asList(new Count(), new UniqueCount(), new AverageLength(), new Index());
-        } else {
-
-            workers = Arrays.asList(new Count(), new UniqueCount(), new AverageLength());
-        }
-        return workers;
-    }
-
 }
