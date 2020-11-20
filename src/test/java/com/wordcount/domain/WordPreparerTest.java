@@ -10,25 +10,25 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
-class ProcessorTest {
+class WordPreparerTest {
 
     private WordCollector wordCollectorMock;
+
+    private WordPreparer sut;
 
     @BeforeEach
     void initialize() {
         final StopWords stopWordsMock = mock(StopWords.class);
         when(stopWordsMock.contain("a")).thenReturn(true);
         wordCollectorMock = mock(WordCollector.class);
-        sut = new Processor(stopWordsMock, wordCollectorMock);
+        sut = new WordPreparer(stopWordsMock, wordCollectorMock);
     }
-
-    private Processor sut;
 
     @Test
     void countsMultipleWords() {
         final String input = "word word";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(2)).collect("word");
     }
@@ -37,7 +37,7 @@ class ProcessorTest {
     void splitsStringIntoWordsByNonLettersExceptAHyphen() {
         final String input = "word2word_word";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(3)).collect("word");
     }
@@ -46,7 +46,7 @@ class ProcessorTest {
     void countsHyphenSeparatedStringsAsOneWord() {
         final String input = "word-word";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(1)).collect("word-word");
     }
@@ -55,7 +55,7 @@ class ProcessorTest {
     void countsWordsThatStartWithAnUppercase() {
         final String input = "Word";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(1)).collect("Word");
     }
@@ -64,7 +64,7 @@ class ProcessorTest {
     void countsUppercaseWords() {
         final String input = "WORD";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(1)).collect("WORD");
     }
@@ -73,7 +73,7 @@ class ProcessorTest {
     void doesNotCallAnswerCollectorWhenInputIsEmpty() {
         final String input = "";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verifyNoInteractions(wordCollectorMock);
     }
@@ -82,7 +82,7 @@ class ProcessorTest {
     void doesNotCallAnswerCollectorWhenInputIsWhitespace() {
         final String input = " ";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verifyNoInteractions(wordCollectorMock);
     }
@@ -93,14 +93,14 @@ class ProcessorTest {
 
         Arrays.stream(input.split(""))
                 .forEach(symbol -> {
-                    sut.process(input);
+                    sut.prepare(input);
                     verifyNoInteractions(wordCollectorMock);
                 });
     }
 
     @Test
     void thowsNullpointerExceptionIfParameterIsNull() {
-        assertThrows(NullPointerException.class, () -> sut.process(null));
+        assertThrows(NullPointerException.class, () -> sut.prepare(null));
     }
 
     @ParameterizedTest
@@ -108,7 +108,7 @@ class ProcessorTest {
     void countsWordsEndingWithAPunctuationMark(final String punctuationMark) {
         final String input = "word".concat(punctuationMark);
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(1)).collect("word");
     }
@@ -117,7 +117,7 @@ class ProcessorTest {
     void filtersOutStopWords() {
         final String input = "word a";
 
-        sut.process(input);
+        sut.prepare(input);
 
         verify(wordCollectorMock, times(1)).collect("word");
     }

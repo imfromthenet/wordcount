@@ -20,8 +20,8 @@ public class WordCounterApp {
     }
 
     public void countWords(final String[] args) {
-        final Processor processor = new Processor(stopWords, wordCollector);
-        processor.process(input);
+        final WordPreparer wordPreparer = new WordPreparer(stopWords, wordCollector);
+        wordPreparer.prepare(input);
         final Workers workers = new WorkersFactory().getWorkers(args);
         final String answer = workers.work(wordCollector.getWords());
         writer.write(answer);

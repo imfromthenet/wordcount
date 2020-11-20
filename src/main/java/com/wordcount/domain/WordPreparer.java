@@ -4,19 +4,19 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Processor {
+class WordPreparer {
 
     public static final String STANDALONE_HYPHEN = "-";
     private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private final StopWords stopWords;
     private final WordCollector wordCollector;
 
-    public Processor(final StopWords stopWords, final WordCollector wordCollector) {
+    public WordPreparer(final StopWords stopWords, final WordCollector wordCollector) {
         this.stopWords = Objects.requireNonNull(stopWords);
         this.wordCollector = Objects.requireNonNull(wordCollector);
     }
 
-    protected void process(final String input) {
+    protected void prepare(final String input) {
         Objects.requireNonNull(input);
         final Matcher matcher = pattern.matcher(input);
 
