@@ -2,7 +2,7 @@ package com.wordcount.domain.processors;
 
 import java.util.List;
 
-public class Count implements Processor {
+public class CountProcessor implements Processor {
 
     public static final String NUMBER_OF_WORDS_TEXT = "Number of words: %d";
 

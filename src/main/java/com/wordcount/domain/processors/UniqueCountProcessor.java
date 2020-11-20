@@ -2,7 +2,7 @@ package com.wordcount.domain.processors;
 
 import java.util.List;
 
-public class UniqueCount implements Processor {
+public class UniqueCountProcessor implements Processor {
 
     public static final String UNIQUE_TEXT = ", unique: %d";
 

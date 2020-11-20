@@ -8,7 +8,7 @@ public class ProcessorsWithIndex implements Processors {
     @Override
     public String process(final List<String> words) {
         final String baseSolution = delegate.process(words);
-        final String indexPart = new Index().process(words);
+        final String indexPart = new IndexProcessor().process(words);
         return String.format("%s%s", baseSolution, indexPart);
     }
 }

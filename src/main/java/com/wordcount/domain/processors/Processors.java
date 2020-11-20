@@ -10,7 +10,7 @@ public interface Processors {
     String process(final List<String> words);
 
     class Core implements Processors {
-        final List<Processor> processors = Arrays.asList(new Count(), new UniqueCount(), new AverageLength());
+        final List<Processor> processors = Arrays.asList(new CountProcessor(), new UniqueCountProcessor(), new AverageLengthProcessor());
 
         @Override
         public String process(final List<String> words) {
