@@ -1,7 +1,5 @@
-package com.wordcount.io.console;
+package com.wordcount.io.util;
 
-import com.wordcount.io.util.ConsoleReader;
-import com.wordcount.io.util.Reader;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

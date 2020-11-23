@@ -1,6 +1,5 @@
-package com.wordcount.io.file;
+package com.wordcount.io.util;
 
-import com.wordcount.io.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
