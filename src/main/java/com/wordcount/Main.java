@@ -4,9 +4,9 @@ import com.wordcount.domain.StopWords;
 import com.wordcount.domain.WordCounterApp;
 import com.wordcount.io.ui.UI;
 import com.wordcount.io.ui.UIFactory;
-import com.wordcount.util.ConsoleWriter;
-import com.wordcount.util.FileReader;
-import com.wordcount.util.Writer;
+import com.wordcount.io.util.ConsoleWriter;
+import com.wordcount.io.util.FileReader;
+import com.wordcount.io.util.Writer;
 
 public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";

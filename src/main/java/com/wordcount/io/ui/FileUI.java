@@ -1,6 +1,6 @@
 package com.wordcount.io.ui;
 
-import com.wordcount.util.FileReader;
+import com.wordcount.io.util.FileReader;
 
 public class FileUI implements UI {
 

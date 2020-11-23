@@ -2,7 +2,7 @@ package com.wordcount.domain;
 
 import com.wordcount.domain.processors.Processors;
 import com.wordcount.domain.processors.ProcessorsFactory;
-import com.wordcount.util.Writer;
+import com.wordcount.io.util.Writer;
 
 public class WordCounterApp {
 

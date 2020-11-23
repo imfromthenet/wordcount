@@ -1,7 +1,7 @@
 package com.wordcount.io.ui;
 
-import com.wordcount.util.ConsoleReader;
-import com.wordcount.util.ConsoleWriter;
+import com.wordcount.io.util.ConsoleReader;
+import com.wordcount.io.util.ConsoleWriter;
 
 import java.util.Arrays;
 import java.util.List;

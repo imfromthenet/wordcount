@@ -1,4 +1,4 @@
-package com.wordcount.util;
+package com.wordcount.io.util;
 
 public interface Writer {
 

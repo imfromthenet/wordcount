@@ -1,4 +1,4 @@
-package com.wordcount.util;
+package com.wordcount.io.util;
 
 import java.io.IOException;
 import java.net.URI;
