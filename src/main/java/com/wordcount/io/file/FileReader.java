@@ -11,6 +11,17 @@ import java.util.Objects;
 
 public class FileReader {
 
+    private static FileReader instance;
+
+    private FileReader() {}
+
+    public static synchronized FileReader getInstance() {
+        if (instance == null) {
+            instance = new FileReader();
+        }
+        return instance;
+    }
+
     public List<String> read(final String filePath) {
         try {
             Path path = getPath(filePath);

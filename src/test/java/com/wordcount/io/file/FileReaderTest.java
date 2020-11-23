@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FileReaderTest {
 
-    public final FileReader sut = new FileReader();
+    public final FileReader sut = FileReader.getInstance();
 
     @Test
     void readsAllTheStopWords() {

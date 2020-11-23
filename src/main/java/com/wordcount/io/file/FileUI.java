@@ -2,7 +2,7 @@ package com.wordcount.io.file;
 
 import com.wordcount.io.UI;
 
-public class FileUI extends FileReader implements UI {
+public class FileUI implements UI {
 
     String filename;
 
@@ -12,6 +12,6 @@ public class FileUI extends FileReader implements UI {
 
     @Override
     public String getInput() {
-        return String.join(" ", super.read(filename));
+        return String.join(" ", FileReader.getInstance().read(filename));
     }
 }

@@ -12,7 +12,7 @@ public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        final FileReader fileReader = new FileReader();
+        final FileReader fileReader = FileReader.getInstance();
         final StopWords stopWords = getStopWords(fileReader);
         final Writer consoleWriter = new ConsoleWriter();
 
