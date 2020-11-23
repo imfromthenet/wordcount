@@ -1,9 +1,9 @@
 package com.wordcount.io;
 
-import com.wordcount.io.console.ConsoleReader;
 import com.wordcount.io.console.ConsoleUI;
 import com.wordcount.io.console.ConsoleWriter;
 import com.wordcount.io.file.FileUI;
+import com.wordcount.util.ConsoleReader;
 
 import java.util.Arrays;
 import java.util.List;
