@@ -17,9 +17,8 @@ public class UIFactory {
         List<String> nonFlagParameters = getNonFlagParams(consoleParameters);
         if (nonFlagParameters.size() == 0) {
             return new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
-        } else {
-            return new FileUI(nonFlagParameters.get(0));
         }
+        return new FileUI(nonFlagParameters.get(0));
     }
 
     private List<String> getNonFlagParams(final String[] consoleParameters) {
