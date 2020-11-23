@@ -2,8 +2,8 @@ package com.wordcount;
 
 import com.wordcount.domain.StopWords;
 import com.wordcount.domain.WordCounterApp;
+import com.wordcount.io.UI;
 import com.wordcount.io.UIFactory;
-import com.wordcount.io.UIable;
 import com.wordcount.io.console.ConsoleWriter;
 import com.wordcount.io.console.Writer;
 import com.wordcount.io.file.FileReader;
@@ -17,7 +17,7 @@ public class Main {
         final Writer consoleWriter = new ConsoleWriter();
 
         final UIFactory uiFactory = new UIFactory();
-        final UIable ui = uiFactory.getFactory(args);
+        final UI ui = uiFactory.getFactory(args);
         final String input = ui.getInput();
 
         final WordCounterApp wordCounterApp = new WordCounterApp(

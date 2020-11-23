@@ -1,8 +1,8 @@
 package com.wordcount.io.file;
 
-import com.wordcount.io.UIable;
+import com.wordcount.io.UI;
 
-public class FileUI extends FileReader implements UIable {
+public class FileUI extends FileReader implements UI {
 
     String filename;
 
