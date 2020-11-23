@@ -1,6 +1,7 @@
-package com.wordcount.io.console;
+package com.wordcount.io.ui;
 
-import com.wordcount.io.UI;
+import com.wordcount.util.Reader;
+import com.wordcount.util.Writer;
 
 public class ConsoleUI implements UI {
 

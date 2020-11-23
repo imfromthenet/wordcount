@@ -1,4 +1,4 @@
-package com.wordcount.io;
+package com.wordcount.io.ui;
 
 public interface UI {
     String getInput();

@@ -1,7 +1,5 @@
-package com.wordcount.io;
+package com.wordcount.io.ui;
 
-import com.wordcount.io.console.ConsoleUI;
-import com.wordcount.io.file.FileUI;
 import com.wordcount.util.ConsoleReader;
 import com.wordcount.util.ConsoleWriter;
 

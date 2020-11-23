@@ -1,7 +1,5 @@
 package com.wordcount.util;
 
-import com.wordcount.io.console.Writer;
-
 import java.util.Objects;
 
 public class ConsoleWriter implements Writer {

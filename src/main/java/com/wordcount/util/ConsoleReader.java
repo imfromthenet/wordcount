@@ -1,7 +1,5 @@
 package com.wordcount.util;
 
-import com.wordcount.io.console.Reader;
-
 import java.util.Scanner;
 
 public class ConsoleReader implements Reader {
