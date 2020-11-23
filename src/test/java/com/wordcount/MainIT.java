@@ -88,6 +88,51 @@ public class MainIT {
     }
 
     @Test
+    public void displaysIndexOfWordsAfterTheUsualStatisticsWhileMarkingUnknownWordsAndStatingTheirCountWhenWorkTextIsTypedByUser() {
+        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+        Main.main(new String[]{"-index -dictionary=dict.txt"});
+        final String expected = "Enter text: Mary had a little lamb\n" +
+                " \n" +
+                "Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                " \n" +
+                "Index (unknown: 2):\n" +
+                " \n" +
+                "had\n" +
+                " \n" +
+                "lamb*\n" +
+                " \n" +
+                "little\n" +
+                " \n" +
+                "Mary*";
+
+        final String actual = outputStreamCaptor.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void displaysIndexOfWordsAfterTheUsualStatisticsWhileMarkingUnknownWordsAndStatingTheirCountWhenWorkTextIsReadFromFile() {
+        Main.main(new String[]{"-index -dictionary=dict.txt mytext.txt"});
+        final String expected = "Enter text: Mary had a little lamb\n" +
+                " \n" +
+                "Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                " \n" +
+                "Index (unknown: 2):\n" +
+                " \n" +
+                "had\n" +
+                " \n" +
+                "lamb*\n" +
+                " \n" +
+                "little\n" +
+                " \n" +
+                "Mary*";
+
+        final String actual = outputStreamCaptor.toString();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void throwsAnErrorIfNonexistingFilenameGiven() {
         assertThrows(RuntimeException.class, () -> Main.main(new String[]{"nonexistentFile.txt"}));
     }
