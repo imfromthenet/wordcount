@@ -17,7 +17,7 @@ public class Main {
         final Writer consoleWriter = new ConsoleWriter();
 
         final UIFactory uiFactory = new UIFactory();
-        final UI ui = uiFactory.getFactory(args);
+        final UI ui = uiFactory.create(args);
         final String input = ui.getInput();
 
         final WordCounterApp wordCounterApp = new WordCounterApp(

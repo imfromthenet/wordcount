@@ -13,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 
 public class UIFactory {
 
-    public UI getFactory(final String[] consoleParameters) {
+    public UI create(final String[] consoleParameters) {
         List<String> nonFlagParameters = getNonFlagParams(consoleParameters);
         if (nonFlagParameters.size() == 0) {
             return new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
