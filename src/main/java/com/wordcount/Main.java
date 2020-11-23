@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         final FileReader fileReader = FileReader.getInstance();
         final StopWords stopWords = getStopWords(fileReader);
-        final Writer consoleWriter = new ConsoleWriter();
+        final Writer consoleWriter = ConsoleWriter.getInstance();
 
         final UIFactory uiFactory = new UIFactory();
         final UI ui = uiFactory.create(args);

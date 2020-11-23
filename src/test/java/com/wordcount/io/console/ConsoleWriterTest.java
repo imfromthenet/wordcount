@@ -11,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConsoleWriterTest {
 
-
-    ConsoleWriter sut = new ConsoleWriter();
+    private final ConsoleWriter sut = ConsoleWriter.getInstance();
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     private final PrintStream standardOut = System.out;
 
