@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConsoleReaderTest {
 
-    private final Reader sut = new ConsoleReader();
+    private final Reader sut = ConsoleReader.getInstance();
     private final InputStream standardIn = System.in;
     private final ByteArrayInputStream inputStreamCaptor = new ByteArrayInputStream("message".getBytes());
 

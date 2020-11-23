@@ -15,7 +15,7 @@ class ConsoleUITest {
 
     private final String MESSAGE = "message";
 
-    private final ConsoleUI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
+    private final ConsoleUI sut = new ConsoleUI(new ConsoleWriter(), ConsoleReader.getInstance());
 
     private final InputStream standardIn = System.in;
     private final PrintStream standardOut = System.out;
