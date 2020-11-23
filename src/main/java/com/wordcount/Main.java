@@ -4,8 +4,8 @@ import com.wordcount.domain.StopWords;
 import com.wordcount.domain.WordCounterApp;
 import com.wordcount.io.UI;
 import com.wordcount.io.UIFactory;
-import com.wordcount.io.console.ConsoleWriter;
 import com.wordcount.io.console.Writer;
+import com.wordcount.util.ConsoleWriter;
 import com.wordcount.util.FileReader;
 
 public class Main {

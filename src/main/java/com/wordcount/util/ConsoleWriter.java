@@ -1,4 +1,6 @@
-package com.wordcount.io.console;
+package com.wordcount.util;
+
+import com.wordcount.io.console.Writer;
 
 import java.util.Objects;
 
