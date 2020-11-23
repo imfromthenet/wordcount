@@ -6,7 +6,7 @@ import com.wordcount.io.UI;
 import com.wordcount.io.UIFactory;
 import com.wordcount.io.console.ConsoleWriter;
 import com.wordcount.io.console.Writer;
-import com.wordcount.io.file.FileReader;
+import com.wordcount.util.FileReader;
 
 public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";

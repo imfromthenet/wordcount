@@ -1,6 +1,6 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.file.FileReader;
+import com.wordcount.util.FileReader;
 
 import java.util.List;
 import java.util.Objects;

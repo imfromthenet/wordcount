@@ -1,6 +1,6 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.file.FileReader;
+import com.wordcount.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import static java.util.Collections.singletonList;

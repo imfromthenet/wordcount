@@ -1,5 +1,6 @@
 package com.wordcount.io.file;
 
+import com.wordcount.util.FileReader;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
