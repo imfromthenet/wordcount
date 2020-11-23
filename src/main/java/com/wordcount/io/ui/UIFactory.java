@@ -2,6 +2,7 @@ package com.wordcount.io.ui;
 
 import com.wordcount.io.util.ConsoleReader;
 import com.wordcount.io.util.ConsoleWriter;
+import com.wordcount.io.util.FileReader;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ public class UIFactory {
         if (nonFlagParameters.size() == 0) {
             return new ConsoleUI(ConsoleWriter.getInstance(), ConsoleReader.getInstance());
         }
-        return new FileUI(nonFlagParameters.get(0));
+        return new FileUI(FileReader.getInstance(), nonFlagParameters.get(0));
     }
 
     private List<String> getNonFlagParams(final String[] consoleParameters) {

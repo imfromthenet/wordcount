@@ -1,6 +1,6 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.util.FileReader;
+import com.wordcount.io.util.FileReaderInterfaceRENAME;
 import org.junit.jupiter.api.Test;
 
 import static java.util.Collections.singletonList;
@@ -14,7 +14,7 @@ class StopWordsTest {
 
     @Test
     void tellsIfAWordIsContainedInTheStopWordsList() {
-        FileReader readerMock = mock(FileReader.class);
+        FileReaderInterfaceRENAME readerMock = mock(FileReaderInterfaceRENAME.class);
         when(readerMock.read(anyString())).thenReturn(singletonList("a"));
         StopWords sut = new StopWords(readerMock);
 

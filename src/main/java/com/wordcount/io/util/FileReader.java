@@ -9,19 +9,20 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-public class FileReader {
+public class FileReader implements FileReaderInterfaceRENAME {
 
-    private static FileReader instance;
+    private static FileReaderInterfaceRENAME instance;
 
     private FileReader() {}
 
-    public static synchronized FileReader getInstance() {
+    public static synchronized FileReaderInterfaceRENAME getInstance() {
         if (instance == null) {
             instance = new FileReader();
         }
         return instance;
     }
 
+    @Override
     public List<String> read(final String filePath) {
         try {
             Path path = getPath(filePath);

@@ -12,8 +12,7 @@ public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        final FileReader fileReader = FileReader.getInstance();
-        final StopWords stopWords = getStopWords(fileReader);
+        final StopWords stopWords = getStopWords();
         final Writer consoleWriter = ConsoleWriter.getInstance();
 
         final UIFactory uiFactory = new UIFactory();
@@ -27,8 +26,8 @@ public class Main {
         wordCounterApp.countWords(args);
     }
 
-    private static StopWords getStopWords(final FileReader fileReader) {
-        StopWords stopWords = new StopWords(fileReader);
+    private static StopWords getStopWords() {
+        final StopWords stopWords = new StopWords(FileReader.getInstance());
         stopWords.fillFrom(STOP_WORDS_FILE);
         return stopWords;
     }
