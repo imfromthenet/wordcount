@@ -8,10 +8,10 @@ class WordPreparer {
 
     public static final String STANDALONE_HYPHEN = "-";
     private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
-    private final StopWords stopWords;
+    private final MyDictionary stopWords;
     private final WordCollector wordCollector;
 
-    public WordPreparer(final StopWords stopWords, final WordCollector wordCollector) {
+    public WordPreparer(final MyDictionary stopWords, final WordCollector wordCollector) {
         this.stopWords = Objects.requireNonNull(stopWords);
         this.wordCollector = Objects.requireNonNull(wordCollector);
     }

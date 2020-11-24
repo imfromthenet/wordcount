@@ -1,22 +1,15 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.file.FileReader;
-
 import java.util.List;
-import java.util.Objects;
 
-public class StopWords {
-    private List<String> stopWords;
-    private final FileReader fileReader;
+public class StopWords implements MyDictionary {
+    private final List<String> stopWords;
 
-    public StopWords(final FileReader fileReader) {
-        this.fileReader = Objects.requireNonNull(fileReader);
+    public StopWords(final List<String> words) {
+        this.stopWords = words;
     }
 
-    public void fillFrom(final String path) {
-        stopWords = fileReader.read(path);
-    }
-
+    @Override
     public boolean contain(final String candidate) {
         return stopWords.contains(candidate);
     }

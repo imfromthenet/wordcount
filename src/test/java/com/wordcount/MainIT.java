@@ -90,9 +90,8 @@ public class MainIT {
     @Test
     public void displaysIndexOfWordsAfterTheUsualStatisticsWhileMarkingUnknownWordsAndStatingTheirCountWhenWorkTextIsTypedByUser() {
         System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
-        Main.main(new String[]{"-index -dictionary=dict.txt"});
-        final String expected = "Enter text: Mary had a little lamb\n" +
-                " \n" +
+        Main.main(new String[]{"-index","-dictionary=dict.txt"});
+        final String expected = "Enter text: " +
                 "Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
                 " \n" +
                 "Index (unknown: 2):\n" +
@@ -112,9 +111,8 @@ public class MainIT {
 
     @Test
     public void displaysIndexOfWordsAfterTheUsualStatisticsWhileMarkingUnknownWordsAndStatingTheirCountWhenWorkTextIsReadFromFile() {
-        Main.main(new String[]{"-index -dictionary=dict.txt mytext.txt"});
-        final String expected = "Enter text: Mary had a little lamb\n" +
-                " \n" +
+        Main.main(new String[]{"-index", "-dictionary=dict.txt", "mytext.txt"});
+        final String expected =
                 "Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
                 " \n" +
                 "Index (unknown: 2):\n" +

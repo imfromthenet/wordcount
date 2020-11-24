@@ -13,7 +13,10 @@ public class WordCounterAppTest {
         final Writer mockWriter = mock(Writer.class);
         final StopWords mockStopWords = mock(StopWords.class);
         when(mockStopWords.contain("a")).thenReturn(true);
-        final WordCounterApp sut = new WordCounterApp(input, mockWriter, mockStopWords);
+        final StopWords mockKnownWords = mock(StopWords.class);
+        when(mockKnownWords.contain("a")).thenReturn(true);
+
+        final WordCounterApp sut = new WordCounterApp(input, mockWriter, mockStopWords, mockKnownWords);
 
         sut.countWords(new String[0]);
 
