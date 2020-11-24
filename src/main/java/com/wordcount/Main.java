@@ -16,8 +16,7 @@ public class Main {
         final StopWords stopWords = getStopWords(fileReader);
         final Writer consoleWriter = new ConsoleWriter();
 
-        final UIFactory uiFactory = new UIFactory();
-        final UI ui = uiFactory.getFactory(args);
+        final UI ui = UIFactory.getFactory(args);
         final String input = ui.getInput();
 
         final WordCounterApp wordCounterApp = new WordCounterApp(

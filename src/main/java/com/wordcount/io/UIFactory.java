@@ -7,7 +7,7 @@ import com.wordcount.io.file.FileUI;
 
 public class UIFactory {
 
-    public UI getFactory(final String[] consoleParameter) {
+    public static UI getFactory(final String[] consoleParameter) {
         if (consoleParameter.length == 1) {
             return new FileUI(consoleParameter[0]);
         } else {
