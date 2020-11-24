@@ -1,5 +1,5 @@
 package com.wordcount.io;
 
-public interface UIable {
+public interface UI {
     String getInput();
 }
