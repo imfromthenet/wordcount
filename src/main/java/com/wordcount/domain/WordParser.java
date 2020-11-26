@@ -16,7 +16,7 @@ class WordParser {
         this.stopWords = requireNonNull(stopWords);
     }
 
-    protected List<String> parse(final String input) {
+    List<String> parse(final String input) {
         final Matcher matcher = pattern.matcher(requireNonNull(input));
         final List<String> words = new ArrayList<>();
 

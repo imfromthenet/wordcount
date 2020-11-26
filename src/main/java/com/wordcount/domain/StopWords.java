@@ -11,7 +11,7 @@ public class StopWords {
         this.stopWords = requireNonNull(stopWords);
     }
 
-    public boolean contain(final String candidate) {
+    boolean contain(final String candidate) {
         return stopWords.contains(candidate);
     }
 }

@@ -8,8 +8,7 @@ public class Result {
         this.count = count;
     }
 
-    @Override
-    public String toString() {
+    String getFormatted() {
         return String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, count);
     }
 }
