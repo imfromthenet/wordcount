@@ -19,9 +19,11 @@ public class WordCounterApp {
         final String userInput = ui.getInput();
         final WordParser parser = new WordParser(stopWords);
         final List<String> wordsFiltered = parser.parse(userInput);
-        final int uniqueWordsCount = new HashSet<>(wordsFiltered).size();
-        final Result result = new Result(wordsFiltered.size(), uniqueWordsCount);
+        final Result result = new Result(wordsFiltered.size(), getUniqueWordsCount(wordsFiltered));
         ui.write(result.getFormatted());
     }
 
+    private int getUniqueWordsCount(final List<String> wordsWithoutStopWords) {
+        return new HashSet<>(wordsWithoutStopWords).size();
+    }
 }
