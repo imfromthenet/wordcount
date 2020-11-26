@@ -1,6 +1,5 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.Writer;
 import com.wordcount.io.ui.UI;
 
 public class WordCounterApp {
@@ -8,11 +7,9 @@ public class WordCounterApp {
     private final UI ui;
     private final StopWords stopWords;
     private final WordCounter wordCounter;
-    private final Writer writer;
 
-    public WordCounterApp(final UI ui, final Writer writer, final StopWords stopWords) {
+    public WordCounterApp(final UI ui, final StopWords stopWords) {
         this.ui = ui;
-        this.writer = writer;
         this.stopWords = stopWords;
         this.wordCounter =  new WordCounter();
     }
@@ -22,7 +19,7 @@ public class WordCounterApp {
         final Processor processor = new Processor(stopWords, wordCounter);
         processor.process(userInput);
         final Answer answer = wordCounter.getAnswer();
-        writer.write(answer.toString());
+        ui.write(answer.toString());
     }
 
 }

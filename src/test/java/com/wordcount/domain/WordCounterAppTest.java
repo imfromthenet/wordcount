@@ -1,6 +1,5 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.Writer;
 import com.wordcount.io.ui.UI;
 import org.junit.jupiter.api.Test;
 
@@ -12,13 +11,12 @@ public class WordCounterAppTest {
     void delegatesWorkToCollaboratorsAndThoseWorkAsTheyShould() {
         final UI mockUI = mock(UI.class);
         when(mockUI.getInput()).thenReturn("test a t2st");
-        final Writer mockWriter = mock(Writer.class);
         final StopWords mockStopWords = mock(StopWords.class);
         when(mockStopWords.contain("a")).thenReturn(true);
-        final WordCounterApp sut = new WordCounterApp(mockUI, mockWriter, mockStopWords);
+        final WordCounterApp sut = new WordCounterApp(mockUI, mockStopWords);
 
         sut.countWords();
 
-        verify(mockWriter, times(1)).write("Number of words: 1");
+        verify(mockUI, times(1)).write("Number of words: 1");
     }
 }
