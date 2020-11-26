@@ -5,14 +5,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.Arrays;
+import java.util.List;
 
+import static java.util.Arrays.asList;
+import static java.util.Arrays.stream;
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class WordParserTest {
-
-    private WordCounter wordCounterMock;
 
     private WordParser sut;
 
@@ -20,73 +24,70 @@ class WordParserTest {
     void initialize() {
         final StopWords stopWordsMock = mock(StopWords.class);
         when(stopWordsMock.contain("a")).thenReturn(true);
-        wordCounterMock = mock(WordCounter.class);
-        sut = new WordParser(stopWordsMock, wordCounterMock);
+        sut = new WordParser(stopWordsMock);
     }
 
     @Test
-    void countsMultipleWords() {
+    void addsAllWordsToResult() {
         final String input = "word word";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verify(wordCounterMock, times(2)).collect("word");
+        assertEquals(asList("word", "word"), actual);
     }
 
     @Test
-    void countsWordsThatStartWithAnUppercase() {
+    void parsesWordsStartingWithAnUppercase() {
         final String input = "Word";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verify(wordCounterMock, times(1)).collect("Word");
+        assertEquals(singletonList("Word"), actual);
     }
 
     @Test
-    void countsUppercaseWords() {
+    void parsesUppercaseWords() {
         final String input = "WORD";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verify(wordCounterMock, times(1)).collect("WORD");
+        assertEquals(singletonList("WORD"), actual);
     }
 
     @Test
-    void doesNotCallAnswerCollectorWhenInputIsEmpty() {
+    void returnsEmptyListIfGivenAnEmptyString() {
         final String input = "";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verifyNoInteractions(wordCounterMock);
+        assertEquals(emptyList(), actual);
     }
 
     @Test
-    void doesNotCallAnswerCollectorWhenInputIsWhitespace() {
+    void returnsEmptyListIfGivenASpaceString() {
         final String input = " ";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verifyNoInteractions(wordCounterMock);
+        assertEquals(emptyList(), actual);
     }
 
     @Test
     void returnsZeroWhenInputIsSpecialCharacter() {
-        final String input = "*-+/=!@#$%^&*()_`~?][|\\";
-
-        Arrays.stream(input.split(""))
+        stream("*-+/=!@#$%^&*()_`~?][|\\".split(""))
                 .forEach(symbol -> {
-                    sut.parse(input);
-                    verifyNoInteractions(wordCounterMock);
+                    final List<String> actual = sut.parse(symbol);
+                    assertEquals(emptyList(), actual);
                 });
     }
 
     @Test
-    void returnsZeroWhenInputStringDoesNotMeetDefinitionOfAWord() {
+    void whenStringDoesNotMeetDefinitionOfAWordItIsNotAddedToTheResult() {
         final String input = "w0rd";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verifyNoInteractions(wordCounterMock);
+        assertEquals(emptyList(), actual);
     }
 
     @Test
@@ -96,20 +97,20 @@ class WordParserTest {
 
     @ParameterizedTest
     @CsvSource({".", "!", "?", ":", ";"})
-    void countsWordsEndingWithAPunctuationMark(final String punctuationMark) {
+    void parsesWordsEndingWithAPunctuationMark(final String punctuationMark) {
         final String input = "word".concat(punctuationMark);
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verify(wordCounterMock, times(1)).collect("word");
+        assertEquals(singletonList("word"), actual);
     }
 
     @Test
     void filtersOutStopWords() {
         final String input = "word a";
 
-        sut.parse(input);
+        final List<String> actual = sut.parse(input);
 
-        verify(wordCounterMock, times(1)).collect("word");
+        assertEquals(singletonList("word"), actual);
     }
 }
