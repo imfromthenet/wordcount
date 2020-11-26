@@ -1,13 +1,14 @@
 package com.wordcount.domain;
 
 import java.util.List;
-import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class StopWords {
     private final List<String> stopWords;
 
     public StopWords(List<String> stopWords) {
-        this.stopWords = Objects.requireNonNull(stopWords);
+        this.stopWords = requireNonNull(stopWords);
     }
 
     public boolean contain(final String candidate) {

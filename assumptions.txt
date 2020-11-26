@@ -1,1 +1,1 @@
-1. words are strings of a-zA-Z separated by whitespace or start/end of string locations. Thus w0rd is not a word.
+1. words are strings of a-zA-Z

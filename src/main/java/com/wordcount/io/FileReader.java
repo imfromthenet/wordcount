@@ -21,8 +21,7 @@ public class FileReader implements Reader {
     @Override
     public String read() {
         return readAsList().stream()
-                .reduce("", (m, n) -> m.trim() +  " " + n.trim())
-                .trim();
+                .reduce("", (m, n) -> m.trim() + " " + n.trim());
     }
 
     @Override

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -82,12 +83,12 @@ class WordParserTest {
     }
 
     @Test
-    void whenStringDoesNotMeetDefinitionOfAWordItIsNotAddedToTheResult() {
-        final String input = "w0rd";
+    void splitsStringIntoWordsByNonLetter() {
+        final String input = "word2word-word_word";
 
         final List<String> actual = sut.parse(input);
 
-        assertEquals(emptyList(), actual);
+        assertEquals(Arrays.asList("word","word","word","word"), actual);
     }
 
     @Test

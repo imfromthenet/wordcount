@@ -1,12 +1,12 @@
 package com.wordcount.io;
 
-import java.util.Objects;
+import static java.util.Objects.requireNonNull;
 
 public class ConsoleWriter implements Writer {
 
     @Override
     public void write(final String text) {
-        Objects.requireNonNull(text);
+        requireNonNull(text);
 
         System.out.print(text);
     }
