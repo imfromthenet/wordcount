@@ -1,6 +1,9 @@
-package com.wordcount.io.console;
+package com.wordcount.io.ui;
 
-import com.wordcount.io.UI;
+import com.wordcount.io.Reader;
+import com.wordcount.io.Writer;
+
+import java.util.List;
 
 public class ConsoleUI implements UI {
 
@@ -18,4 +21,13 @@ public class ConsoleUI implements UI {
         return reader.read();
     }
 
+    @Override
+    public void write(final String message) {
+        writer.write(message);
+    }
+
+    @Override
+    public List<String> readAsList() {
+        return reader.readAsList();
+    }
 }

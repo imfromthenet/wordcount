@@ -1,7 +1,7 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.UI;
-import com.wordcount.io.console.Writer;
+import com.wordcount.io.Writer;
+import com.wordcount.io.ui.UI;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;

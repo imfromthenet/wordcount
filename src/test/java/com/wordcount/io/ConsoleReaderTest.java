@@ -1,4 +1,4 @@
-package com.wordcount.io.console;
+package com.wordcount.io;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
 
+import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConsoleReaderTest {
@@ -26,9 +28,16 @@ class ConsoleReaderTest {
     }
 
     @Test
-    void writesMessageToConsole() {
+    void readsFromConsoleAsString() {
         final String actual = sut.read();
 
         assertEquals("message", actual);
+    }
+
+    @Test
+    void readsFromConsoleAsList() {
+        final List<String> actual = sut.readAsList();
+
+        assertEquals(singletonList("message"), actual);
     }
 }

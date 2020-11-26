@@ -2,10 +2,9 @@ package com.wordcount;
 
 import com.wordcount.domain.StopWords;
 import com.wordcount.domain.WordCounterApp;
-import com.wordcount.io.UIFactory;
-import com.wordcount.io.console.ConsoleWriter;
-import com.wordcount.io.console.Writer;
-import com.wordcount.io.file.FileReader;
+import com.wordcount.io.ConsoleWriter;
+import com.wordcount.io.Writer;
+import com.wordcount.io.ui.UIFactory;
 
 public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";

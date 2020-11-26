@@ -1,20 +1,13 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.file.FileReader;
-
 import java.util.List;
 import java.util.Objects;
 
 public class StopWords {
-    private List<String> stopWords;
-    private final FileReader fileReader;
+    private final List<String> stopWords;
 
-    public StopWords(final FileReader fileReader) {
-        this.fileReader = Objects.requireNonNull(fileReader);
-    }
-
-    public void fillFrom(final String path) {
-        stopWords = fileReader.read(path);
+    public StopWords(List<String> stopWords) {
+        this.stopWords = Objects.requireNonNull(stopWords);
     }
 
     public boolean contain(final String candidate) {

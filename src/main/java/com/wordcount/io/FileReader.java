@@ -1,4 +1,4 @@
-package com.wordcount.io.file;
+package com.wordcount.io;
 
 import java.io.IOException;
 import java.net.URI;
@@ -9,12 +9,29 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-public class FileReader {
+import static java.util.stream.Collectors.toList;
 
-    public List<String> read(final String filePath) {
+public class FileReader implements Reader {
+    private final String filename;
+
+    public FileReader(final String filename) {
+        this.filename = filename;
+    }
+
+    @Override
+    public String read() {
+        return readAsList().stream()
+                .reduce("", (m, n) -> m.trim() +  " " + n.trim())
+                .trim();
+    }
+
+    @Override
+    public List<String> readAsList() {
         try {
-            Path path = getPath(filePath);
-            return Files.readAllLines(path);
+            Path path = getPath(filename);
+            return Files.readAllLines(path).stream()
+                    .filter(string -> !string.isEmpty())
+                    .collect(toList());
         } catch (IOException e) {
             throw new RuntimeException("error while reading the file", e);
         }
