@@ -16,8 +16,8 @@ public class WordCounterApp {
 
     public void countWords() {
         final String userInput = ui.getInput();
-        final Processor processor = new Processor(stopWords, wordCounter);
-        processor.process(userInput);
+        final WordParser parser = new WordParser(stopWords, wordCounter);
+        parser.parse(userInput);
         final Answer answer = wordCounter.getAnswer();
         ui.write(answer.toString());
     }
