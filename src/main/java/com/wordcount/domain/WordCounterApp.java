@@ -2,6 +2,7 @@ package com.wordcount.domain;
 
 import com.wordcount.io.ui.UI;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class WordCounterApp {
@@ -18,7 +19,8 @@ public class WordCounterApp {
         final String userInput = ui.getInput();
         final WordParser parser = new WordParser(stopWords);
         final List<String> wordsFiltered = parser.parse(userInput);
-        final Result result = new Result(wordsFiltered.size());
+        final int uniqueWordsCount = new HashSet<>(wordsFiltered).size();
+        final Result result = new Result(wordsFiltered.size(), uniqueWordsCount);
         ui.write(result.getFormatted());
     }
 
