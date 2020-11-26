@@ -1,10 +1,10 @@
 package com.wordcount.domain;
 
-public class Answer {
+public class Result {
     private static final String MESSAGE_NUMBER_OF_WORDS = "Number of words: ";
     private final int count;
 
-    public Answer(final int count) {
+    public Result(final int count) {
         this.count = count;
     }
 
