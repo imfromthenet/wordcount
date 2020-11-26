@@ -8,12 +8,12 @@ public class Main {
     public static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        final WordCounterApp wordCounterApp = new WordCounterApp(UIFactory.getFactory(args), getStopWords());
+        final WordCounterApp wordCounterApp = new WordCounterApp(UIFactory.construct(args), getStopWords());
         wordCounterApp.countWords();
     }
 
     private static StopWords getStopWords() {
         String[] array = {STOP_WORDS_FILE};
-        return new StopWords(UIFactory.getFactory(array).readAsList());
+        return new StopWords(UIFactory.construct(array).readAsList());
     }
 }

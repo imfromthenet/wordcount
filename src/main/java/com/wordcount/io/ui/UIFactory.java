@@ -6,7 +6,7 @@ import com.wordcount.io.FileReader;
 
 public class UIFactory {
 
-    public static UI getFactory(final String[] consoleParameter) {
+    public static UI construct(final String[] consoleParameter) {
         if (consoleParameter.length == 1) {
             return new ConsoleWriterFileReaderUI(new ConsoleWriter(), new FileReader(consoleParameter[0]));
         }
