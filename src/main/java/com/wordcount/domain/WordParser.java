@@ -9,7 +9,8 @@ import static java.util.Objects.requireNonNull;
 
 class WordParser {
 
-    private final Pattern pattern = Pattern.compile("[a-zA-Z]+?[a-zA-Z]*");
+    public static final String STANDALONE_HYPHEN = "-";
+    private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private final StopWords stopWords;
 
     public WordParser(final StopWords stopWords) {
@@ -22,11 +23,14 @@ class WordParser {
 
         while (matcher.find()) {
             final String candidate = matcher.group();
-            if (!stopWords.contain(candidate)) {
+            if (shouldBeAddedToList(candidate)) {
                 words.add(candidate);
             }
         }
         return words;
     }
 
+    private boolean shouldBeAddedToList(final String candidate) {
+        return !stopWords.contain(candidate) && !candidate.equals(STANDALONE_HYPHEN);
+    }
 }

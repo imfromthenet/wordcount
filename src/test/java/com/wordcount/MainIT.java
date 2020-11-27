@@ -40,7 +40,7 @@ public class MainIT {
         Main.main(new String[]{});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals(MESSAGE_ENTER_TEXT + MESSAGE_NUMBER_OF_WORDS + "9" + MESSAGE_UNIQUE_WORDS + "7", actual);
+        assertEquals(MESSAGE_ENTER_TEXT + MESSAGE_NUMBER_OF_WORDS + "7" + MESSAGE_UNIQUE_WORDS + "6", actual);
     }
 
     @Test

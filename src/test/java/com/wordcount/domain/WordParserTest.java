@@ -88,7 +88,7 @@ class WordParserTest {
 
         final List<String> actual = sut.parse(input);
 
-        assertEquals(Arrays.asList("word","word","word","word"), actual);
+        assertEquals(Arrays.asList("word","word-word","word"), actual);
     }
 
     @Test
