@@ -1,5 +1,6 @@
 package com.wordcount;
 
+import com.wordcount.domain.Statistics;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static com.wordcount.domain.Result.*;
 import static com.wordcount.io.ui.ConsoleUI.MESSAGE_ENTER_TEXT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -39,7 +39,7 @@ public class MainIT {
 
         String actual = outputStreamCaptor.toString();
 
-        assertEquals(MESSAGE_ENTER_TEXT + MESSAGE_NUMBER_OF_WORDS + "7" + MESSAGE_UNIQUE_WORDS + "6" + String.format(MESSAGE_AVERAGE_LENGTH_OF_WORDS, 6.43), actual);
+        assertEquals(MESSAGE_ENTER_TEXT + Statistics.MESSAGE_NUMBER_OF_WORDS + "7" + Statistics.MESSAGE_UNIQUE_WORDS + "6" + String.format(Statistics.MESSAGE_AVERAGE_LENGTH_OF_WORDS, 6.43), actual);
     }
 
     @Test
@@ -48,9 +48,9 @@ public class MainIT {
 
         String actual = outputStreamCaptor.toString();
 
-        assertEquals(MESSAGE_NUMBER_OF_WORDS + "7"
-                + MESSAGE_UNIQUE_WORDS + "6"
-                + String.format(MESSAGE_AVERAGE_LENGTH_OF_WORDS, 6.43), actual);
+        assertEquals(Statistics.MESSAGE_NUMBER_OF_WORDS + "7"
+                + Statistics.MESSAGE_UNIQUE_WORDS + "6"
+                + String.format(Statistics.MESSAGE_AVERAGE_LENGTH_OF_WORDS, 6.43), actual);
     }
 
     @Test
