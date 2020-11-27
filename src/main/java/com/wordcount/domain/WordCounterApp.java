@@ -16,8 +16,8 @@ public class WordCounterApp {
         String userInput = ui.getUserInput();
         WordParser parser = new WordParser(stopWords);
         List<String> wordsFiltered = parser.parse(userInput);
-        Result result = new Result(wordsFiltered.size());
-        ui.show(result.getFormatted());
+        Answer answer = new Answer(wordsFiltered.size());
+        ui.show(answer.getFormatted());
     }
 
 }
