@@ -1,4 +1,4 @@
-package com.wordcount.io.ui;
+package com.wordcount.domain;
 
 import java.util.List;
 

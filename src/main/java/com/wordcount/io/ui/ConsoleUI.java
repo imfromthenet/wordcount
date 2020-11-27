@@ -1,5 +1,6 @@
 package com.wordcount.io.ui;
 
+import com.wordcount.domain.UI;
 import com.wordcount.io.Reader;
 import com.wordcount.io.Writer;
 

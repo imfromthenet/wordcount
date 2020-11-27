@@ -1,7 +1,5 @@
 package com.wordcount.domain;
 
-import com.wordcount.io.ui.UI;
-
 import java.util.List;
 
 public class WordCounterApp {
