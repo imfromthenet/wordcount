@@ -17,13 +17,13 @@ public class ConsoleUI implements UI {
         this.reader = reader;
     }
 
-    public String getInput() {
-        writer.write(MESSAGE_ENTER_TEXT);
+    public String getUserInput() {
+        this.show(MESSAGE_ENTER_TEXT);
         return reader.read();
     }
 
     @Override
-    public void write(String message) {
+    public void show(String message) {
         writer.write(message);
     }
 

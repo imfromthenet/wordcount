@@ -43,7 +43,7 @@ class ConsoleUITest {
     void requestsInputViaConsoleAndAfterReceivingItReturnsItAsString() {
         UI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
 
-        String input = sut.getInput();
+        String input = sut.getUserInput();
 
         assertEquals("Enter text: ", outputStreamCaptor.toString());
         assertEquals(MESSAGE, input);
@@ -54,7 +54,7 @@ class ConsoleUITest {
         Reader mockReader = mock(Reader.class);
         UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
 
-        sut.write(MESSAGE);
+        sut.show(MESSAGE);
 
         assertEquals(MESSAGE, outputStreamCaptor.toString());
     }

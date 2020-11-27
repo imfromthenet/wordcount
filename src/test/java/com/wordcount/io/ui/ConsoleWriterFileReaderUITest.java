@@ -39,7 +39,7 @@ class ConsoleWriterFileReaderUITest {
     void readsFileAndReturnsContentAsString() {
         UI sut = new ConsoleWriterFileReaderUI(mock(Writer.class), new FileReader(TEST_TXT));
 
-        String input = sut.getInput();
+        String input = sut.getUserInput();
 
         assertEquals("", outputStreamCaptor.toString());
         assertEquals("one two", input);
@@ -50,7 +50,7 @@ class ConsoleWriterFileReaderUITest {
         Reader mockReader = mock(Reader.class);
         UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
 
-        sut.write(MESSAGE);
+        sut.show(MESSAGE);
 
         assertEquals(MESSAGE, outputStreamCaptor.toString());
     }

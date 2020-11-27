@@ -9,13 +9,13 @@ public class WordCounterAppTest {
     @Test
     void delegatesWorkToCollaboratorsAndThoseWorkAsTheyShould() {
         UI mockUI = mock(UI.class);
-        when(mockUI.getInput()).thenReturn("a t2st");
+        when(mockUI.getUserInput()).thenReturn("a t2st");
         StopWords mockStopWords = mock(StopWords.class);
         when(mockStopWords.contain("a")).thenReturn(true);
         WordCounterApp sut = new WordCounterApp(mockUI, mockStopWords);
 
         sut.countWords();
 
-        verify(mockUI, times(1)).write("Number of words: 2");
+        verify(mockUI, times(1)).show("Number of words: 2");
     }
 }

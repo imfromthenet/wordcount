@@ -13,11 +13,11 @@ public class WordCounterApp {
     }
 
     public void countWords() {
-        String userInput = ui.getInput();
+        String userInput = ui.getUserInput();
         WordParser parser = new WordParser(stopWords);
         List<String> wordsFiltered = parser.parse(userInput);
         Result result = new Result(wordsFiltered.size());
-        ui.write(result.getFormatted());
+        ui.show(result.getFormatted());
     }
 
 }

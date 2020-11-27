@@ -17,12 +17,12 @@ public class ConsoleWriterFileReaderUI implements UI {
     }
 
     @Override
-    public String getInput() {
+    public String getUserInput() {
         return reader.read();
     }
 
     @Override
-    public void write(String message) {
+    public void show(String message) {
         writer.write(message);
     }
 
