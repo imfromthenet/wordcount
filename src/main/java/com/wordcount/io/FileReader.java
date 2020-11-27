@@ -12,9 +12,9 @@ import java.util.Objects;
 import static java.util.stream.Collectors.toList;
 
 public class FileReader implements Reader {
-    private final String filename;
+    private String filename;
 
-    public FileReader(final String filename) {
+    public FileReader(String filename) {
         this.filename = filename;
     }
 

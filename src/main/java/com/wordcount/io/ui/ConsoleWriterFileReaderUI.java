@@ -8,10 +8,10 @@ import java.util.List;
 
 public class ConsoleWriterFileReaderUI implements UI {
 
-    private final Writer writer;
-    private final Reader reader;
+    private Writer writer;
+    private Reader reader;
 
-    public ConsoleWriterFileReaderUI(final Writer writer, final Reader reader) {
+    public ConsoleWriterFileReaderUI(Writer writer, Reader reader) {
         this.writer = writer;
         this.reader = reader;
     }
@@ -22,7 +22,7 @@ public class ConsoleWriterFileReaderUI implements UI {
     }
 
     @Override
-    public void write(final String message) {
+    public void write(String message) {
         writer.write(message);
     }
 

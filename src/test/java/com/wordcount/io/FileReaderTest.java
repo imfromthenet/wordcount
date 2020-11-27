@@ -13,20 +13,20 @@ class FileReaderTest {
 
     @Test
     void readsFromFileAsList() {
-        final List<String> resultJoined = Arrays.asList("the", "a", "on", "off");
-        final FileReader sut = new FileReader(STOP_WORDS_FILE);
+        List<String> resultJoined = Arrays.asList("the", "a", "on", "off");
+        FileReader sut = new FileReader(STOP_WORDS_FILE);
 
-        final List<String> actual = sut.readAsList();
+        List<String> actual = sut.readAsList();
 
         assertEquals(resultJoined, actual);
     }
 
     @Test
     void readsFromFileAsString() {
-        final String expected = "the a on off";
-        final FileReader sut = new FileReader(STOP_WORDS_FILE);
+        String expected = "the a on off";
+        FileReader sut = new FileReader(STOP_WORDS_FILE);
 
-        final String actual = sut.read();
+        String actual = sut.read();
 
         assertEquals(expected, actual);
     }

@@ -14,10 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MainIT {
 
-    private final PrintStream standardOut = System.out;
-    private final InputStream standardIn = System.in;
-
-    final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private PrintStream standardOut = System.out;
+    private InputStream standardIn = System.in;
 
     @BeforeEach
     public void setUp() {

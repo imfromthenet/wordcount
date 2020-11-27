@@ -21,11 +21,11 @@ import static org.mockito.Mockito.mock;
 
 class ConsoleUITest {
 
-    private final String MESSAGE = "message";
-    private final InputStream standardIn = System.in;
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayInputStream inputStreamCaptor = new ByteArrayInputStream(MESSAGE.getBytes());
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private String MESSAGE = "message";
+    private InputStream standardIn = System.in;
+    private PrintStream standardOut = System.out;
+    private ByteArrayInputStream inputStreamCaptor = new ByteArrayInputStream(MESSAGE.getBytes());
+    private ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUp() {
@@ -41,9 +41,9 @@ class ConsoleUITest {
 
     @Test
     void requestsInputViaConsoleAndAfterReceivingItReturnsItAsString() {
-        final UI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
+        UI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
 
-        final String input = sut.getInput();
+        String input = sut.getInput();
 
         assertEquals("Enter text: ", outputStreamCaptor.toString());
         assertEquals(MESSAGE, input);
@@ -51,8 +51,8 @@ class ConsoleUITest {
 
     @Test
     void writesMessageToConsole() {
-        final Reader mockReader = mock(Reader.class);
-        final UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
+        Reader mockReader = mock(Reader.class);
+        UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
 
         sut.write(MESSAGE);
 
@@ -61,10 +61,10 @@ class ConsoleUITest {
 
     @Test
     void readsFromConsoleAndReturnsAsList() {
-        final Writer mockWriter = mock(Writer.class);
-        final UI sut = new ConsoleUI(mockWriter, new ConsoleReader());
+        Writer mockWriter = mock(Writer.class);
+        UI sut = new ConsoleUI(mockWriter, new ConsoleReader());
 
-        final List<String> actual = sut.readAsList();
+        List<String> actual = sut.readAsList();
 
         assertEquals(singletonList(MESSAGE), actual);
     }

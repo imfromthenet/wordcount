@@ -20,10 +20,10 @@ import static org.mockito.Mockito.*;
 class ConsoleWriterFileReaderUITest {
 
 
-    public static final String TEST_TXT = "test.txt";
-    private final String MESSAGE = "message";
-    private final PrintStream standardOut = System.out;
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    public static String TEST_TXT = "test.txt";
+    private String MESSAGE = "message";
+    private PrintStream standardOut = System.out;
+    private ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
     @BeforeEach
     public void setUp() {
@@ -37,9 +37,9 @@ class ConsoleWriterFileReaderUITest {
 
     @Test
     void readsFileAndReturnsContentAsString() {
-        final UI sut = new ConsoleWriterFileReaderUI(mock(Writer.class), new FileReader(TEST_TXT));
+        UI sut = new ConsoleWriterFileReaderUI(mock(Writer.class), new FileReader(TEST_TXT));
 
-        final String input = sut.getInput();
+        String input = sut.getInput();
 
         assertEquals("", outputStreamCaptor.toString());
         assertEquals("one two", input);
@@ -47,8 +47,8 @@ class ConsoleWriterFileReaderUITest {
 
     @Test
     void writesMessageToConsole() {
-        final Reader mockReader = mock(Reader.class);
-        final UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
+        Reader mockReader = mock(Reader.class);
+        UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
 
         sut.write(MESSAGE);
 
@@ -57,11 +57,11 @@ class ConsoleWriterFileReaderUITest {
 
     @Test
     void readsFileAndReturnsAsList() {
-        final Writer mockWriter = mock(Writer.class);
-        final FileReader spy = spy(new FileReader(TEST_TXT));
-        final UI sut = new ConsoleUI(mockWriter, spy);
+        Writer mockWriter = mock(Writer.class);
+        FileReader spy = spy(new FileReader(TEST_TXT));
+        UI sut = new ConsoleUI(mockWriter, spy);
 
-        final List<String> actual = sut.readAsList();
+        List<String> actual = sut.readAsList();
 
         assertEquals(asList("one", "two"), actual);
         verify(spy, times(1)).readAsList();

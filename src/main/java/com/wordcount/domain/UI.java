@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface UI {
     String getInput();
-    void write(final String message);
+    void write(String message);
 
     List<String> readAsList();
 }

@@ -13,8 +13,8 @@ class ConsoleWriterTest {
 
 
     ConsoleWriter sut = new ConsoleWriter();
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private final PrintStream standardOut = System.out;
+    private ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    private PrintStream standardOut = System.out;
 
     @BeforeEach
     public void setUp() {

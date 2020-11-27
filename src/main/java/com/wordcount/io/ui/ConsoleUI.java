@@ -9,10 +9,10 @@ import java.util.List;
 public class ConsoleUI implements UI {
 
     public static final String MESSAGE_ENTER_TEXT = "Enter text: ";
-    private final Writer writer;
-    private final Reader reader;
+    private Writer writer;
+    private Reader reader;
 
-    public ConsoleUI(final Writer writer, final Reader reader) {
+    public ConsoleUI(Writer writer, Reader reader) {
         this.writer = writer;
         this.reader = reader;
     }
@@ -23,7 +23,7 @@ public class ConsoleUI implements UI {
     }
 
     @Override
-    public void write(final String message) {
+    public void write(String message) {
         writer.write(message);
     }
 

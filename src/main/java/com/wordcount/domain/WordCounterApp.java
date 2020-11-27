@@ -4,19 +4,19 @@ import java.util.List;
 
 public class WordCounterApp {
 
-    private final UI ui;
-    private final StopWords stopWords;
+    private UI ui;
+    private StopWords stopWords;
 
-    public WordCounterApp(final UI ui, final StopWords stopWords) {
+    public WordCounterApp(UI ui,StopWords stopWords) {
         this.ui = ui;
         this.stopWords = stopWords;
     }
 
     public void countWords() {
-        final String userInput = ui.getInput();
-        final WordParser parser = new WordParser(stopWords);
-        final List<String> wordsFiltered = parser.parse(userInput);
-        final Result result = new Result(wordsFiltered.size());
+        String userInput = ui.getInput();
+        WordParser parser = new WordParser(stopWords);
+        List<String> wordsFiltered = parser.parse(userInput);
+        Result result = new Result(wordsFiltered.size());
         ui.write(result.getFormatted());
     }
 

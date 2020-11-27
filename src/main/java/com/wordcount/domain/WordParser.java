@@ -9,19 +9,19 @@ import static java.util.Objects.requireNonNull;
 
 class WordParser {
 
-    private final Pattern pattern = Pattern.compile("[a-zA-Z]+?[a-zA-Z]*");
-    private final StopWords stopWords;
+    private Pattern pattern = Pattern.compile("[a-zA-Z]+?[a-zA-Z]*");
+    private StopWords stopWords;
 
-    public WordParser(final StopWords stopWords) {
+    public WordParser(StopWords stopWords) {
         this.stopWords = requireNonNull(stopWords);
     }
 
-    List<String> parse(final String input) {
-        final Matcher matcher = pattern.matcher(requireNonNull(input));
-        final List<String> words = new ArrayList<>();
+    List<String> parse(String input) {
+        Matcher matcher = pattern.matcher(requireNonNull(input));
+        List<String> words = new ArrayList<>();
 
         while (matcher.find()) {
-            final String candidate = matcher.group();
+            String candidate = matcher.group();
             if (!stopWords.contain(candidate)) {
                 words.add(candidate);
             }

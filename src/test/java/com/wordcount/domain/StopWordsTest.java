@@ -10,7 +10,7 @@ class StopWordsTest {
 
     @Test
     void tellsIfAWordIsInStopWords() {
-        final StopWords sut = new StopWords(singletonList("a"));
+        StopWords sut = new StopWords(singletonList("a"));
 
         assertTrue(sut.contain("a"));
         assertFalse(sut.contain("b"));
@@ -18,7 +18,7 @@ class StopWordsTest {
 
     @Test
     void tellsIfAWordIsNotInStopWords() {
-        final StopWords sut = new StopWords(singletonList("a"));
+        StopWords sut = new StopWords(singletonList("a"));
 
         assertTrue(sut.contain("a"));
         assertFalse(sut.contain("b"));

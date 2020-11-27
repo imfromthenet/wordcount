@@ -5,13 +5,13 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 
 public class StopWords {
-    private final List<String> stopWords;
+    private List<String> stopWords;
 
     public StopWords(List<String> stopWords) {
         this.stopWords = requireNonNull(stopWords);
     }
 
-    boolean contain(final String candidate) {
+    boolean contain(String candidate) {
         return stopWords.contains(candidate);
     }
 }
