@@ -6,9 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.List;
 
-import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ConsoleReaderTest {
@@ -32,12 +30,5 @@ class ConsoleReaderTest {
         String actual = sut.read();
 
         assertEquals("message", actual);
-    }
-
-    @Test
-    void readsFromConsoleAsList() {
-        List<String> actual = sut.readAsList();
-
-        assertEquals(singletonList("message"), actual);
     }
 }

@@ -11,11 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 class ConsoleWriterFileReaderUITest {
 
@@ -53,18 +51,5 @@ class ConsoleWriterFileReaderUITest {
         sut.show(MESSAGE);
 
         assertEquals(MESSAGE, outputStreamCaptor.toString());
-    }
-
-    @Test
-    void readsFileAndReturnsAsList() {
-        Writer mockWriter = mock(Writer.class);
-        FileReader spy = spy(new FileReader(TEST_TXT));
-        UI sut = new ConsoleUI(mockWriter, spy);
-
-        List<String> actual = sut.readAsList();
-
-        assertEquals(asList("one", "two"), actual);
-        verify(spy, times(1)).readAsList();
-        verifyNoMoreInteractions(spy);
     }
 }

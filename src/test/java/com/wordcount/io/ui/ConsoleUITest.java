@@ -4,7 +4,6 @@ import com.wordcount.domain.UI;
 import com.wordcount.io.ConsoleReader;
 import com.wordcount.io.ConsoleWriter;
 import com.wordcount.io.Reader;
-import com.wordcount.io.Writer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,9 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.List;
 
-import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 
@@ -57,15 +54,5 @@ class ConsoleUITest {
         sut.show(MESSAGE);
 
         assertEquals(MESSAGE, outputStreamCaptor.toString());
-    }
-
-    @Test
-    void readsFromConsoleAndReturnsAsList() {
-        Writer mockWriter = mock(Writer.class);
-        UI sut = new ConsoleUI(mockWriter, new ConsoleReader());
-
-        List<String> actual = sut.readAsList();
-
-        assertEquals(singletonList(MESSAGE), actual);
     }
 }

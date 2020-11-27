@@ -4,8 +4,6 @@ import com.wordcount.domain.UI;
 import com.wordcount.io.Reader;
 import com.wordcount.io.Writer;
 
-import java.util.List;
-
 public class ConsoleWriterFileReaderUI implements UI {
 
     private Writer writer;
@@ -22,12 +20,7 @@ public class ConsoleWriterFileReaderUI implements UI {
     }
 
     @Override
-    public void show(String message) {
-        writer.write(message);
-    }
-
-    @Override
-    public List<String> readAsList() {
-        return reader.readAsList();
+    public void show(String result) {
+        writer.write(result);
     }
 }
