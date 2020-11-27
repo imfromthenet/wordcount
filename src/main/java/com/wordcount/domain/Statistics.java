@@ -14,19 +14,25 @@ public class Statistics {
     }
 
     protected String getAsString() {
-        return String.format("%s%d%s%d%s",
-                MESSAGE_NUMBER_OF_WORDS, words.size(),
-                MESSAGE_UNIQUE_WORDS, getUniqueWordsCount(words),
-                String.format(MESSAGE_AVERAGE_LENGTH_OF_WORDS, getAverageLength(words)));
-    }
-    private int getUniqueWordsCount(final List<String> wordsWithoutStopWords) {
-        return new HashSet<>(wordsWithoutStopWords).size();
+        return String.format("%s%s%s",
+                getWordSizeInAMessage(),
+                getUniqueWordsCountInAMessage(),
+                getAverageLengthInAMessage());
     }
 
-    private double getAverageLength(final List<String> wordsFiltered) {
-        return wordsFiltered.stream()
+    private String getWordSizeInAMessage() {
+        return String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, words.size());
+    }
+
+    private String getUniqueWordsCountInAMessage() {
+        return String.format("%s%d", MESSAGE_UNIQUE_WORDS, new HashSet<>(words).size());
+    }
+
+    private String getAverageLengthInAMessage() {
+        final double averageLength = words.stream()
                 .mapToInt(String::length)
                 .average()
                 .orElse(0);
+        return String.format(MESSAGE_AVERAGE_LENGTH_OF_WORDS, averageLength);
     }
 }
