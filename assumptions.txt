@@ -1,1 +1,2 @@
 1. words are strings of a-zA-Z
+2. iteration 6: the average word length to be displayed to two decimal places

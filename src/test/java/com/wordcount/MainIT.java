@@ -9,8 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
-import static com.wordcount.domain.Result.MESSAGE_NUMBER_OF_WORDS;
-import static com.wordcount.domain.Result.MESSAGE_UNIQUE_WORDS;
+import static com.wordcount.domain.Result.*;
 import static com.wordcount.io.ui.ConsoleUI.MESSAGE_ENTER_TEXT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -36,19 +35,22 @@ public class MainIT {
     @Test
     public void returnsRegularCountAndUniqueWordCountWhenReadingFromConsole() {
         System.setIn(new ByteArrayInputStream(("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.").getBytes()));
-
         Main.main(new String[]{});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals(MESSAGE_ENTER_TEXT + MESSAGE_NUMBER_OF_WORDS + "7" + MESSAGE_UNIQUE_WORDS + "6", actual);
+
+        assertEquals(MESSAGE_ENTER_TEXT + MESSAGE_NUMBER_OF_WORDS + "7" + MESSAGE_UNIQUE_WORDS + "6" + String.format(MESSAGE_AVERAGE_LENGTH_OF_WORDS, 6.43), actual);
     }
 
     @Test
-    public void returnsRegularCountAndUniqueWordCountWhenReadingFromFile() {
-        Main.main(new String[]{"mytext.txt"});
+    public void returnsRegularCountAndUniqueWordCountAndAverageWordLengthWhenReadingFromFile() {
+        Main.main(new String[]{"test_text.txt"});
 
         String actual = outputStreamCaptor.toString();
-        assertEquals(MESSAGE_NUMBER_OF_WORDS + "4" + MESSAGE_UNIQUE_WORDS + "4", actual);
+
+        assertEquals(MESSAGE_NUMBER_OF_WORDS + "7"
+                + MESSAGE_UNIQUE_WORDS + "6"
+                + String.format(MESSAGE_AVERAGE_LENGTH_OF_WORDS, 6.43), actual);
     }
 
     @Test

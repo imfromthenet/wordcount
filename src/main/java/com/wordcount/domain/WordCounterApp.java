@@ -19,11 +19,18 @@ public class WordCounterApp {
         final String userInput = ui.getInput();
         final WordParser parser = new WordParser(stopWords);
         final List<String> wordsFiltered = parser.parse(userInput);
-        final Result result = new Result(wordsFiltered.size(), getUniqueWordsCount(wordsFiltered));
+        final Result result = new Result(wordsFiltered.size(), getUniqueWordsCount(wordsFiltered), getAverageLength(wordsFiltered));
         ui.write(result.getFormatted());
     }
 
     private int getUniqueWordsCount(final List<String> wordsWithoutStopWords) {
         return new HashSet<>(wordsWithoutStopWords).size();
+    }
+
+    private double getAverageLength(final List<String> wordsFiltered) {
+        return wordsFiltered.stream()
+                .mapToInt(String::length)
+                .average()
+                .orElse(0);
     }
 }
