@@ -31,8 +31,8 @@ class ConsoleUITest {
     @Test
     void writesMessageToConsole() {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
-        Reader mockReader = mock(Reader.class);
-        UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
+        Reader ignore = mock(Reader.class);
+        UI sut = new ConsoleUI(new ConsoleWriter(), ignore);
 
         sut.show("message");
 
