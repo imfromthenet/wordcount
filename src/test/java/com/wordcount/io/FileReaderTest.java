@@ -3,8 +3,8 @@ package com.wordcount.io;
 import org.junit.jupiter.api.Test;
 
 import static com.wordcount.Main.STOP_WORDS_FILE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.wordcount.TestUtils.throwsNullPointerException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class FileReaderTest {
 
@@ -15,11 +15,11 @@ class FileReaderTest {
 
         String actual = sut.read();
 
-        assertEquals(expected, actual);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     void throwsAnExceptionIfFileNotFoundWhenReadAsString() {
-        assertThrows(RuntimeException.class, () -> new FileReader("nonExistingFile").read());
+        throwsNullPointerException(() -> new FileReader("nonExistingFile").read());
     }
 }

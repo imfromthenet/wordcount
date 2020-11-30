@@ -4,15 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.Arrays;
 import java.util.List;
 
+import static com.wordcount.TestUtils.throwsNullPointerException;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
-import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -24,9 +22,8 @@ class WordParserTest {
 
         List<String> actual = sut.parse("word word");
 
-        assertEquals(asList("word", "word"), actual);
+        assertThat(actual).isEqualTo(asList("word", "word"));
     }
-
 
     @Test
     void parsesWordsStartingWithAnUppercase() {
@@ -34,7 +31,7 @@ class WordParserTest {
 
         List<String> actual = sut.parse("Word");
 
-        assertEquals(singletonList("Word"), actual);
+        assertThat(actual).isEqualTo(singletonList("Word"));
     }
 
     @Test
@@ -43,7 +40,7 @@ class WordParserTest {
 
         List<String> actual = sut.parse("WORD");
 
-        assertEquals(singletonList("WORD"), actual);
+        assertThat(actual).isEqualTo(singletonList("WORD"));
     }
 
     @Test
@@ -52,7 +49,7 @@ class WordParserTest {
 
         List<String> actual = sut.parse("");
 
-        assertEquals(emptyList(), actual);
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -61,7 +58,7 @@ class WordParserTest {
 
         List<String> actual = sut.parse(" ");
 
-        assertEquals(emptyList(), actual);
+        assertThat(actual).isEmpty();
     }
 
     @Test
@@ -71,7 +68,7 @@ class WordParserTest {
         stream("*-+/=!@#$%^&*()_`~?][|\\".split(""))
                 .forEach(symbol -> {
                     List<String> actual = sut.parse(symbol);
-                    assertEquals(emptyList(), actual);
+                    assertThat(actual).isEmpty();
                 });
     }
 
@@ -81,13 +78,14 @@ class WordParserTest {
 
         List<String> actual = sut.parse("word2word-word_word");
 
-        assertEquals(Arrays.asList("word","word","word","word"), actual);
+        assertThat(actual).containsSequence(asList("word", "word", "word", "word"));
     }
 
     @Test
     void thowsNullpointerExceptionIfParameterIsNull() {
         WordParser sut = setUpWordParser();
-        assertThrows(NullPointerException.class, () -> sut.parse(null));
+
+        throwsNullPointerException(() -> sut.parse(null));
     }
 
     @ParameterizedTest
@@ -97,7 +95,7 @@ class WordParserTest {
 
         List<String> actual = sut.parse("word".concat(punctuationMark));
 
-        assertEquals(singletonList("word"), actual);
+        assertThat(actual).isEqualTo(singletonList("word"));
     }
 
     @Test
@@ -106,7 +104,7 @@ class WordParserTest {
 
         List<String> actual = sut.parse("word a");
 
-        assertEquals(singletonList("word"), actual);
+        assertThat(actual).isEqualTo(singletonList("word"));
     }
 
     private WordParser setUpWordParser() {

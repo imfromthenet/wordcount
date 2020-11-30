@@ -1,27 +1,27 @@
 package com.wordcount.io;
 
-import com.wordcount.TestUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.wordcount.TestUtils.getOutputRecorder;
+import static com.wordcount.TestUtils.throwsNullPointerException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleWriterTest {
 
     @Test
     void writesMessageToConsole() {
-        ByteArrayOutputStream outputRecorder = TestUtils.getOutputRecorder();
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
 
         new ConsoleWriter().write("message");
 
-        assertEquals("message", outputRecorder.toString());
+        assertThat(outputRecorder.toString()).isEqualTo("message");
     }
 
     @Test
     void thowsNullpointerExceptionIfFirstParameterIsNull() {
-        assertThrows(NullPointerException.class, () -> new ConsoleWriter().write(null));
+        throwsNullPointerException(() -> new ConsoleWriter().write(null));
     }
 
 }

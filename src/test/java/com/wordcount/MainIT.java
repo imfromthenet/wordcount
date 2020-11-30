@@ -6,8 +6,8 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
 import static com.wordcount.TestUtils.getOutputRecorder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.wordcount.TestUtils.throwsNullPointerException;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainIT {
 
@@ -18,7 +18,7 @@ public class MainIT {
 
         Main.main(new String[]{});
 
-        assertEquals("Enter text: Number of words: 4", outputRecorder.toString());
+        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 4");
     }
 
     @Test
@@ -26,11 +26,11 @@ public class MainIT {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
         Main.main(new String[]{"mytext.txt"});
 
-        assertEquals("Number of words: 4", outputRecorder.toString());
+        assertThat(outputRecorder.toString()).isEqualTo("Number of words: 4");
     }
 
     @Test
     public void throwsAnErrorIfNonexistingFilenameGiven() {
-        assertThrows(RuntimeException.class, () -> Main.main(new String[]{"nonexistentFile.txt"}));
+        throwsNullPointerException(() -> Main.main(new String[]{"nonexistentFile.txt"}));
     }
 }

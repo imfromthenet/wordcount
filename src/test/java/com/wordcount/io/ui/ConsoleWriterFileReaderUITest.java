@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 
 import static com.wordcount.TestUtils.getOutputRecorder;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.wordcount.TestUtils.throwsNullPointerException;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
 class ConsoleWriterFileReaderUITest {
@@ -24,8 +24,8 @@ class ConsoleWriterFileReaderUITest {
 
         String userInput = sut.getUserInput();
 
-        assertEquals("", outputRecorder.toString());
-        assertEquals("one two", userInput);
+        assertThat(outputRecorder.toString()).isEmpty();
+        assertThat(userInput).isEqualTo("one two");
     }
 
     @Test
@@ -36,22 +36,21 @@ class ConsoleWriterFileReaderUITest {
 
         sut.show("message");
 
-        assertEquals("message", outputRecorder.toString());
+        assertThat(outputRecorder.toString()).isEqualTo("message");
     }
 
     @Test
     void thowsNullpointerExceptionIfBothParametersAreNull() {
-        assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(null, null));
+        throwsNullPointerException(() -> new ConsoleWriterFileReaderUI(null, null));
     }
 
     @Test
-    void thowsNullpointerExceptionIfFirstParametersAreNull() {
-        assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(null, mock(FileReader.class)));
+    void thowsNullpointerExceptionIfFirstParameterIsNull() {
+        throwsNullPointerException(() -> new ConsoleWriterFileReaderUI(null, mock(FileReader.class)));
     }
 
     @Test
-    void thowsNullpointerExceptionIfSecondParametersAreNull() {
-        assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(mock(ConsoleWriter.class), null));
+    void thowsNullpointerExceptionIfSecondParameterIsNull() {
+        throwsNullPointerException(() -> new ConsoleWriterFileReaderUI(mock(ConsoleWriter.class), null));
     }
-
 }
