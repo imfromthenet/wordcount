@@ -5,8 +5,6 @@ import com.wordcount.io.ConsoleWriter;
 import com.wordcount.io.FileReader;
 import com.wordcount.io.Reader;
 import com.wordcount.io.Writer;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -17,39 +15,32 @@ import static org.mockito.Mockito.mock;
 
 class ConsoleWriterFileReaderUITest {
 
-
-    public static String TEST_TXT = "test.txt";
-    private String MESSAGE = "message";
-    private PrintStream standardOut = System.out;
-    private ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
-    }
-
     @Test
     void readsFileAndReturnsContentAsString() {
-        UI sut = new ConsoleWriterFileReaderUI(mock(Writer.class), new FileReader(TEST_TXT));
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        Writer ignore = mock(Writer.class);
+        UI sut = new ConsoleWriterFileReaderUI(ignore, new FileReader("test.txt"));
 
-        String input = sut.getUserInput();
+        String userInput = sut.getUserInput();
 
-        assertEquals("", outputStreamCaptor.toString());
-        assertEquals("one two", input);
+        assertEquals("", outputRecorder.toString());
+        assertEquals("one two", userInput);
     }
 
     @Test
     void writesMessageToConsole() {
-        Reader mockReader = mock(Reader.class);
-        UI sut = new ConsoleWriterFileReaderUI(new ConsoleWriter(), mockReader);
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        Reader ignore = mock(Reader.class);
+        UI sut = new ConsoleWriterFileReaderUI(new ConsoleWriter(), ignore);
 
-        sut.show(MESSAGE);
+        sut.show("message");
 
-        assertEquals(MESSAGE, outputStreamCaptor.toString());
+        assertEquals("message", outputRecorder.toString());
+    }
+
+    private ByteArrayOutputStream getOutputRecorder() {
+        ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputRecorder));
+        return outputRecorder;
     }
 }
