@@ -18,7 +18,7 @@ class ConsoleUITest {
 
     @Test
     void requestsUserInputViaConsoleAndAfterReceivingItReturnsItAsString() {
-        ByteArrayOutputStream outputRecorder = setUpOutput();
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
         simulateUserConsoleInputOf("message");
         UI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
 
@@ -30,7 +30,7 @@ class ConsoleUITest {
 
     @Test
     void writesMessageToConsole() {
-        final ByteArrayOutputStream outputRecorder = setUpOutput();
+        final ByteArrayOutputStream outputRecorder = getOutputRecorder();
         Reader mockReader = mock(Reader.class);
         UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
 
@@ -54,7 +54,7 @@ class ConsoleUITest {
         assertThrows(NullPointerException.class, () -> new ConsoleUI(new ConsoleWriter(), null));
     }
 
-    private ByteArrayOutputStream setUpOutput() {
+    private ByteArrayOutputStream getOutputRecorder() {
         ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputRecorder));
         return outputRecorder;
