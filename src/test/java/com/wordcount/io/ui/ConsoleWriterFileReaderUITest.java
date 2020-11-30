@@ -11,6 +11,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 
 class ConsoleWriterFileReaderUITest {
@@ -36,6 +37,21 @@ class ConsoleWriterFileReaderUITest {
         sut.show("message");
 
         assertEquals("message", outputRecorder.toString());
+    }
+
+    @Test
+    void thowsNullpointerExceptionIfBothParametersAreNull() {
+        assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(null, null));
+    }
+
+    @Test
+    void thowsNullpointerExceptionIfFirstParametersAreNull() {
+        assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(null, mock(FileReader.class)));
+    }
+
+    @Test
+    void thowsNullpointerExceptionIfSecondParametersAreNull() {
+        assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(mock(ConsoleWriter.class), null));
     }
 
     private ByteArrayOutputStream getOutputRecorder() {

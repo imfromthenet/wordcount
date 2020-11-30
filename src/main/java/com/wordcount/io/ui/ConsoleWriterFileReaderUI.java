@@ -4,14 +4,16 @@ import com.wordcount.domain.UI;
 import com.wordcount.io.Reader;
 import com.wordcount.io.Writer;
 
+import java.util.Objects;
+
 public class ConsoleWriterFileReaderUI implements UI {
 
     private Writer writer;
     private Reader reader;
 
     public ConsoleWriterFileReaderUI(Writer writer, Reader reader) {
-        this.writer = writer;
-        this.reader = reader;
+        Objects.requireNonNull(this.writer = writer);
+        Objects.requireNonNull(this.reader = reader);
     }
 
     @Override
