@@ -30,7 +30,7 @@ class ConsoleUITest {
 
     @Test
     void writesMessageToConsole() {
-        final ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
         Reader mockReader = mock(Reader.class);
         UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
 
