@@ -1,35 +1,32 @@
 package com.wordcount.io;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ConsoleWriterTest {
 
+    @Test
+    void writesMessageToConsole() {
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
 
-    ConsoleWriter sut = new ConsoleWriter();
-    private ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private PrintStream standardOut = System.out;
+        new ConsoleWriter().write("message");
 
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
+        assertEquals("message", outputRecorder.toString());
     }
 
     @Test
-    void writesMessageToConsole() {
-        sut.write("message");
+    void thowsNullpointerExceptionIfFirstParameterIsNull() {
+        assertThrows(NullPointerException.class, () -> new ConsoleWriter().write(null));
+    }
 
-        assertEquals("message", outputStreamCaptor.toString());
+    private ByteArrayOutputStream getOutputRecorder() {
+        ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputRecorder));
+        return outputRecorder;
     }
 }
