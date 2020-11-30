@@ -46,7 +46,7 @@ class ConsoleWriterFileReaderUITest {
     @Test
     void writesMessageToConsole() {
         Reader mockReader = mock(Reader.class);
-        UI sut = new ConsoleUI(new ConsoleWriter(), mockReader);
+        UI sut = new ConsoleWriterFileReaderUI(new ConsoleWriter(), mockReader);
 
         sut.show(MESSAGE);
 
