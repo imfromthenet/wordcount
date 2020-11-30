@@ -8,8 +8,8 @@ import com.wordcount.io.Writer;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
+import static com.wordcount.TestUtils.getOutputRecorder;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
@@ -54,9 +54,4 @@ class ConsoleWriterFileReaderUITest {
         assertThrows(NullPointerException.class, () -> new ConsoleWriterFileReaderUI(mock(ConsoleWriter.class), null));
     }
 
-    private ByteArrayOutputStream getOutputRecorder() {
-        ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputRecorder));
-        return outputRecorder;
-    }
 }

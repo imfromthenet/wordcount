@@ -6,10 +6,10 @@ import com.wordcount.io.ConsoleWriter;
 import com.wordcount.io.Reader;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
+import static com.wordcount.TestUtils.getOutputRecorder;
+import static com.wordcount.TestUtils.simulateUserConsoleInputOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
@@ -52,15 +52,5 @@ class ConsoleUITest {
     @Test
     void thowsNullpointerExceptionIfSecondParameterIsNull() {
         assertThrows(NullPointerException.class, () -> new ConsoleUI(new ConsoleWriter(), null));
-    }
-
-    private ByteArrayOutputStream getOutputRecorder() {
-        ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputRecorder));
-        return outputRecorder;
-    }
-
-    private void simulateUserConsoleInputOf(String text) {
-        System.setIn(new ByteArrayInputStream(text.getBytes()));
     }
 }
