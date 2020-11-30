@@ -1,6 +1,5 @@
 package com.wordcount.domain;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -19,62 +18,56 @@ import static org.mockito.Mockito.when;
 
 class WordParserTest {
 
-    private WordParser sut;
-
-    @BeforeEach
-    void initialize() {
-        StopWords stopWordsMock = mock(StopWords.class);
-        when(stopWordsMock.contain("a")).thenReturn(true);
-        sut = new WordParser(stopWordsMock);
-    }
-
     @Test
     void addsAllWordsToResult() {
-        String input = "word word";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("word word");
 
         assertEquals(asList("word", "word"), actual);
     }
 
+
     @Test
     void parsesWordsStartingWithAnUppercase() {
-        String input = "Word";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("Word");
 
         assertEquals(singletonList("Word"), actual);
     }
 
     @Test
     void parsesUppercaseWords() {
-        String input = "WORD";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("WORD");
 
         assertEquals(singletonList("WORD"), actual);
     }
 
     @Test
     void returnsEmptyListIfGivenAnEmptyString() {
-        String input = "";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("");
 
         assertEquals(emptyList(), actual);
     }
 
     @Test
     void returnsEmptyListIfGivenASpaceString() {
-        String input = " ";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse(" ");
 
         assertEquals(emptyList(), actual);
     }
 
     @Test
     void returnsZeroWhenInputIsSpecialCharacter() {
+        WordParser sut = setUpWordParser();
+
         stream("*-+/=!@#$%^&*()_`~?][|\\".split(""))
                 .forEach(symbol -> {
                     List<String> actual = sut.parse(symbol);
@@ -84,34 +77,45 @@ class WordParserTest {
 
     @Test
     void splitsStringIntoWordsByNonLetter() {
-        String input = "word2word-word_word";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("word2word-word_word");
 
         assertEquals(Arrays.asList("word","word","word","word"), actual);
     }
 
     @Test
     void thowsNullpointerExceptionIfParameterIsNull() {
+        WordParser sut = setUpWordParser();
         assertThrows(NullPointerException.class, () -> sut.parse(null));
     }
 
     @ParameterizedTest
     @CsvSource({".", "!", "?", ":", ";"})
     void parsesWordsEndingWithAPunctuationMark(String punctuationMark) {
-        String input = "word".concat(punctuationMark);
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("word".concat(punctuationMark));
 
         assertEquals(singletonList("word"), actual);
     }
 
     @Test
     void filtersOutStopWords() {
-        String input = "word a";
+        WordParser sut = setUpWordParser();
 
-        List<String> actual = sut.parse(input);
+        List<String> actual = sut.parse("word a");
 
         assertEquals(singletonList("word"), actual);
+    }
+
+    private WordParser setUpWordParser() {
+        return new WordParser(getStopWordsMock());
+    }
+
+    private StopWords getStopWordsMock() {
+        StopWords stopWordsMock = mock(StopWords.class);
+        when(stopWordsMock.contain("a")).thenReturn(true);
+        return stopWordsMock;
     }
 }
