@@ -7,7 +7,7 @@ import com.wordcount.io.Reader;
 import com.wordcount.io.ui.UIFactory;
 
 public class Main {
-    public static final String STOP_WORDS_FILE = "stopwords.txt";
+    private static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
         WordCounterApp wordCounterApp = new WordCounterApp(UIFactory.construct(args), getStopWords());

@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class ConsoleUI implements UI {
 
-    public static final String MESSAGE_ENTER_TEXT = "Enter text: ";
+    private static final String MESSAGE_ENTER_TEXT = "Enter text: ";
     private Writer writer;
     private Reader reader;
 
