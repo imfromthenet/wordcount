@@ -53,6 +53,13 @@ class ConsoleUITest {
 
         sut.show(MESSAGE);
 
-        assertEquals(MESSAGE, outputStreamCaptor.toString());
+    @Test
+    void thowsNullpointerExceptionIfBothParametersAreNull() {
+        assertThrows(NullPointerException.class, () -> new ConsoleUI(null, null));
+    }
+
+    @Test
+    void thowsNullpointerExceptionIfFirstParameterIsNull() {
+        assertThrows(NullPointerException.class, () -> new ConsoleUI(null, new ConsoleReader()));
     }
 }
