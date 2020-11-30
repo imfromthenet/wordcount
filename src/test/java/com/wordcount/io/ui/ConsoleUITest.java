@@ -17,7 +17,7 @@ import static org.mockito.Mockito.mock;
 class ConsoleUITest {
 
     @Test
-    void requestsInputViaConsoleAndAfterReceivingItReturnsItAsString() {
+    void requestsUserInputViaConsoleAndAfterReceivingItReturnsItAsString() {
         ByteArrayOutputStream outputRecorder = setUpOutput();
         simulateUserConsoleInputOf("message");
         UI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
