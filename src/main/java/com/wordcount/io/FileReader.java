@@ -22,8 +22,8 @@ public class FileReader implements Reader {
             return Files.readAllLines(path).stream()
                     .filter(string -> !string.isEmpty())
                     .reduce("", (m, n) -> m.trim() + " " + n.trim());
-        } catch (IOException e) {
-            throw new RuntimeException("error while reading the file", e);
+        }  catch (NullPointerException | IOException e) {
+            throw new NullPointerException();
         }
     }
 
@@ -31,8 +31,8 @@ public class FileReader implements Reader {
         try {
             URI uri = ClassLoader.getSystemResource(filePath).toURI();
             return Paths.get(Objects.requireNonNull(uri));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("error while getting the path to the file reading the file", e);
+        } catch (NullPointerException | URISyntaxException e) {
+            throw new NullPointerException("error while getting the path to the file reading the file: "+ filePath);
         }
     }
 }
