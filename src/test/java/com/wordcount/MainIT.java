@@ -1,12 +1,9 @@
 package com.wordcount;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,41 +11,32 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class MainIT {
 
-    ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    private PrintStream standardOut = System.out;
-    private InputStream standardIn = System.in;
-
-    @BeforeEach
-    public void setUp() {
-        System.setOut(new PrintStream(outputStreamCaptor));
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.setOut(standardOut);
-        System.setIn(standardIn);
-    }
-
     @Test
     public void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
         System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
 
         Main.main(new String[]{});
 
-        String actual = outputStreamCaptor.toString();
-        assertEquals("Enter text: Number of words: 4", actual);
+        assertEquals("Enter text: Number of words: 4", outputRecorder.toString());
     }
 
     @Test
     public void canUseCommandLineArgumentsToGetTheInputData() {
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
         Main.main(new String[]{"mytext.txt"});
 
-        String actual = outputStreamCaptor.toString();
-        assertEquals("Number of words: 4", actual);
+        assertEquals("Number of words: 4", outputRecorder.toString());
     }
 
     @Test
     public void throwsAnErrorIfNonexistingFilenameGiven() {
         assertThrows(RuntimeException.class, () -> Main.main(new String[]{"nonexistentFile.txt"}));
+    }
+
+    private ByteArrayOutputStream getOutputRecorder() {
+        ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputRecorder));
+        return outputRecorder;
     }
 }
