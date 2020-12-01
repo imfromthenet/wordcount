@@ -7,13 +7,13 @@ public class Statistics {
     private static final String MESSAGE_NUMBER_OF_WORDS = "Number of words: ";
     private static final String MESSAGE_NUMBER_OF_UNIQUE_WORDS = ", unique: ";
     private static final String MESSAGE_AVERAGE_LENGTH_OF_WORDS = "; average word length: %.2f characters";
-    private final List<String> wordsFiltered;
+    private List<String> wordsFiltered;
 
     Statistics(List<String> wordsFiltered) {
         this.wordsFiltered = wordsFiltered;
     }
 
-    String getFormatted() {
+    protected String getFormatted() {
         return String.format("%s%d%s%d%s",
                 MESSAGE_NUMBER_OF_WORDS, wordsFiltered.size(),
                 MESSAGE_NUMBER_OF_UNIQUE_WORDS, getUniqueWordCount(wordsFiltered),

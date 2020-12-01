@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
 class WordParser {
 
     private static final String STANDALONE_HYPHEN = "-";
-    private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
+    private Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private StopWords stopWords;
 
     WordParser(StopWords stopWords) {
@@ -30,7 +30,7 @@ class WordParser {
         return words;
     }
 
-    private boolean shouldBeAddedToList(final String candidate) {
+    private boolean shouldBeAddedToList(String candidate) {
         return !stopWords.contain(candidate) && !candidate.equals(STANDALONE_HYPHEN);
     }
 }
