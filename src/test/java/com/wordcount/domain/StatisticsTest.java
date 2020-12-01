@@ -8,8 +8,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 class StatisticsTest {
 
     @Test
-    void answerProvidesCorrectMessage() {
-        final Statistics sut = new Statistics(asList("I", "am", "Grooooot", "am"));
+    void providesWordCountUniqueWordCountAndAverageWordCountStatistics() {
+        Statistics sut = new Statistics(asList("I", "am", "Grooooot", "am"));
 
         assertThat(sut.getFormatted()).startsWith("Number of words:")
                 .contains("4")
