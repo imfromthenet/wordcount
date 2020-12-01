@@ -18,7 +18,7 @@ public class MainIT {
 
         Main.main(new String[]{});
 
-        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 9, unique: 7");
+        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 7, unique: 6");
     }
 
     @Test
