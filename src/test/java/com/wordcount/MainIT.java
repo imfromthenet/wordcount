@@ -14,11 +14,11 @@ public class MainIT {
     @Test
     public void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
-        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+        System.setIn(new ByteArrayInputStream(("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.").getBytes()));
 
         Main.main(new String[]{});
 
-        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 4");
+        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 9, unique: 7");
     }
 
     @Test
@@ -26,7 +26,7 @@ public class MainIT {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
         Main.main(new String[]{"mytext.txt"});
 
-        assertThat(outputRecorder.toString()).isEqualTo("Number of words: 4");
+        assertThat(outputRecorder.toString()).isEqualTo("Number of words: 4, unique: 4");
     }
 
     @Test
