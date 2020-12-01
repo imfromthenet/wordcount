@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
 
 class WordParser {
 
-    public static final String STANDALONE_HYPHEN = "-";
+    private static final String STANDALONE_HYPHEN = "-";
     private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private StopWords stopWords;
 

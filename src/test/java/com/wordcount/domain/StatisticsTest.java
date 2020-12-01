@@ -2,19 +2,20 @@ package com.wordcount.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class AnswerTest {
+class StatisticsTest {
 
     @Test
     void answerProvidesCorrectMessage() {
-        final Answer sut = new Answer(3, 2, 3.32933);
+        final Statistics sut = new Statistics(asList("I", "am", "Grooooot", "am"));
 
         assertThat(sut.getFormatted()).startsWith("Number of words:")
-                .contains("3")
+                .contains("4")
                 .contains("unique")
-                .contains("2")
+                .contains("3")
                 .contains("average word length")
-                .contains("3.33");
+                .contains("3.25");
     }
 }
