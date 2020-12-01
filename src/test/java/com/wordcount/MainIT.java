@@ -18,15 +18,15 @@ public class MainIT {
 
         Main.main(new String[]{});
 
-        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 7, unique: 6");
+        assertThat(outputRecorder.toString()).isEqualTo("Enter text: Number of words: 7, unique: 6; average word length: 6.43 characters");
     }
 
     @Test
     public void canUseCommandLineArgumentsToGetTheInputData() {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
-        Main.main(new String[]{"mytext.txt"});
+        Main.main(new String[]{"test_longer.txt"});
 
-        assertThat(outputRecorder.toString()).isEqualTo("Number of words: 4, unique: 4");
+        assertThat(outputRecorder.toString()).isEqualTo("Number of words: 16, unique: 14; average word length: 4.38 characters");
     }
 
     @Test

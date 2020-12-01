@@ -1,0 +1,1 @@
+the number of allowed words in this sentence is 16, of which 14 are unique, and the average length is 4.38

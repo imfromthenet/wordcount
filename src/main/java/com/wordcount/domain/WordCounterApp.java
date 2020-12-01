@@ -8,7 +8,7 @@ public class WordCounterApp {
     private UI ui;
     private StopWords stopWords;
 
-    public WordCounterApp(UI ui,StopWords stopWords) {
+    public WordCounterApp(UI ui, StopWords stopWords) {
         this.ui = ui;
         this.stopWords = stopWords;
     }
@@ -17,7 +17,7 @@ public class WordCounterApp {
         String userInput = ui.getUserInput();
         WordParser parser = new WordParser(stopWords);
         List<String> wordsFiltered = parser.parse(userInput);
-        Answer answer = new Answer(wordsFiltered.size(), getUniqueWordCount(wordsFiltered));
+        Answer answer = new Answer(wordsFiltered.size(), getUniqueWordCount(wordsFiltered), getAverageLength(wordsFiltered));
         ui.show(answer.getFormatted());
     }
 
@@ -25,4 +25,9 @@ public class WordCounterApp {
         return new HashSet<>(wordsFiltered).size();
     }
 
+    private double getAverageLength(List<String> wordsFiltered) {
+        return wordsFiltered.stream()
+                .mapToInt(String::length)
+                .average().orElse(0);
+    }
 }
