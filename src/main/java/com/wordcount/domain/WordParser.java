@@ -13,7 +13,7 @@ class WordParser {
     private final Pattern pattern = Pattern.compile("[a-zA-Z-]+?[a-zA-Z-]*");
     private StopWords stopWords;
 
-    public WordParser(StopWords stopWords) {
+    WordParser(StopWords stopWords) {
         this.stopWords = requireNonNull(stopWords);
     }
 

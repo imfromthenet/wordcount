@@ -9,7 +9,7 @@ public class Statistics {
     private static final String MESSAGE_AVERAGE_LENGTH_OF_WORDS = "; average word length: %.2f characters";
     private final List<String> wordsFiltered;
 
-    public Statistics(List<String> wordsFiltered) {
+    Statistics(List<String> wordsFiltered) {
         this.wordsFiltered = wordsFiltered;
     }
 
