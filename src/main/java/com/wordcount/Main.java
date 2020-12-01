@@ -2,6 +2,7 @@ package com.wordcount;
 
 import com.wordcount.domain.StopWords;
 import com.wordcount.domain.WordCounterApp;
+import com.wordcount.domain.handlers.ChainOfHandlersFactory;
 import com.wordcount.io.FileReader;
 import com.wordcount.io.Reader;
 import com.wordcount.io.ui.UIFactory;
@@ -10,7 +11,10 @@ public class Main {
     private static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        WordCounterApp wordCounterApp = new WordCounterApp(UIFactory.construct(args), getStopWords(), args);
+        WordCounterApp wordCounterApp = new WordCounterApp(
+                UIFactory.construct(args),
+                getStopWords(),
+                ChainOfHandlersFactory.construct(args));
         wordCounterApp.countWords();
     }
 
