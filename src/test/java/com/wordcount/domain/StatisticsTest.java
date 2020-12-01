@@ -18,4 +18,16 @@ class StatisticsTest {
                 .contains("average word length")
                 .contains("3.25");
     }
+
+    @Test
+    void providesWordCountUniqueWordCountAndAverageWordCountAndIndexStatistics() {
+        Statistics sut = new Statistics(asList("I", "am", "Grooooot", "am"));
+
+        assertThat(sut.getFormattedWithIndex()).startsWith("Number of words:")
+                .contains("4")
+                .contains("unique")
+                .contains("3")
+                .contains("average word length")
+                .contains("3.25");
+    }
 }

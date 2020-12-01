@@ -10,7 +10,7 @@ public class Main {
     private static final String STOP_WORDS_FILE = "stopwords.txt";
 
     public static void main(String[] args) {
-        WordCounterApp wordCounterApp = new WordCounterApp(UIFactory.construct(args), getStopWords());
+        WordCounterApp wordCounterApp = new WordCounterApp(UIFactory.construct(args), getStopWords(), args);
         wordCounterApp.countWords();
     }
 

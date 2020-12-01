@@ -30,6 +30,46 @@ public class MainIT {
     }
 
     @Test
+    public void showsWordIndexAfterReceivingIndexFlagAndUserInputViaConsole() {
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+
+        Main.main(new String[]{"-index"});
+
+        assertThat(outputRecorder.toString()).isEqualTo(
+                "Enter text: Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                " \n" +
+                "Index:\n" +
+                " \n" +
+                "had\n" +
+                " \n" +
+                "lamb\n" +
+                " \n" +
+                "little\n" +
+                " \n" +
+                "Mary");
+    }
+
+    @Test
+    public void showsWordIndexAfterReceivingIndexFlagAndUserInputViaFile() {
+        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        Main.main(new String[]{"-index", "mytext.txt"});
+
+        assertThat(outputRecorder.toString()).isEqualTo(
+                "Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                " \n" +
+                "Index:\n" +
+                " \n" +
+                "had\n" +
+                " \n" +
+                "lamb\n" +
+                " \n" +
+                "little\n" +
+                " \n" +
+                "Mary");
+    }
+
+    @Test
     public void throwsAnErrorIfNonexistingFilenameGiven() {
         throwsNullPointerException(() -> Main.main(new String[]{"nonexistentFile.txt"}));
     }
