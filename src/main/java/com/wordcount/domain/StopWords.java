@@ -3,6 +3,7 @@ package com.wordcount.domain;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
 public class StopWords {
@@ -10,7 +11,7 @@ public class StopWords {
     private List<String> stopWords;
 
     public StopWords(String stopWordsAsString) {
-        this.stopWordsAsString = stopWordsAsString;
+        requireNonNull(this.stopWordsAsString = stopWordsAsString);
     }
 
     boolean contain(String candidate) {

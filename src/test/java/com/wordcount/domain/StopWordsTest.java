@@ -2,6 +2,7 @@ package com.wordcount.domain;
 
 import org.junit.jupiter.api.Test;
 
+import static com.wordcount.TestUtils.throwsNullPointerException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class StopWordsTest {
@@ -18,5 +19,10 @@ class StopWordsTest {
         StopWords sut = new StopWords("a");
 
         assertThat(sut.contain("b")).isFalse();
+    }
+
+    @Test
+    void requiresStopWordsToBeNonNull() {
+        throwsNullPointerException(() -> new StopWords(null));
     }
 }
