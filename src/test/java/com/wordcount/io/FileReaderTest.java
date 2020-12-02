@@ -18,7 +18,7 @@ class FileReaderTest {
     }
 
     @Test
-    void throwsNullPointerIfFileNotFoundWhenReadAsString() {
+    void throwsNullPointerIfFileNotFoundWhenAttemptingToReadNonExistingFile() {
         throwsNullPointerException(() -> new FileReader("nonExistingFile").read());
     }
 }

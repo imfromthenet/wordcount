@@ -20,8 +20,7 @@ class ConsoleWriterTest {
     }
 
     @Test
-    void thowsNullpointerExceptionIfFirstParameterIsNull() {
+    void requiresParameterToBeNonNull() {
         throwsNullPointerException(() -> new ConsoleWriter().write(null));
     }
-
 }
