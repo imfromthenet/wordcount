@@ -7,16 +7,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ChainOfHandlersFactoryTest {
 
     @Test
-    void constructsChainOfHandlesWithIndex() {
+    void constructsChainOfHandlesWithIndexIfIndexFlagIsProvided() {
         ChainOfHandlers chainOfHandlers = ChainOfHandlersFactory.construct(new String[]{"-index"});
 
         assertThat(chainOfHandlers).isExactlyInstanceOf(ChainOfHandlersWithIndex.class);
     }
 
     @Test
-    void constructsChainOfHandlesWithoutIndex() {
+    void constructsChainOfHandlesWithoutIndexIfIndexFlagIsNotProvided() {
         ChainOfHandlers chainOfHandlers = ChainOfHandlersFactory.construct(new String[]{});
 
-        assertThat(chainOfHandlers).isExactlyInstanceOf(ChainOfHandlers.Core.class);
+        assertThat(chainOfHandlers).isNotInstanceOf(ChainOfHandlersWithIndex.class);
     }
 }
