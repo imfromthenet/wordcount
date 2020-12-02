@@ -3,7 +3,8 @@ package com.wordcount.domain;
 import com.wordcount.domain.handlers.ChainOfHandlers;
 
 import java.util.List;
-import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class WordCounterApp {
 
@@ -12,9 +13,9 @@ public class WordCounterApp {
     private ChainOfHandlers chainOfHandlers;
 
     public WordCounterApp(UI ui, StopWords stopWords, ChainOfHandlers chainOfHandlers) {
-        Objects.requireNonNull(this.ui = ui);
-        Objects.requireNonNull(this.stopWords = stopWords);
-        Objects.requireNonNull(this.chainOfHandlers = chainOfHandlers);
+        requireNonNull(this.ui = ui);
+        requireNonNull(this.stopWords = stopWords);
+        requireNonNull(this.chainOfHandlers = chainOfHandlers);
     }
 
     public void countWords() {
