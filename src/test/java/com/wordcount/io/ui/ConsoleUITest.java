@@ -38,17 +38,9 @@ class ConsoleUITest {
     }
 
     @Test
-    void thowsNullpointerExceptionIfBothParametersAreNull() {
+    void requiresAllParametersToBeNonNull() {
         throwsNullPointerException(() -> new ConsoleUI(null, null));
-    }
-
-    @Test
-    void thowsNullpointerExceptionIfFirstParameterIsNull() {
         throwsNullPointerException(() -> new ConsoleUI(null, new ConsoleReader()));
-    }
-
-    @Test
-    void thowsNullpointerExceptionIfSecondParameterIsNull() {
         throwsNullPointerException(() -> new ConsoleUI(new ConsoleWriter(), null));
     }
 }

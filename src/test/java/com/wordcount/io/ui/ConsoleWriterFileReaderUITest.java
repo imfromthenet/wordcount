@@ -40,17 +40,9 @@ class ConsoleWriterFileReaderUITest {
     }
 
     @Test
-    void thowsNullpointerExceptionIfBothParametersAreNull() {
+    void requiresAllParametersToBeNonNull() {
         throwsNullPointerException(() -> new ConsoleWriterFileReaderUI(null, null));
-    }
-
-    @Test
-    void thowsNullpointerExceptionIfFirstParameterIsNull() {
         throwsNullPointerException(() -> new ConsoleWriterFileReaderUI(null, mock(FileReader.class)));
-    }
-
-    @Test
-    void thowsNullpointerExceptionIfSecondParameterIsNull() {
         throwsNullPointerException(() -> new ConsoleWriterFileReaderUI(mock(ConsoleWriter.class), null));
     }
 }
