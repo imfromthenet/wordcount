@@ -9,6 +9,7 @@ public class ConsoleUI implements UI {
 
     private static final String PROMPT_FOR_INPUT = "Enter text: ";
 
+    @Override
     public String getUserInput() {
         this.show(PROMPT_FOR_INPUT);
         return new Scanner(System.in).nextLine();
