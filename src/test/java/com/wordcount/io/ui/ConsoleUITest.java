@@ -1,24 +1,20 @@
 package com.wordcount.io.ui;
 
 import com.wordcount.domain.UI;
-import com.wordcount.io.ConsoleReader;
-import com.wordcount.io.ConsoleWriter;
-import com.wordcount.io.Reader;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
 import static com.wordcount.TestUtils.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
 
 class ConsoleUITest {
 
     @Test
-    void requestsUserInputViaConsoleAndAfterReceivingItReturnsItAsString() {
+    void requestsUserInputViaConsole() {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
         simulateUserConsoleInputOf("message");
-        UI sut = new ConsoleUI(new ConsoleWriter(), new ConsoleReader());
+        UI sut = new ConsoleUI();
 
         String input = sut.getUserInput();
 
@@ -29,8 +25,7 @@ class ConsoleUITest {
     @Test
     void writesMessageToConsole() {
         ByteArrayOutputStream outputRecorder = getOutputRecorder();
-        Reader ignore = mock(Reader.class);
-        UI sut = new ConsoleUI(new ConsoleWriter(), ignore);
+        UI sut = new ConsoleUI();
 
         sut.show("message");
 
@@ -38,17 +33,7 @@ class ConsoleUITest {
     }
 
     @Test
-    void thowsNullpointerExceptionIfBothParametersAreNull() {
-        throwsNullPointerException(() -> new ConsoleUI(null, null));
-    }
-
-    @Test
-    void thowsNullpointerExceptionIfFirstParameterIsNull() {
-        throwsNullPointerException(() -> new ConsoleUI(null, new ConsoleReader()));
-    }
-
-    @Test
-    void thowsNullpointerExceptionIfSecondParameterIsNull() {
-        throwsNullPointerException(() -> new ConsoleUI(new ConsoleWriter(), null));
+    void throwsNullPointerIfShowMethodIsPassedANull() {
+        throwsNullPointerException(() -> new ConsoleUI().show(null));
     }
 }
