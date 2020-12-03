@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static com.wordcount.TestUtils.getOutputRecorder;
-import static com.wordcount.TestUtils.simulateUserConsoleInputOf;
+import static com.wordcount.TestUIHelper.getOutputRecorder;
+import static com.wordcount.TestUIHelper.simulateUserConsoleInputOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleUITest {
