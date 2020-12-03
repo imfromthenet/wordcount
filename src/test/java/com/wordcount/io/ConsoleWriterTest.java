@@ -5,18 +5,18 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 
 import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
-import static com.wordcount.TestUIHelper.getOutputRecorder;
+import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleWriterTest {
 
     @Test
     void writesMessageToConsole() {
-        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
 
         new ConsoleWriter().write("message");
 
-        assertThat(outputRecorder.toString()).isEqualTo("message");
+        assertThat(testConsoleOutputRecorder.toString()).isEqualTo("message");
     }
 
     @Test

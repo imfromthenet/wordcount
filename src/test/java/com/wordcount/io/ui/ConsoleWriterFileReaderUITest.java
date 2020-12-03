@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 
 import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
-import static com.wordcount.TestUIHelper.getOutputRecorder;
+import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
@@ -18,25 +18,25 @@ class ConsoleWriterFileReaderUITest {
 
     @Test
     void readsFileAndReturnsContentAsString() {
-        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         Writer ignore = mock(Writer.class);
         UI sut = new ConsoleWriterFileReaderUI(ignore, new FileReader("test.txt"));
 
         String userInput = sut.getUserInput();
 
-        assertThat(outputRecorder.toString()).isEmpty();
+        assertThat(testConsoleOutputRecorder.toString()).isEmpty();
         assertThat(userInput).isEqualTo("one two");
     }
 
     @Test
     void writesMessageToConsole() {
-        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         Reader ignore = mock(Reader.class);
         UI sut = new ConsoleWriterFileReaderUI(new ConsoleWriter(), ignore);
 
         sut.show("message");
 
-        assertThat(outputRecorder.toString()).isEqualTo("message");
+        assertThat(testConsoleOutputRecorder.toString()).isEqualTo("message");
     }
 
     @Test

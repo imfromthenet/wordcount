@@ -6,10 +6,10 @@ import java.io.PrintStream;
 
 public class TestUIHelper {
 
-    public static ByteArrayOutputStream getOutputRecorder() {
-        ByteArrayOutputStream outputRecorder = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputRecorder));
-        return outputRecorder;
+    public static ByteArrayOutputStream getTestConsoleOutputRecorder() {
+        ByteArrayOutputStream testConsoleOutputRecorder = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testConsoleOutputRecorder));
+        return testConsoleOutputRecorder;
     }
 
     public static void simulateUserConsoleInputOf(String text) {

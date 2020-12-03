@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 
 import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
-import static com.wordcount.TestUIHelper.getOutputRecorder;
+import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static com.wordcount.TestUIHelper.simulateUserConsoleInputOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,24 +14,24 @@ class ConsoleUITest {
 
     @Test
     void requestsUserInputViaConsole() {
-        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         simulateUserConsoleInputOf("message");
         UI sut = new ConsoleUI();
 
         String input = sut.getUserInput();
 
-        assertThat(outputRecorder.toString()).startsWith("Enter text");
+        assertThat(testConsoleOutputRecorder.toString()).startsWith("Enter text");
         assertThat(input).isEqualTo("message");
     }
 
     @Test
     void writesMessageToConsole() {
-        ByteArrayOutputStream outputRecorder = getOutputRecorder();
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         UI sut = new ConsoleUI();
 
         sut.show("message");
 
-        assertThat(outputRecorder.toString()).isEqualTo("message");
+        assertThat(testConsoleOutputRecorder.toString()).isEqualTo("message");
     }
 
     @Test
