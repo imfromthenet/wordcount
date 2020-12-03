@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static com.wordcount.AssertionHelper.throwsNullPointerException;
+import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static com.wordcount.TestUIHelper.getOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -21,7 +21,7 @@ class ConsoleWriterTest {
 
     @Test
     void thowsNullpointerExceptionIfFirstParameterIsNull() {
-        throwsNullPointerException(() -> new ConsoleWriter().write(null));
+        assertThrowsNullPointerException(() -> new ConsoleWriter().write(null));
     }
 
 }

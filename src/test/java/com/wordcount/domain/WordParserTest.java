@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static com.wordcount.AssertionHelper.throwsNullPointerException;
+import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.singletonList;
@@ -85,7 +85,7 @@ class WordParserTest {
     void thowsNullpointerExceptionIfParameterIsNull() {
         WordParser sut = setUpWordParser();
 
-        throwsNullPointerException(() -> sut.parse(null));
+        assertThrowsNullPointerException(() -> sut.parse(null));
     }
 
     @ParameterizedTest

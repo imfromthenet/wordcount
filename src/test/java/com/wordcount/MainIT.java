@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import static com.wordcount.AssertionHelper.throwsNullPointerException;
+import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static com.wordcount.TestUIHelper.getOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,6 +31,6 @@ public class MainIT {
 
     @Test
     public void throwsAnErrorIfNonexistingFilenameGiven() {
-        throwsNullPointerException(() -> Main.main(new String[]{"nonexistentFile.txt"}));
+        assertThrowsNullPointerException(() -> Main.main(new String[]{"nonexistentFile.txt"}));
     }
 }

@@ -2,7 +2,7 @@ package com.wordcount.io;
 
 import org.junit.jupiter.api.Test;
 
-import static com.wordcount.AssertionHelper.throwsNullPointerException;
+import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class FileReaderTest {
@@ -19,6 +19,6 @@ class FileReaderTest {
 
     @Test
     void throwsNullPointerIfFileNotFoundWhenReadAsString() {
-        throwsNullPointerException(() -> new FileReader("nonExistingFile").read());
+        assertThrowsNullPointerException(() -> new FileReader("nonExistingFile").read());
     }
 }
