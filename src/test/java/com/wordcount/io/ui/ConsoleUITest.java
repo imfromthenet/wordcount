@@ -1,11 +1,13 @@
 package com.wordcount.io.ui;
 
+import com.wordcount.AssertionHelper;
 import com.wordcount.domain.UI;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static com.wordcount.TestUtils.*;
+import static com.wordcount.TestUtils.getOutputRecorder;
+import static com.wordcount.TestUtils.simulateUserConsoleInputOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleUITest {
@@ -34,6 +36,6 @@ class ConsoleUITest {
 
     @Test
     void throwsNullPointerIfShowMethodIsPassedANull() {
-        throwsNullPointerException(() -> new ConsoleUI().show(null));
+        AssertionHelper.throwsNullPointerException(() -> new ConsoleUI().show(null));
     }
 }

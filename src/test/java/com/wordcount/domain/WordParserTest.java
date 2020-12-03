@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static com.wordcount.TestUtils.throwsNullPointerException;
+import static com.wordcount.AssertionHelper.throwsNullPointerException;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.singletonList;
