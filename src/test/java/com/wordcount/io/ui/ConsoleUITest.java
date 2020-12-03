@@ -11,12 +11,12 @@ import static com.wordcount.TestUIHelper.simulateUserConsoleInputOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleUITest {
+    ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
 
     @Test
     void requestsUserInputViaConsole() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
-        simulateUserConsoleInputOf("message");
         UI sut = new ConsoleUI();
+        simulateUserConsoleInputOf("message");
 
         String input = sut.getUserInput();
 
@@ -26,7 +26,6 @@ class ConsoleUITest {
 
     @Test
     void writesMessageToConsole() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         UI sut = new ConsoleUI();
 
         sut.show("message");
