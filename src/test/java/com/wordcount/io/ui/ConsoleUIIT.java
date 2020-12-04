@@ -10,7 +10,7 @@ import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static com.wordcount.TestUIHelper.simulateUserConsoleInputOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ConsoleUITest {
+class ConsoleUIIT {
     ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
     UI sut = new ConsoleUI();
 
