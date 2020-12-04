@@ -5,8 +5,14 @@ import com.wordcount.io.FileReader;
 import com.wordcount.io.Reader;
 import com.wordcount.io.Writer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
@@ -18,9 +24,12 @@ class ConsoleWriterFileReaderUIIT {
     Writer ignoreWriter = mock(Writer.class);
     Reader ignoreReader = mock(Reader.class);
 
+    @TempDir
+    File temporaryDirectory;
+
     @Test
     void readsFileAndReturnsContentAsString() {
-        UI sut = getSut();
+        UI sut = prepareUI();
 
         String userInput = sut.getUserInput();
 
@@ -43,8 +52,19 @@ class ConsoleWriterFileReaderUIIT {
         assertThrowsNullPointerException(() -> new ConsoleWriterFileReaderUI(ignoreWriter, null));
     }
 
-    private ConsoleWriterFileReaderUI getSut() {
-        return new ConsoleWriterFileReaderUI(ignoreWriter, new FileReader("test.txt"));
+    private ConsoleWriterFileReaderUI prepareUI() {
+        String fileName = "test.txt";
+        prepareTestFile(fileName, Arrays.asList("one", "two"));
+        return new ConsoleWriterFileReaderUI(ignoreWriter, new FileReader(fileName));
+    }
+
+    private void prepareTestFile(String fileName, List<String> contents) {
+        try {
+            File myFile = new File(temporaryDirectory, fileName);
+            Files.write(myFile.toPath(), contents);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String prompt() {
