@@ -12,29 +12,34 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ConsoleUITest {
     ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+    UI sut = new ConsoleUI();
 
     @Test
     void requestsUserInputViaConsole() {
-        UI sut = new ConsoleUI();
         simulateUserConsoleInputOf("message");
-
         String input = sut.getUserInput();
 
-        assertThat(testConsoleOutputRecorder.toString()).startsWith("Enter text");
+        assertThat(prompt()).startsWith("Enter text");
         assertThat(input).isEqualTo("message");
     }
 
     @Test
     void writesMessageToConsole() {
-        UI sut = new ConsoleUI();
-
         sut.show("message");
 
-        assertThat(testConsoleOutputRecorder.toString()).isEqualTo("message");
+        assertThat(messageDisplayedInConsole()).isEqualTo("message");
     }
 
     @Test
     void throwsNullPointerIfShowMethodIsPassedANull() {
         assertThrowsNullPointerException(() -> new ConsoleUI().show(null));
+    }
+
+    private String prompt() {
+        return testConsoleOutputRecorder.toString();
+    }
+
+    private String messageDisplayedInConsole() {
+        return prompt();
     }
 }
