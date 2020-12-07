@@ -1,4 +1,4 @@
-package com.wordcount;
+package sharedTool;
 
 import org.assertj.core.api.ThrowableAssert;
 

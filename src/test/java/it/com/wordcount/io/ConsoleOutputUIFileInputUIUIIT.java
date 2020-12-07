@@ -1,6 +1,11 @@
-package com.wordcount.io;
+package it.com.wordcount.io;
 
 import com.wordcount.domain.UI;
+import com.wordcount.io.ConsoleOutputFileInputUI;
+import com.wordcount.io.FileInputUI;
+import com.wordcount.io.InputUI;
+import com.wordcount.io.OutputUI;
+import it.com.wordcount.TestUIHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -11,13 +16,12 @@ import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
-import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
+import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class ConsoleOutputUIFileInputUIUIIT {
-    ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+    ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
     OutputUI ignoreOutputUI = mock(OutputUI.class);
     InputUI ignoreInputUI = mock(InputUI.class);
 

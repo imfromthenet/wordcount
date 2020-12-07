@@ -1,4 +1,4 @@
-package com.wordcount;
+package it.com.wordcount;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

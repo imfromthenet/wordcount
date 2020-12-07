@@ -3,6 +3,7 @@ package com.wordcount.io;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,7 +23,7 @@ public class FileInputUI implements InputUI {
             return Files.readAllLines(path).stream()
                     .filter(string -> !string.isEmpty())
                     .reduce("", (m, n) -> m.trim() + " " + n.trim());
-        }  catch (NullPointerException | IOException e) {
+        } catch (NullPointerException | IOException e) {
             throw new NullPointerException();
         }
     }
@@ -31,8 +32,8 @@ public class FileInputUI implements InputUI {
         try {
             URI uri = ClassLoader.getSystemResource(filePath).toURI();
             return Paths.get(Objects.requireNonNull(uri));
-        } catch (NullPointerException | URISyntaxException e) {
-            throw new NullPointerException("error while getting the path to the file reading the file: "+ filePath);
+        } catch (NullPointerException | FileSystemNotFoundException | URISyntaxException e) {
+            throw new NullPointerException("error while getting the path to the file reading the file: " + filePath);
         }
     }
 }

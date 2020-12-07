@@ -8,7 +8,7 @@ public class Answer {
         this.count = count;
     }
 
-    String getFormatted() {
+    public String getFormatted() {
         return String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, count);
     }
 }

@@ -1,9 +1,10 @@
-package com.wordcount.io;
+package ut.com.wordcount.io;
 
+import com.wordcount.io.FileInputUI;
 import org.junit.jupiter.api.Test;
 
-import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static org.assertj.core.api.Assertions.assertThat;
+import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class FileInputUITest {
 

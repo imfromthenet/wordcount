@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 import static java.util.Objects.requireNonNull;
 
-class WordParser {
+public class WordParser {
 
     private Pattern pattern = Pattern.compile("[a-zA-Z]+?[a-zA-Z]*");
     private StopWords stopWords;
@@ -16,7 +16,7 @@ class WordParser {
         this.stopWords = requireNonNull(stopWords);
     }
 
-    List<String> parse(String input) {
+    public List<String> parse(String input) {
         Matcher matcher = pattern.matcher(requireNonNull(input));
         List<String> words = new ArrayList<>();
 

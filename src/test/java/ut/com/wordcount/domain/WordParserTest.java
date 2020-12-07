@@ -1,18 +1,20 @@
-package com.wordcount.domain;
+package ut.com.wordcount.domain;
 
+import com.wordcount.domain.StopWords;
+import com.wordcount.domain.WordParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
-import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
 import static java.util.Arrays.asList;
 import static java.util.Arrays.stream;
 import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class WordParserTest {
 

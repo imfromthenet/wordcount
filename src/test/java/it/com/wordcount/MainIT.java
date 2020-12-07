@@ -1,13 +1,14 @@
-package com.wordcount;
+package it.com.wordcount;
 
+import com.wordcount.Main;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
-import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
+import static it.com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
+import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 public class MainIT {
 

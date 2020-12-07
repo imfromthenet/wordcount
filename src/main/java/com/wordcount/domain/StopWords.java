@@ -13,7 +13,7 @@ public class StopWords {
         this.stopWordsAsString = stopWordsAsString;
     }
 
-    boolean contain(String candidate) {
+    public boolean contain(String candidate) {
         if (stopWords == null) {
             stopWords = Stream.of(stopWordsAsString.split(" ")).collect(toList());
         }

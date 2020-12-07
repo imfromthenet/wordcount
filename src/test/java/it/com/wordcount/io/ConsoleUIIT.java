@@ -1,22 +1,22 @@
-package com.wordcount.io;
+package it.com.wordcount.io;
 
 import com.wordcount.domain.UI;
+import com.wordcount.io.ConsoleUI;
+import it.com.wordcount.TestUIHelper;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 
-import static com.wordcount.AssertionHelper.assertThrowsNullPointerException;
-import static com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
-import static com.wordcount.TestUIHelper.simulateUserConsoleInputOf;
 import static org.assertj.core.api.Assertions.assertThat;
+import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class ConsoleUIIT {
-    ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+    ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
     UI sut = new ConsoleUI();
 
     @Test
     void requestsUserInputViaConsole() {
-        simulateUserConsoleInputOf("message");
+        TestUIHelper.simulateUserConsoleInputOf("message");
         String input = sut.getInput();
 
         assertThat(prompt()).startsWith("Enter text");

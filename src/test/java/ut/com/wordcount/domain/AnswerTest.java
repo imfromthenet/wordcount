@@ -1,5 +1,6 @@
-package com.wordcount.domain;
+package ut.com.wordcount.domain;
 
+import com.wordcount.domain.Answer;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
