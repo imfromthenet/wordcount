@@ -1,4 +1,4 @@
-package com.wordcount.io.ui;
+package com.wordcount.io;
 
 import com.wordcount.domain.UI;
 import org.junit.jupiter.api.Test;

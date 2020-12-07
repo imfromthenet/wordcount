@@ -1,8 +1,6 @@
-package com.wordcount.io.ui;
+package com.wordcount.io;
 
 import com.wordcount.domain.UI;
-import com.wordcount.io.InputUI;
-import com.wordcount.io.OutputUI;
 
 import java.util.Objects;
 
