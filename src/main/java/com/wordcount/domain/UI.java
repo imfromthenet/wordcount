@@ -1,6 +1,7 @@
 package com.wordcount.domain;
 
-public interface UI {
-    String getUserInput();
-    void show(String result);
+import com.wordcount.io.InputUI;
+import com.wordcount.io.OutputUI;
+
+public interface UI extends InputUI, OutputUI {
 }

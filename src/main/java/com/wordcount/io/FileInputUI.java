@@ -8,15 +8,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class FileReader implements Reader {
+public class FileInputUI implements InputUI {
     private String filename;
 
-    public FileReader(String filename) {
+    public FileInputUI(String filename) {
         this.filename = filename;
     }
 
     @Override
-    public String read() {
+    public String getInput() {
         try {
             Path path = getPath(filename);
             return Files.readAllLines(path).stream()

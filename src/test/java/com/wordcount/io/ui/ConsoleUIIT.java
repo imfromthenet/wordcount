@@ -17,7 +17,7 @@ class ConsoleUIIT {
     @Test
     void requestsUserInputViaConsole() {
         simulateUserConsoleInputOf("message");
-        String input = sut.getUserInput();
+        String input = sut.getInput();
 
         assertThat(prompt()).startsWith("Enter text");
         assertThat(input).isEqualTo("message");
