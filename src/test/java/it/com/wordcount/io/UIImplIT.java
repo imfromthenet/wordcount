@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
-class ConsoleOutputUIFileInputUIUIIT {
+class UIImplIT {
     ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
     OutputUI ignoreOutputUI = mock(OutputUI.class);
     InputUI ignoreInputUI = mock(InputUI.class);
@@ -40,17 +40,17 @@ class ConsoleOutputUIFileInputUIUIIT {
 
     @Test
     void thowsNullpointerExceptionIfAllParametersAreNull() {
-        assertThrowsNullPointerException(() -> new ConsoleOutputFileInputUI(null, null));
+        assertThrowsNullPointerException(() -> new UIImpl(null, null));
     }
 
     @Test
     void thowsNullpointerExceptionIfFirstParameterIsNull() {
-        assertThrowsNullPointerException(() -> new ConsoleOutputFileInputUI(null, ignoreInputUI));
+        assertThrowsNullPointerException(() -> new UIImpl(null, ignoreInputUI));
     }
 
     @Test
     void thowsNullpointerExceptionIfSecondParameterIsNull() {
-        assertThrowsNullPointerException(() -> new ConsoleOutputFileInputUI(ignoreOutputUI, null));
+        assertThrowsNullPointerException(() -> new UIImpl(ignoreOutputUI, null));
     }
 
     private ConsoleOutputFileInputUI prepareUI() {

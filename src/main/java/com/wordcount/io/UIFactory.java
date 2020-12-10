@@ -6,7 +6,7 @@ public class UIFactory {
 
     public static UI construct(String[] consoleParameter) {
         if (consoleParameter.length == 1) {
-            return new ConsoleOutputFileInputUI(new ConsoleUI(), new FileInputUI(consoleParameter[0]));
+            return new UIImpl(new ConsoleUI(), new FileInputUI(consoleParameter[0]));
         }
         return new ConsoleUI();
     }

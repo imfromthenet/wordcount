@@ -4,12 +4,12 @@ import com.wordcount.domain.UI;
 
 import java.util.Objects;
 
-public class ConsoleOutputFileInputUI implements UI {
+public class UIImpl implements UI {
 
     private OutputUI outputUI;
     private InputUI inputUI;
 
-    public ConsoleOutputFileInputUI(OutputUI outputUI, InputUI inputUI) {
+    public UIImpl(OutputUI outputUI, InputUI inputUI) {
         Objects.requireNonNull(this.outputUI = outputUI);
         Objects.requireNonNull(this.inputUI = inputUI);
     }
