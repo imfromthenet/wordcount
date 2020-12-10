@@ -1,4 +1,4 @@
-package ut.com.wordcount.io;
+package it.com.wordcount.io;
 
 import com.wordcount.io.FileInputUI;
 import org.junit.jupiter.api.Test;
