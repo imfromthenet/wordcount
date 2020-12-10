@@ -1,20 +1,17 @@
 package it.com.wordcount.io;
 
 import com.wordcount.domain.UI;
-import com.wordcount.io.ConsoleOutputFileInputUI;
 import com.wordcount.io.FileInputUI;
 import com.wordcount.io.InputUI;
 import com.wordcount.io.OutputUI;
+import com.wordcount.io.UIImpl;
 import it.com.wordcount.TestUIHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import sharedTool.TestFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -26,11 +23,12 @@ class UIImplIT {
     InputUI ignoreInputUI = mock(InputUI.class);
 
     @TempDir
-    File temporaryDirectory;
+    File tempDirectory;
 
     @Test
     void readsFileAndReturnsContentAsString() {
-        UI sut = prepareUI();
+        TestFile testFile = prepareTestFileContaining("one two");
+        UI sut = prepareUIWith(testFile);
 
         String userInput = sut.getInput();
 
@@ -53,19 +51,14 @@ class UIImplIT {
         assertThrowsNullPointerException(() -> new UIImpl(ignoreOutputUI, null));
     }
 
-    private ConsoleOutputFileInputUI prepareUI() {
-        String fileName = "test.txt";
-        prepareTestFile(fileName, Arrays.asList("one", "two"));
-        return new ConsoleOutputFileInputUI(ignoreOutputUI, new FileInputUI(fileName));
+    private UIImpl prepareUIWith(TestFile testFile) {
+        return new UIImpl(ignoreOutputUI, new FileInputUI(testFile.getPathAsString()));
     }
 
-    private void prepareTestFile(String fileName, List<String> contents) {
-        try {
-            File myFile = new File(temporaryDirectory, fileName);
-            Files.write(myFile.toPath(), contents);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private TestFile prepareTestFileContaining(String contents) {
+        TestFile file = new TestFile(tempDirectory);
+        file.prepare("fileName.txt", contents);
+        return file;
     }
 
     private String prompt() {

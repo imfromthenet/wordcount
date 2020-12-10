@@ -3,37 +3,49 @@ package com.wordcount.io;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-public class FileInputUI implements InputUI {
-    private String filename;
+import static java.util.stream.Collectors.joining;
 
-    public FileInputUI(String filename) {
-        this.filename = filename;
+public class FileInputUI implements InputUI {
+    private String fileNameOrPath;
+
+    public FileInputUI(String fileNameOrPath) {
+        this.fileNameOrPath = fileNameOrPath;
     }
 
     @Override
     public String getInput() {
         try {
-            Path path = getPath(filename);
-            return Files.readAllLines(path).stream()
+            Path path = PathFactory.buildFrom(fileNameOrPath);
+            return Files.lines(path)
                     .filter(string -> !string.isEmpty())
-                    .reduce("", (m, n) -> m.trim() + " " + n.trim());
+                    .collect(joining(" "));
         } catch (NullPointerException | IOException e) {
             throw new NullPointerException();
         }
     }
 
-    private Path getPath(String filePath) {
-        try {
-            URI uri = ClassLoader.getSystemResource(filePath).toURI();
-            return Paths.get(Objects.requireNonNull(uri));
-        } catch (NullPointerException | FileSystemNotFoundException | URISyntaxException e) {
-            throw new NullPointerException("error while getting the path to the file reading the file: " + filePath);
+    private static class PathFactory {
+        private static Path buildFrom(String fileNameOrPathName) {
+            if (fileNameOrPathName.startsWith("/")) return getFilePathForTest(fileNameOrPathName);
+            return getFilePath(fileNameOrPathName);
+        }
+
+        private static Path getFilePathForTest(String fileNameOrPathName) {
+            return Paths.get(fileNameOrPathName);
+        }
+
+        private static Path getFilePath(String fileNameOrPathName) {
+            try {
+                URI uri = ClassLoader.getSystemResource(fileNameOrPathName).toURI();
+                return Paths.get(Objects.requireNonNull(uri));
+            } catch (NullPointerException | URISyntaxException e) {
+                throw new NullPointerException("error while getting the path to the file reading the file: " + fileNameOrPathName);
+            }
         }
     }
 }
