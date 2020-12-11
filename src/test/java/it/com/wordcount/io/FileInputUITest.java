@@ -12,16 +12,18 @@ import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class FileInputUITest {
 
+    private static final String CONTENT_OF_FILE = "input from file";
+
     @TempDir
     File tempDirectory;
 
     @Test
     void readsFromFileAsString() {
-        FileInputUI sut = getFileInputUI();
+        FileInputUI sut = getFileInputUIWith(CONTENT_OF_FILE);
 
         String actual = sut.getInput();
 
-        assertThat(actual).isEqualTo("input from file");
+        assertThat(actual).isEqualTo(CONTENT_OF_FILE);
     }
 
     @Test
@@ -29,14 +31,10 @@ class FileInputUITest {
         assertThrowsNullPointerException(() -> new FileInputUI("nonExistingFile").getInput());
     }
 
-    private FileInputUI getFileInputUI() {
-        TestFile testFile = prepareTestFile();
-        return new FileInputUI(testFile.getPathAsString());
+    private FileInputUI getFileInputUIWith(String content) {
+        TestFile file = new TestFile(tempDirectory);
+        file.prepare("fileName.txt", content);
+        return new FileInputUI(file.getPathAsString());
     }
 
-    private TestFile prepareTestFile() {
-        TestFile file = new TestFile(tempDirectory);
-        file.prepare("fileName.txt", "input from file");
-        return file;
-    }
 }
