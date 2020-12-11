@@ -24,8 +24,7 @@ class UIImplIT {
 
     @Test
     void requestsUserInputViaFile() {
-        TestFile testFile = prepareTestFileContaining("one two");
-        UI sut = prepareUIWith(testFile);
+        UI sut = prepareUI();
 
         String userInput = sut.getInput();
 
@@ -47,7 +46,8 @@ class UIImplIT {
         assertThrowsNullPointerException(() -> new UIImpl(ignoreOutputUI, null));
     }
 
-    private UIImpl prepareUIWith(TestFile testFile) {
+    private UIImpl prepareUI() {
+        TestFile testFile = prepareTestFileContaining("one two");
         return new UIImpl(ignoreOutputUI, new FileInputUI(testFile.getPathAsString()));
     }
 
