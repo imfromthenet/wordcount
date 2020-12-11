@@ -1,4 +1,4 @@
-package it.com.wordcount;
+package sharedTool;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

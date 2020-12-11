@@ -10,9 +10,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
-import static it.com.wordcount.TestUIHelper.getTestConsoleOutputRecorder;
 import static org.assertj.core.api.Assertions.assertThat;
 import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
+import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 
 public class MainIT {
 

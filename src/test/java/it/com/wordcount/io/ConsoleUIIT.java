@@ -2,8 +2,8 @@ package it.com.wordcount.io;
 
 import com.wordcount.domain.UI;
 import com.wordcount.io.ConsoleUI;
-import it.com.wordcount.TestUIHelper;
 import org.junit.jupiter.api.Test;
+import sharedTool.TestUIHelper;
 
 import java.io.ByteArrayOutputStream;
 
