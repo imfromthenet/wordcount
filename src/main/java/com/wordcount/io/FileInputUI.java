@@ -22,7 +22,7 @@ public class FileInputUI implements InputUI {
     @Override
     public String getInput() {
         try {
-            Path p = PathFactory.buildFrom(path);
+            Path p = PathMapper.toPath(path);
             return Files.lines(p)
                     .filter(string -> !string.isEmpty())
                     .collect(joining(" "));
@@ -31,17 +31,17 @@ public class FileInputUI implements InputUI {
         }
     }
 
-    private static class PathFactory {
-        private static Path buildFrom(String path) {
-            if (path.startsWith("/")) return getFilePathForTest(path);
-            return getFilePath(path);
+   private static class PathMapper {
+        private static Path toPath(String path) {
+            if (path.startsWith("/")) return getPathFromFileSystem(path);
+            return getPathFromClasspath(path);
         }
 
-        private static Path getFilePathForTest(String path) {
+        private static Path getPathFromFileSystem(String path) {
             return Paths.get(path);
         }
 
-        private static Path getFilePath(String path) {
+        private static Path getPathFromClasspath(String path) {
             try {
                 URI uri = ClassLoader.getSystemResource(path).toURI();
                 return Paths.get(Objects.requireNonNull(uri));
