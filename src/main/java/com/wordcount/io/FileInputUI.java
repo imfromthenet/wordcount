@@ -13,17 +13,17 @@ import java.util.Objects;
 import static java.util.stream.Collectors.joining;
 
 public class FileInputUI implements InputUI {
-    private String fileNameOrPath;
+    private String path;
 
-    public FileInputUI(String fileNameOrPath) {
-        this.fileNameOrPath = fileNameOrPath;
+    public FileInputUI(String path) {
+        this.path = path;
     }
 
     @Override
     public String getInput() {
         try {
-            Path path = PathFactory.buildFrom(fileNameOrPath);
-            return Files.lines(path)
+            Path p = PathFactory.buildFrom(path);
+            return Files.lines(p)
                     .filter(string -> !string.isEmpty())
                     .collect(joining(" "));
         } catch (NullPointerException | IOException e) {
@@ -32,21 +32,21 @@ public class FileInputUI implements InputUI {
     }
 
     private static class PathFactory {
-        private static Path buildFrom(String fileNameOrPathName) {
-            if (fileNameOrPathName.startsWith("/")) return getFilePathForTest(fileNameOrPathName);
-            return getFilePath(fileNameOrPathName);
+        private static Path buildFrom(String path) {
+            if (path.startsWith("/")) return getFilePathForTest(path);
+            return getFilePath(path);
         }
 
-        private static Path getFilePathForTest(String fileNameOrPathName) {
-            return Paths.get(fileNameOrPathName);
+        private static Path getFilePathForTest(String path) {
+            return Paths.get(path);
         }
 
-        private static Path getFilePath(String fileNameOrPathName) {
+        private static Path getFilePath(String path) {
             try {
-                URI uri = ClassLoader.getSystemResource(fileNameOrPathName).toURI();
+                URI uri = ClassLoader.getSystemResource(path).toURI();
                 return Paths.get(Objects.requireNonNull(uri));
-            } catch (NullPointerException | URISyntaxException e) {
-                throw new NullPointerException("error while getting the path to the file reading the file: " + fileNameOrPathName);
+            } catch (URISyntaxException e) {
+                throw new NullPointerException("error while getting the path to the file reading the file: " + path);
             }
         }
     }
