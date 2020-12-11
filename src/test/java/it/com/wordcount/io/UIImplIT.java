@@ -23,7 +23,7 @@ class UIImplIT {
     File tempDirectory;
 
     @Test
-    void readsFileAndReturnsContentAsString() {
+    void requestsUserInputViaFile() {
         TestFile testFile = prepareTestFileContaining("one two");
         UI sut = prepareUIWith(testFile);
 
