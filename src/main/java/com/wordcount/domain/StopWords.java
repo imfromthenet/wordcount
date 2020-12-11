@@ -15,8 +15,12 @@ public class StopWords {
 
     public boolean contain(String candidate) {
         if (stopWords == null) {
-            stopWords = Stream.of(stopWordsAsString.split(" ")).collect(toList());
+            stopWords = prepareStopWords();
         }
         return stopWords.contains(candidate);
+    }
+
+    private List<String> prepareStopWords() {
+        return Stream.of(stopWordsAsString.split(" ")).collect(toList());
     }
 }
