@@ -16,6 +16,8 @@ import static org.mockito.Mockito.mock;
 import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class UIImplIT {
+    private static final String CONTENT_OF_FILE = "one two";
+
     OutputUI ignoreOutputUI = mock(OutputUI.class);
     InputUI ignoreInputUI = mock(InputUI.class);
 
@@ -24,11 +26,11 @@ class UIImplIT {
 
     @Test
     void requestsUserInputViaFile() {
-        UI sut = prepareUI();
+        UI sut = prepareUIWith(CONTENT_OF_FILE);
 
         String userInput = sut.getInput();
 
-        assertThat(userInput).isEqualTo("one two");
+        assertThat(userInput).isEqualTo(CONTENT_OF_FILE);
     }
 
     @Test
@@ -46,14 +48,10 @@ class UIImplIT {
         assertThrowsNullPointerException(() -> new UIImpl(ignoreOutputUI, null));
     }
 
-    private UIImpl prepareUI() {
-        TestFile testFile = prepareTestFileContaining("one two");
-        return new UIImpl(ignoreOutputUI, new FileInputUI(testFile.getPathAsString()));
+    private UIImpl prepareUIWith(String content) {
+        TestFile file = new TestFile(tempDirectory);
+        file.prepare("fileName.txt", content);
+        return new UIImpl(ignoreOutputUI, new FileInputUI(file.getPathAsString()));
     }
 
-    private TestFile prepareTestFileContaining(String contents) {
-        TestFile file = new TestFile(tempDirectory);
-        file.prepare("fileName.txt", contents);
-        return file;
-    }
 }
