@@ -5,12 +5,10 @@ import com.wordcount.io.FileInputUI;
 import com.wordcount.io.InputUI;
 import com.wordcount.io.OutputUI;
 import com.wordcount.io.UIImpl;
-import it.com.wordcount.TestUIHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import sharedTool.TestFile;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,7 +16,6 @@ import static org.mockito.Mockito.mock;
 import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class UIImplIT {
-    ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
     OutputUI ignoreOutputUI = mock(OutputUI.class);
     InputUI ignoreInputUI = mock(InputUI.class);
 
@@ -32,7 +29,6 @@ class UIImplIT {
 
         String userInput = sut.getInput();
 
-        assertThat(prompt()).isEmpty();
         assertThat(userInput).isEqualTo("one two");
     }
 
@@ -59,9 +55,5 @@ class UIImplIT {
         TestFile file = new TestFile(tempDirectory);
         file.prepare("fileName.txt", contents);
         return file;
-    }
-
-    private String prompt() {
-        return testConsoleOutputRecorder.toString();
     }
 }

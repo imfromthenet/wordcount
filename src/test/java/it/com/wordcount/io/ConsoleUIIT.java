@@ -19,7 +19,6 @@ class ConsoleUIIT {
         TestUIHelper.simulateUserConsoleInputOf("message");
         String input = sut.getInput();
 
-        assertThat(prompt()).startsWith("Enter text");
         assertThat(input).isEqualTo("message");
     }
 
@@ -35,11 +34,7 @@ class ConsoleUIIT {
         assertThrowsNullPointerException(() -> new ConsoleUI().show(null));
     }
 
-    private String prompt() {
-        return testConsoleOutputRecorder.toString();
-    }
-
     private String messageDisplayedInConsole() {
-        return prompt();
+        return testConsoleOutputRecorder.toString();
     }
 }
