@@ -1,6 +1,7 @@
 package com.wordcount.domain;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
@@ -13,11 +14,17 @@ public class StopWords {
         this.stopWordsAsString = stopWordsAsString;
     }
 
-    public boolean contain(String candidate) {
+    public List<String> filter(List<String> words) {
         if (stopWords == null) {
             stopWords = prepareStopWords();
         }
-        return stopWords.contains(candidate);
+        return words.stream()
+                .filter(isNotStopWord())
+                .collect(toList());
+    }
+
+    private Predicate<String> isNotStopWord() {
+        return candidate -> !stopWords.contains(candidate);
     }
 
     private List<String> prepareStopWords() {

@@ -14,8 +14,9 @@ public class WordCounterApp {
 
     public void countWords() {
         String userInput = ui.getInput();
-        WordParser parser = new WordParser(stopWords);
-        List<String> wordsFiltered = parser.parse(userInput);
+        WordParser parser = new WordParser();
+        List<String> wordsParsed = parser.parse(userInput);
+        List<String> wordsFiltered = stopWords.filter(wordsParsed);
         Answer answer = new Answer(wordsFiltered.size());
         ui.show(answer.getFormatted());
     }
