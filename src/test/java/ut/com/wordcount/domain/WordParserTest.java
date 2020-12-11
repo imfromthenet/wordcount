@@ -84,7 +84,7 @@ class WordParserTest {
     }
 
     @Test
-    void thowsNullpointerExceptionIfParameterIsNull() {
+    void throwsNullPointerExceptionIfParameterIsNull() {
         WordParser sut = setUpWordParser();
 
         assertThrowsNullPointerException(() -> sut.parse(null));

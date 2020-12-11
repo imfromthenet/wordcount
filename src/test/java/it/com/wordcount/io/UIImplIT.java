@@ -32,17 +32,17 @@ class UIImplIT {
     }
 
     @Test
-    void thowsNullpointerExceptionIfAllParametersAreNull() {
+    void throwsNullPointerExceptionIfAllParametersAreNull() {
         assertThrowsNullPointerException(() -> new UIImpl(null, null));
     }
 
     @Test
-    void thowsNullpointerExceptionIfFirstParameterIsNull() {
+    void throwsNullPointerExceptionIfFirstParameterIsNull() {
         assertThrowsNullPointerException(() -> new UIImpl(null, ignoreInputUI));
     }
 
     @Test
-    void thowsNullpointerExceptionIfSecondParameterIsNull() {
+    void throwsNullPointerExceptionIfSecondParameterIsNull() {
         assertThrowsNullPointerException(() -> new UIImpl(ignoreOutputUI, null));
     }
 
