@@ -1,9 +1,9 @@
 package it.com.wordcount.io;
 
+import com.wordcount.domain.InputUI;
+import com.wordcount.domain.OutputUI;
 import com.wordcount.domain.UI;
 import com.wordcount.io.FileInputUI;
-import com.wordcount.io.InputUI;
-import com.wordcount.io.OutputUI;
 import com.wordcount.io.UIImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
