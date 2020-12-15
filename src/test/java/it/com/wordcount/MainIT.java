@@ -11,7 +11,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 
 public class MainIT {
@@ -45,8 +44,13 @@ public class MainIT {
     }
 
     @Test
-    public void throwsAnErrorIfNonexistingFilenameGiven() {
-        assertThrowsNullPointerException(() -> Main.main(new String[]{"nonexistentFile.txt"}));
+    public void whenThereAreProblemsReadingAFileReturnsAndEmptyStringInsteadOfTheContentsOfTheFileAndDisplaysAnErrorMessageToUser() {
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+        Main.main(new String[]{"nonexistentFile.txt"});
+
+        assertThat(testConsoleOutputRecorder.toString())
+                .contains("The path (nonexistentFile.txt) was not able to be read. Instead, an empty string is passed as input.")
+                .contains("Number of words: 0");
     }
 
     private void prepareTestFileContaining(String contents) {

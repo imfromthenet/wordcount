@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import sharedTool.TestFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
+import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 
 class FileInputUITest {
 
@@ -27,14 +29,60 @@ class FileInputUITest {
     }
 
     @Test
-    void throwsNullPointerIfFileNotFoundWhenReadAsString() {
-        assertThrowsNullPointerException(() -> new FileInputUI("nonExistingFile").getInput());
+    void whenPassedFileNameIsNotFoundReturnsEmptyStringAndLogsAnErrorMessageToUser() {
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+        String input = new FileInputUI("nonexistingFilename").getInput();
+
+        assertSoftly(softly -> {
+            softly.assertThat(testConsoleOutputRecorder.toString()).contains("(nonexistingFilename)");
+            softly.assertThat(input).isEqualTo("");
+        });
+    }
+
+    @Test
+    void whenPassedNullReturnsEmptyStringAndLogsAnErrorMessageToUser() {
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+        String input = new FileInputUI(null).getInput();
+
+        assertSoftly(softly -> {
+            softly.assertThat(testConsoleOutputRecorder.toString()).contains("(null)");
+            softly.assertThat(input).isEqualTo("");
+        });
+    }
+
+    @Test
+    void whenFileIsLockedReturnsAnEmptyStringAndLogsAnErrorMessageToUser() {
+        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+
+        TestFile testFile = createTestFile(CONTENT_OF_FILE);
+        final String pathAsString = testFile.getPathAsString();
+        lock(pathAsString);
+        final String input = new FileInputUI(pathAsString).getInput();
+
+        assertSoftly(softly -> {
+            softly.assertThat(testConsoleOutputRecorder.toString()).contains(String.format("(%s)", pathAsString));
+            softly.assertThat(input).isEqualTo("");
+        });
+        unlock(pathAsString);
     }
 
     private FileInputUI getFileInputUIWith(String content) {
+        TestFile file = createTestFile(content);
+        return new FileInputUI(file.getPathAsString());
+    }
+
+    private TestFile createTestFile(String content) {
         TestFile file = new TestFile(tempDirectory);
         file.prepare("fileName.txt", content);
-        return new FileInputUI(file.getPathAsString());
+        return file;
+    }
+
+    private void lock(String filePath) {
+        new File(filePath).setReadable(false);
+    }
+
+    private void unlock(String filePath) {
+        new File(filePath).setReadable(true);
     }
 
 }
