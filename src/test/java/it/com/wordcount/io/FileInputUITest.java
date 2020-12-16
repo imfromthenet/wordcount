@@ -18,6 +18,7 @@ class FileInputUITest {
 
     @TempDir
     File tempDirectory;
+    private ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
 
     @Test
     void readsFromFileAsString() {
@@ -30,37 +31,33 @@ class FileInputUITest {
 
     @Test
     void whenPassedFileNameIsNotFoundReturnsEmptyStringAndLogsAnErrorMessageToUser() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         String input = new FileInputUI("nonexistingFilename").getInput();
 
         assertSoftly(softly -> {
-            softly.assertThat(testConsoleOutputRecorder.toString()).contains("(nonexistingFilename)");
+            softly.assertThat(messageDisplayedInConsole()).contains("nonexistingFilename");
             softly.assertThat(input).isEqualTo("");
         });
     }
 
     @Test
     void whenPassedNullReturnsEmptyStringAndLogsAnErrorMessageToUser() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         String input = new FileInputUI(null).getInput();
 
         assertSoftly(softly -> {
-            softly.assertThat(testConsoleOutputRecorder.toString()).contains("(null)");
+            softly.assertThat(messageDisplayedInConsole()).contains("null");
             softly.assertThat(input).isEqualTo("");
         });
     }
 
     @Test
     void whenFileIsLockedReturnsAnEmptyStringAndLogsAnErrorMessageToUser() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
-
         TestFile testFile = createTestFile(CONTENT_OF_FILE);
-        final String pathAsString = testFile.getPathAsString();
+        String pathAsString = testFile.getPathAsString();
         lock(pathAsString);
-        final String input = new FileInputUI(pathAsString).getInput();
+        String input = new FileInputUI(pathAsString).getInput();
 
         assertSoftly(softly -> {
-            softly.assertThat(testConsoleOutputRecorder.toString()).contains(String.format("(%s)", pathAsString));
+            softly.assertThat(messageDisplayedInConsole()).contains(pathAsString);
             softly.assertThat(input).isEqualTo("");
         });
         unlock(pathAsString);
@@ -75,6 +72,10 @@ class FileInputUITest {
         TestFile file = new TestFile(tempDirectory);
         file.prepare("fileName.txt", content);
         return file;
+    }
+
+    private String messageDisplayedInConsole() {
+        return testConsoleOutputRecorder.toString();
     }
 
     private void lock(String filePath) {

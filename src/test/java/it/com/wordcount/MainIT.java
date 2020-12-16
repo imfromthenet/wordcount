@@ -18,6 +18,7 @@ public class MainIT {
     @TempDir
     File tempDirectory;
     private TestFile testFile;
+    private ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
 
     @BeforeEach
     void setUp() {
@@ -26,31 +27,32 @@ public class MainIT {
 
     @Test
     public void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
 
         Main.main(new String[]{});
 
-        assertThat(testConsoleOutputRecorder.toString()).isEqualTo("Enter text: Number of words: 4");
+        assertThat(messageDisplayedInConsole()).isEqualTo("Enter text: Number of words: 4");
     }
 
     @Test
     public void canUseCommandLineArgumentsToGetTheInputData() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         prepareTestFileContaining("Mary had a little lamb");
         Main.main(new String[]{testFile.getPathAsString()});
 
-        assertThat(testConsoleOutputRecorder.toString()).isEqualTo("Number of words: 4");
+        assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 4");
     }
 
     @Test
     public void whenThereAreProblemsReadingAFileReturnsAndEmptyStringInsteadOfTheContentsOfTheFileAndDisplaysAnErrorMessageToUser() {
-        ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
         Main.main(new String[]{"nonexistentFile.txt"});
 
-        assertThat(testConsoleOutputRecorder.toString())
+        assertThat(messageDisplayedInConsole())
                 .contains("The path (nonexistentFile.txt) was not able to be read. Instead, an empty string is passed as input.")
                 .contains("Number of words: 0");
+    }
+
+    private String messageDisplayedInConsole() {
+        return testConsoleOutputRecorder.toString();
     }
 
     private void prepareTestFileContaining(String contents) {
