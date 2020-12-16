@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 
-class FileInputUITest {
+class FileInputUIIT {
 
     private static final String CONTENT_OF_FILE = "input from file";
 
