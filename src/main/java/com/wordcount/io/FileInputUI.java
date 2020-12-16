@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -26,8 +27,8 @@ public class FileInputUI implements InputUI {
             System.out.printf("The path (%s) was not able to be read. Instead, an empty string is passed as input.", pathName);
             return "";
         }
-        try {
-            return Files.lines(p)
+        try (final Stream<String> lines = Files.lines(p)) {
+            return lines
                     .filter(string -> !string.isEmpty())
                     .collect(joining(" "));
         } catch (IOException e) {
