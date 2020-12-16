@@ -15,10 +15,9 @@ public class Answer {
     }
 
     public String getFormatted() {
-        return String.format("%s%d%s%d%s",
-                MESSAGE_NUMBER_OF_WORDS, wordsFiltered.size(),
-                MESSAGE_NUMBER_OF_UNIQUE_WORDS, getUniqueWordCount(),
-                String.format(MESSAGE_AVERAGE_WORD_LENGTH, getAverageWordLength()));
+        return String.format("%s%d", MESSAGE_NUMBER_OF_WORDS, wordsFiltered.size()) +
+                String.format("%s%d", MESSAGE_NUMBER_OF_UNIQUE_WORDS, getUniqueWordCount()) +
+                String.format(MESSAGE_AVERAGE_WORD_LENGTH, getAverageWordLength());
     }
 
     private int getUniqueWordCount() {
