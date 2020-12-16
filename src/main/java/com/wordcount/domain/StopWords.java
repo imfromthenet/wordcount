@@ -24,7 +24,7 @@ public class StopWords {
     }
 
     private Predicate<String> isNotStopWord() {
-        return candidate -> !stopWords.contains(candidate);
+        return word -> !stopWords.contains(word);
     }
 
     private List<String> prepareStopWords() {
