@@ -16,9 +16,10 @@ class FileInputUIIT {
 
     private static final String CONTENT_OF_FILE = "input from file";
 
+    ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+
     @TempDir
     File tempDirectory;
-    private ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
 
     @Test
     void readsFromFileAsString() {
@@ -53,6 +54,7 @@ class FileInputUIIT {
     void whenFileIsLockedReturnsAnEmptyStringAndLogsAnErrorMessageToUser() {
         TestFile testFile = createTestFile(CONTENT_OF_FILE);
         String pathAsString = testFile.getPathAsString();
+
         lock(pathAsString);
         String input = new FileInputUI(pathAsString).getInput();
 

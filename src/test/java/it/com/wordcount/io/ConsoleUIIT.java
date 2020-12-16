@@ -13,7 +13,7 @@ import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 class ConsoleUIIT {
     private static final String MESSAGE = "message";
 
-    private ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
+    ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
     UI sut = new ConsoleUI();
 
     @Test

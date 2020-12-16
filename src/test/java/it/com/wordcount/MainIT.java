@@ -15,10 +15,11 @@ import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 
 public class MainIT {
 
+    TestFile testFile;
+    ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+
     @TempDir
     File tempDirectory;
-    private TestFile testFile;
-    private ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
 
     @BeforeEach
     void setUp() {
