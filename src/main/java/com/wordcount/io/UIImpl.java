@@ -12,8 +12,8 @@ public class UIImpl implements UI {
     private InputUI inputUI;
 
     public UIImpl(OutputUI outputUI, InputUI inputUI) {
-        Objects.requireNonNull(this.outputUI = outputUI);
-        Objects.requireNonNull(this.inputUI = inputUI);
+        this.outputUI = Objects.requireNonNull(outputUI);
+        this.inputUI = Objects.requireNonNull(inputUI);
     }
 
     @Override
