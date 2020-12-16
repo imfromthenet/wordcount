@@ -11,22 +11,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static sharedTool.AssertionHelper.assertThrowsNullPointerException;
 
 class ConsoleUIIT {
-    ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
+    private static final String MESSAGE = "message";
+
+    private ByteArrayOutputStream testConsoleOutputRecorder = TestUIHelper.getTestConsoleOutputRecorder();
     UI sut = new ConsoleUI();
 
     @Test
     void requestsUserInputViaConsole() {
-        TestUIHelper.simulateUserConsoleInputOf("message");
+        TestUIHelper.simulateUserConsoleInputOf(MESSAGE);
         String input = sut.getInput();
 
-        assertThat(input).isEqualTo("message");
+        assertThat(input).isEqualTo(MESSAGE);
     }
 
     @Test
     void writesMessageToConsole() {
-        sut.show("message");
+        sut.show(MESSAGE);
 
-        assertThat(messageDisplayedInConsole()).isEqualTo("message");
+        assertThat(messageDisplayedInConsole()).isEqualTo(MESSAGE);
     }
 
     @Test
