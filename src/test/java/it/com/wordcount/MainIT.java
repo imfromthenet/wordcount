@@ -28,19 +28,19 @@ class MainIT {
 
     @Test
     void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
-        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+        System.setIn(new ByteArrayInputStream(("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.").getBytes()));
 
         Main.main(new String[]{});
 
-        assertThat(messageDisplayedInConsole()).isEqualTo("Enter text: Number of words: 4");
+        assertThat(messageDisplayedInConsole()).isEqualTo("Enter text: Number of words: 9, unique: 7");
     }
 
     @Test
     void canUseCommandLineArgumentsToGetTheInputData() {
-        prepareTestFileContaining("Mary had a little lamb");
+        prepareTestFileContaining("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.");
         Main.main(new String[]{testFile.getPathAsString()});
 
-        assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 4");
+        assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 9, unique: 7");
     }
 
     @Test
