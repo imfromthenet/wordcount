@@ -13,7 +13,7 @@ import java.io.File;
 import static org.assertj.core.api.Assertions.assertThat;
 import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 
-public class MainIT {
+class MainIT {
 
     TestFile testFile;
     ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
@@ -27,7 +27,7 @@ public class MainIT {
     }
 
     @Test
-    public void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
+    void applicationProcessesInputCorrectlyAndReturnsCorrectResult() {
         System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
 
         Main.main(new String[]{});
@@ -36,7 +36,7 @@ public class MainIT {
     }
 
     @Test
-    public void canUseCommandLineArgumentsToGetTheInputData() {
+    void canUseCommandLineArgumentsToGetTheInputData() {
         prepareTestFileContaining("Mary had a little lamb");
         Main.main(new String[]{testFile.getPathAsString()});
 
@@ -44,7 +44,7 @@ public class MainIT {
     }
 
     @Test
-    public void whenThereAreProblemsReadingAFileReturnsAndEmptyStringInsteadOfTheContentsOfTheFileAndDisplaysAnErrorMessageToUser() {
+    void whenThereAreProblemsReadingAFileReturnsAndEmptyStringInsteadOfTheContentsOfTheFileAndDisplaysAnErrorMessageToUser() {
         Main.main(new String[]{"nonexistentFile.txt"});
 
         assertThat(messageDisplayedInConsole())
