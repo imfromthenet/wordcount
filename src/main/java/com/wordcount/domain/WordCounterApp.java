@@ -1,6 +1,8 @@
 package com.wordcount.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WordCounterApp {
 
@@ -17,7 +19,8 @@ public class WordCounterApp {
         WordParser parser = new WordParser();
         List<String> wordsParsed = parser.parse(userInput);
         List<String> wordsFiltered = stopWords.filter(wordsParsed);
-        Answer answer = new Answer(wordsFiltered.size());
+        Set<String> uniqueWords = new HashSet<>(wordsFiltered);
+        Answer answer = new Answer(wordsFiltered.size(), uniqueWords.size());
         ui.show(answer.getFormatted());
     }
 
