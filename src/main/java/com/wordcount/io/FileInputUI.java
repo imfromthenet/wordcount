@@ -13,17 +13,17 @@ import java.nio.file.Paths;
 import static java.util.stream.Collectors.joining;
 
 public class FileInputUI implements InputUI {
-    private String path;
+    private String pathName;
 
-    public FileInputUI(String path) {
-        this.path = path;
+    public FileInputUI(String pathName) {
+        this.pathName = pathName;
     }
 
     @Override
     public String getInput() {
-        Path p = PathMapper.toPath(path);
+        Path p = PathMapper.toPath(pathName);
         if (p == null) {
-            System.out.printf("The path (%s) was not able to be read. Instead, an empty string is passed as input.", path);
+            System.out.printf("The path (%s) was not able to be read. Instead, an empty string is passed as input.", pathName);
             return "";
         }
         try {
@@ -31,30 +31,30 @@ public class FileInputUI implements InputUI {
                     .filter(string -> !string.isEmpty())
                     .collect(joining(" "));
         } catch (IOException e) {
-            System.out.printf("There was a problem opening a file (%s). Instead, an empty string is passed as input.", path);
+            System.out.printf("There was a problem opening a file (%s). Instead, an empty string is passed as input.", pathName);
             return "";
         }
     }
 
     private static class PathMapper {
-        private static Path toPath(String path) {
-            if (path == null) {
+        private static Path toPath(String pathName) {
+            if (pathName == null) {
                 return null;
             }
-            if (path.contains("/")) return getPathFromFileSystem(path);
-            return getPathFromClasspath(path);
+            if (pathName.contains("/")) return getPathFromFileSystem(pathName);
+            return getPathFromClasspath(pathName);
         }
 
-        private static Path getPathFromFileSystem(String path) {
+        private static Path getPathFromFileSystem(String pathName) {
             try {
-                return Paths.get(path);
+                return Paths.get(pathName);
             } catch (InvalidPathException e) {
                 return null;
             }
         }
 
-        private static Path getPathFromClasspath(String path) {
-            URL url = ClassLoader.getSystemResource(path);
+        private static Path getPathFromClasspath(String pathName) {
+            URL url = ClassLoader.getSystemResource(pathName);
             if (url == null) {
                 return null;
             }
