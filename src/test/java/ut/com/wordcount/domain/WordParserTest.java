@@ -58,7 +58,7 @@ class WordParserTest {
     }
 
     @Test
-    void returnsZeroWhenInputIsSpecialCharacter() {
+    void returnsEmptyListWhenInputIsSpecialCharacter() {
         stream("*-+/=!@#$%^&*()_`~?][|\\".split(""))
                 .forEach(symbol -> {
                     List<String> actual = sut.parse(symbol);
@@ -68,9 +68,16 @@ class WordParserTest {
 
     @Test
     void splitsStringIntoWordsByNonLetter() {
-        List<String> actual = sut.parse("word2word-word_word");
+        List<String> actual = sut.parse("word2word_word");
 
-        assertThat(actual).containsSequence(asList("word", "word", "word", "word"));
+        assertThat(actual).containsSequence(asList("word", "word", "word"));
+    }
+
+    @Test
+    void treatsHyphenatedWordsAsOne() {
+        List<String> actual = sut.parse("word-word");
+
+        assertThat(actual).containsOnly("word-word");
     }
 
     @Test
