@@ -32,7 +32,7 @@ class MainIT {
 
         Main.main(new String[]{});
 
-        assertThat(messageDisplayedInConsole()).isEqualTo("Enter text: Number of words: 7, unique: 6");
+        assertThat(messageDisplayedInConsole()).isEqualTo("Enter text: Number of words: 7, unique: 6; average word length: 6.43 characters");
     }
 
     @Test
@@ -40,7 +40,7 @@ class MainIT {
         prepareTestFileContaining("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.");
         Main.main(new String[]{testFile.getPathAsString()});
 
-        assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 7, unique: 6");
+        assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 7, unique: 6; average word length: 6.43 characters");
     }
 
     @Test
