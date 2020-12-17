@@ -10,14 +10,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 class UIFactoryIT {
 
     @Test
-    void buildsConsoleUI() {
+    void buildsConsoleUIIfNoParametersAreProvided() {
         assertThat(UIFactory.construct(new String[]{}))
                 .isExactlyInstanceOf(ConsoleUI.class);
     }
 
     @Test
-    void buildsConsoleOutputFileInputUI() {
+    void buildsConsoleOutputFileInputUIIfAFileNameIsProvided() {
         assertThat(UIFactory.construct(new String[]{"nonExistingFile"}))
                 .isExactlyInstanceOf(UIImpl.class);
     }
+
+    @Test
+    void ignoresIndexFlagAndBuildsConsoleUI() {
+        assertThat(UIFactory.construct(new String[]{ "-index"}))
+                .isExactlyInstanceOf(ConsoleUI.class);
+    }
+
+    @Test
+    void ignoresIndexFlagAndBuildsConsoleOutputFileInputUI() {
+        assertThat(UIFactory.construct(new String[]{"nonExistingFile", "-index"}))
+                .isExactlyInstanceOf(UIImpl.class);
+    }
+
 }
