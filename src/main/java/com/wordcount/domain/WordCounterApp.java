@@ -1,15 +1,19 @@
 package com.wordcount.domain;
 
+import com.wordcount.domain.handler.Handler;
+
 import java.util.List;
 
 public class WordCounterApp {
 
     private UI ui;
     private StopWords stopWords;
+    private Handler handler;
 
-    public WordCounterApp(UI ui, StopWords stopWords) {
+    public WordCounterApp(UI ui, StopWords stopWords, Handler handler) {
         this.ui = ui;
         this.stopWords = stopWords;
+        this.handler = handler;
     }
 
     public void countWords() {
@@ -17,8 +21,7 @@ public class WordCounterApp {
         WordParser parser = new WordParser();
         List<String> wordsParsed = parser.parse(userInput);
         List<String> wordsFiltered = stopWords.filter(wordsParsed);
-        Answer answer = new Answer(wordsFiltered);
-        ui.show(answer.getFormatted());
+        ui.show(handler.handle(wordsFiltered));
     }
 
 

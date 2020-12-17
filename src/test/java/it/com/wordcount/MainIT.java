@@ -36,11 +36,38 @@ class MainIT {
     }
 
     @Test
+    void givenTextEnteredViaConsoleAndIndexFlagDisplaysBaseDataPlusIndex() {
+        System.setIn(new ByteArrayInputStream(("Mary had a little lamb").getBytes()));
+
+        Main.main(new String[]{"-index"});
+
+        assertThat(messageDisplayedInConsole()).isEqualTo("Enter text: Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                "Index:\n" +
+                "had\n" +
+                "lamb\n" +
+                "little\n" +
+                "Mary");
+    }
+
+    @Test
     void canUseCommandLineArgumentsToGetTheInputData() {
         prepareTestFileContaining("Humpty-Dumpty sat on a wall. Humpty-Dumpty had a great fall.");
         Main.main(new String[]{testFile.getPathAsString()});
 
         assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 7, unique: 6; average word length: 6.43 characters");
+    }
+
+    @Test
+    void givenValidInputViaFileAndIndexFlagDisplaysBaseDataPlusIndex() {
+        prepareTestFileContaining("Mary had a little lamb");
+        Main.main(new String[]{testFile.getPathAsString(), "-index"});
+
+        assertThat(messageDisplayedInConsole()).isEqualTo("Number of words: 4, unique: 4; average word length: 4.25 characters\n" +
+                "Index:\n" +
+                "had\n" +
+                "lamb\n" +
+                "little\n" +
+                "Mary");
     }
 
     @Test
