@@ -2,12 +2,12 @@ package com.wordcount.io;
 
 import com.wordcount.domain.UI;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class UIFactory {
 
-    public static UI construct(String[] consoleParameters) {
+    public static UI construct(List<String> consoleParameters) {
         Optional<String> firstNonFlagArg = getNonFlagArgumentFrom(consoleParameters);
         if (firstNonFlagArg.isPresent()) {
             return new UIImpl(new ConsoleUI(), new FileInputUI(firstNonFlagArg.get()));
@@ -15,8 +15,8 @@ public class UIFactory {
         return new ConsoleUI();
     }
 
-    private static Optional<String> getNonFlagArgumentFrom(String[] consoleParameters) {
-        return Arrays.stream(consoleParameters)
+    private static Optional<String> getNonFlagArgumentFrom(List<String> consoleParameters) {
+        return consoleParameters.stream()
                 .filter(p -> !p.startsWith("-"))
                 .findFirst();
     }

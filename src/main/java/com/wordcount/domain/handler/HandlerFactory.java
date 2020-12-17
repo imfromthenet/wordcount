@@ -3,19 +3,15 @@ package com.wordcount.domain.handler;
 import com.wordcount.domain.handler.collective.BaseHandler;
 import com.wordcount.domain.handler.collective.BaseHandlerWithIndex;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class HandlerFactory {
 
-    public static Handler construct(String[] params) {
-        if (hasIndexFlag(params)) {
+    public static Handler construct(List<String> params) {
+        if (params.contains("-index")) {
             return new BaseHandlerWithIndex();
         }
         return new BaseHandler();
-    }
-
-    private static boolean hasIndexFlag(String[] params) {
-        return Arrays.asList(params).contains("-index");
     }
 
 }
