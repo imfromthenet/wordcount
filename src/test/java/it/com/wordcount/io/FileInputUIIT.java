@@ -15,8 +15,7 @@ import static sharedTool.TestUIHelper.getTestConsoleOutputRecorder;
 class FileInputUIIT {
 
     private static final String CONTENT_OF_FILE = "input from file";
-
-    ByteArrayOutputStream testConsoleOutputRecorder = getTestConsoleOutputRecorder();
+    private static final String NONEXISTENT_FILENAME = "nonexistentFilename";
 
     @TempDir
     File tempDirectory;
@@ -32,10 +31,10 @@ class FileInputUIIT {
 
     @Test
     void whenPassedFileNameIsNotFoundReturnsEmptyStringAndLogsAnErrorMessageToUser() {
-        String input = new FileInputUI("nonexistingFilename").getInput();
+        String input = new FileInputUI(NONEXISTENT_FILENAME).getInput();
 
         assertSoftly(softly -> {
-            softly.assertThat(messageDisplayedInConsole()).contains("nonexistingFilename");
+            softly.assertThat(messageDisplayedInConsole()).contains(NONEXISTENT_FILENAME);
             softly.assertThat(input).isEqualTo("");
         });
     }
