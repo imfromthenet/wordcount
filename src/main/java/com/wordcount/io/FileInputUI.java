@@ -1,6 +1,8 @@
 package com.wordcount.io;
 
 import com.wordcount.domain.InputUI;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import static java.util.stream.Collectors.joining;
 
 public class FileInputUI implements InputUI {
     private String pathName;
+    private Logger logger = LoggerFactory.getLogger(FileInputUI.class);
 
     public FileInputUI(String pathName) {
         this.pathName = pathName;
@@ -24,7 +27,8 @@ public class FileInputUI implements InputUI {
     public String getInput() {
         Path p = PathMapper.toPath(pathName);
         if (p == null) {
-            System.out.printf("The path (%s) was not able to be read. Instead, an empty string is passed instead.", pathName);
+            String messageToUser = String.format("The path (%s) was not able to be read. Instead, an empty string is passed instead.", pathName);
+            logger.warn(messageToUser);
             return "";
         }
         try (final Stream<String> lines = Files.lines(p)) {
@@ -32,7 +36,7 @@ public class FileInputUI implements InputUI {
                     .filter(string -> !string.isEmpty())
                     .collect(joining(" "));
         } catch (IOException e) {
-            System.out.printf("There was a problem opening a file (%s). Instead, an empty string is passed instead.", pathName);
+            logger.warn(String.format("There was a problem opening a file (%s). Instead, an empty string is passed further.", pathName));
             return "";
         }
     }
