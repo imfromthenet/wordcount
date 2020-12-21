@@ -75,7 +75,7 @@ class MainIT {
         Main.main(new String[]{"nonexistentFile.txt"});
 
         assertThat(messageDisplayedInConsole())
-                .contains("The path (nonexistentFile.txt) was not able to be read. Instead, an empty string is passed as input.")
+                .contains("The path (nonexistentFile.txt) was not able to be read. Instead, an empty string is passed instead.")
                 .contains("Number of words: 0");
     }
 

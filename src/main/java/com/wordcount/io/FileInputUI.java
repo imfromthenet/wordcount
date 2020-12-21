@@ -24,7 +24,7 @@ public class FileInputUI implements InputUI {
     public String getInput() {
         Path p = PathMapper.toPath(pathName);
         if (p == null) {
-            System.out.printf("The path (%s) was not able to be read. Instead, an empty string is passed as input.", pathName);
+            System.out.printf("The path (%s) was not able to be read. Instead, an empty string is passed instead.", pathName);
             return "";
         }
         try (final Stream<String> lines = Files.lines(p)) {
@@ -32,7 +32,7 @@ public class FileInputUI implements InputUI {
                     .filter(string -> !string.isEmpty())
                     .collect(joining(" "));
         } catch (IOException e) {
-            System.out.printf("There was a problem opening a file (%s). Instead, an empty string is passed as input.", pathName);
+            System.out.printf("There was a problem opening a file (%s). Instead, an empty string is passed instead.", pathName);
             return "";
         }
     }
